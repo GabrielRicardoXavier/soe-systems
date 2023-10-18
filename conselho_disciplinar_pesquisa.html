@@ -1,0 +1,498 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+    <h1 style="color: orange">Ata do Conselho de Disciplinar</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <div class="row g-3 position:absolute end-50 ">
+        <div class="d-flex align-items-center">
+            <div class="col-sm-2 foto-aluno">
+                <label style="width: 150px; height: 200px; display: block; overflow: hidden; position: relative;">
+                    <img src="{{ url_for('static', filename='foto_alunos/default_alunos.jpg') }}"
+                         style="width: 100%; height: 100%; object-fit: cover;">
+                </label>
+            </div>
+            <h1 class="mx-auto" style="width: 500px; color:red">Pesquisa</h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row g-3 mt-1">
+        <div class="col-sm-1 codigo">
+            <input name="ra" placeholder="Matrícula" type="text" class="form-control" disabled>
+        </div>
+        {% for aluno in nome_alunoquery %}
+        <div class="col-sm-1 codigo" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="codigo" id="codigo" value="{{ aluno.ra }}"
+                   type="text" class="form-control" onkeyup="carregarFoto()" disabled>
+        </div>
+        {% endfor %}
+
+        <div class="col-md-3">
+            <select name="aluno_nome" id="option" class="form-select" aria-label="Default select example">
+                <option value="opcao1">Selecione o Aluno</option>
+                {% for aluno in nome_alunoquery %}
+                <option value="{{ aluno.aluno_nome }}">
+                    {{ aluno.aluno_nome }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-3 turma">
+            <input type="text" class="form-control" placeholder="Turma" aria-label="Turma" disabled>
+        </div>
+
+        <div class="col-sm serie">
+            <input type="text" class="form-control" placeholder="Série" aria-label="Série" disabled>
+        </div>
+        {% for aluno in nome_alunoquery %}
+        <div class="col-sm-3 turma" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="turma_aluno" value="{{ aluno.turma_aluno }}"
+                   type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm-5 serie" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="serie_aluno" value="{{ aluno.serie_aluno }}"
+                   type="text" class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row g-3 mt-1">
+        <div class="col-sm-3 unidade">
+            <input name="unidade" type="text" class="form-control" placeholder="Unidade" aria-label="Unidade" disabled>
+        </div>
+        <div class="col-sm-2 cidade">
+            <input name="cidade" type="text" class="form-control" placeholder="Estado" aria-label="Estado" disabled>
+        </div>
+        <div class="col-sm-2 estado">
+            <input name="estado" type="text" class="form-control" placeholder="Cidade" aria-label="Cidade" disabled>
+        </div>
+        <div class="col-md-3 ordem">
+            <input name="ordem" type="text" class="form-control" placeholder="Ordem" aria-label="Ordem" disabled>
+        </div>
+        <div class="col-sm data_cd">
+            <input name="data_cd" type="text" class="form-control" placeholder="Data" aria-label="Data" disabled>
+        </div>
+        {% for aluno in nome_alunoquery %}
+        <div class="col-sm-3 unidade" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="unidade" value="{{ aluno.unidade }}"
+                   type="text" class="form-control" disabled>
+        </div>
+
+        <div class="col-sm-2 estado" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="estado" value="{{ aluno.estado }}"
+                   type="text" class="form-control" disabled>
+        </div>
+
+        <div class="col-sm-2 cidade" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="cidade" value="{{ aluno.cidade }}"
+                   type="text" class="form-control" disabled>
+        </div>
+
+        <div class="col-sm-3 ordem" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="ordem" value="{{ aluno.ordem }}"
+                   type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm data_cd" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="data_cd" value="{{ aluno.data_cd }}"
+                   type="text" class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <h4>Comissão Disciplinar</h4>
+
+    <div class="row g-3 mt-0">
+        <div class="col-md diretoria">
+            <input name="diretoria" class="form-control" placeholder="Diretoria" disabled>
+        </div>
+        <div class="col-md coordenacao">
+            <input name="coordenacao" class="form-control" placeholder="Secretaria" disabled>
+        </div>
+        {% for aluno in nome_alunoquery %}
+        <div class="col-sm diretoria" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="diretoria" value="{{ aluno.diretoria }}"
+                   type="text" class="form-control" disabled>
+        </div>
+
+        <div class="col-sm coordenacao" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="coordenacao" value="{{ aluno.coordenacao }}"
+                   type="text" class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row g-3 mt-0">
+        <div class="col-md capelania">
+            <input name="capelania" class="form-control" placeholder="Capelania" disabled>
+        </div>
+
+        <div class="col-md secretaria">
+            <input name="secretaria" class="form-control" placeholder="Secretaria" disabled>
+        </div>
+        {% for aluno in nome_alunoquery %}
+        <div class="col-sm capelania" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="capelania" value="{{ aluno.capelania }}"
+                   type="text" class="form-control" disabled>
+        </div>
+
+        <div class="col-sm secretaria" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="secretaria" value="{{ aluno.secretaria }}"
+                   type="text" class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row g-3 mt-0">
+        <div class="col-md orientacao">
+            <input name="orientacao" class="form-control" placeholder="Orientacao" disabled>
+        </div>
+        <div class="col-md ourto">
+            <input name="ourto" class="form-control" placeholder="Ourto" disabled>
+        </div>
+        {% for aluno in nome_alunoquery %}
+        <div class="col-sm orientacao" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="orientacao" value="{{ aluno.orientacao }}"
+                   type="text" class="form-control" disabled>
+        </div>
+
+        <div class="col-sm ourto" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="ourto" value="{{ aluno.ourto }}"
+                   type="text" class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row g-3 mt-2">
+        <h6>Professores Presentes</h6>
+        <div class="col-md professores_presentes">
+            <textarea name="professores_presentes" class="form-control" placeholder="Professores Presentes" rows="5"
+                      disabled></textarea>
+        </div>
+        {% for aluno in nome_alunoquery %}
+        <div class="col-sm professores_presentes" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <textarea name="professores_presentes" class="form-control" rows="5" disabled>{{ aluno.professores_presentes }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+    <hr class="mb-0">
+    <div class="row g-3 mt-0">
+        <div class="responsavel_legal">
+            <input name="responsavel_legal" class="form-control" placeholder="Responsável Legal Convocado" disabled>
+        </div>
+
+        <div class="apresentacao_cd">
+            <textarea name="apresentacao_cd" class="form-control" rows="3"
+                      placeholder="Apresentação da demanda no Conselho Disciplinar" disabled></textarea>
+        </div>
+        {% for aluno in nome_alunoquery %}
+        <div class="responsavel_legal" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <input name="responsavel_legal" class="form-control" value="{{ aluno.responsavel_legal }}" disabled>
+        </div>
+        <div class="apresentacao_cd" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+            <textarea name="apresentacao_cd" class="form-control" rows="3"
+                      disabled>{{ aluno.apresentacao_cd }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <h4>Estatísticas</h4>
+    <div class="row g-3 mt-1">
+        <div class="col-sm">
+            <input type="text" class="form-control" placeholder="Porcentagem de Faltas"
+                   style="height: 100px; font-size: 50px; background: #FFA500;" disabled>
+        </div>
+    </div>
+
+    <div class="row g-3 mt-1">
+        <h6>DEMONSTRATIVO GERAL DO QUADRO DE NOTAS DO ALUNO</h6>
+        <div class="col-sm mt-1">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Bimestre</th>
+                    <th scope="col">LP</th>
+                    <th scope="col">ART</th>
+                    <th scope="col">MAT</th>
+                    <th scope="col">CIE</th>
+                    <th scope="col">GEO</th>
+                    <th scope="col">HIST</th>
+                    <th scope="col">EF</th>
+                    <th scope="col">FIS</th>
+                    <th scope="col">QUI</th>
+                    <th scope="col">LEM-ING</th>
+                    <th scope="col">ER</th>
+                    <th scope="col">RED</th>
+                    <th scope="col">LEM-ESP</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1°</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">2°</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">3°</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">4°</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <h4>Avaliação Prévia do Aluno</h4>
+
+    <h6>1 - Quanto ao Aproveitamento Acadêmico do Aluno:</h6>
+    <div class="col-md item1">
+        <input name="item1" class="form-control" disabled>
+    </div>
+    {% for aluno in nome_alunoquery %}
+    <div class="col-sm item1" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+        <input name="item1" value="{{ aluno.item1 }}"
+               type="text" class="form-control" disabled>
+    </div>
+    {% endfor %}
+    <h6 class="mt-3">2 - Antecendentes Indiciplinares Anteriores do Aluno:</h6>
+    <div class="col-md item2">
+        <input name="item2" class="form-control" disabled>
+    </div>
+    {% for aluno in nome_alunoquery %}
+    <div class="col-sm item2" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+        <input name="item2" value="{{ aluno.item2 }}"
+               type="text" class="form-control" disabled>
+    </div>
+    {% endfor %}
+
+    <h6 class="mt-3">3 - Quanto a Participação do Aluno em Classe:</h6>
+    <div class="col-md item3">
+        <input name="item3" class="form-control" disabled>
+    </div>
+    {% for aluno in nome_alunoquery %}
+    <div class="col-sm item3" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+        <input name="item3" value="{{ aluno.item3 }}"
+               type="text" class="form-control" disabled>
+    </div>
+    {% endfor %}
+
+    <h6 class="mt-3">4 - Quanto a Frequebcia do Aluno em Sala:</h6>
+    <div class="col-md item4">
+        <input name="item4" class="form-control" disabled>
+    </div>
+    {% for aluno in nome_alunoquery %}
+    <div class="col-sm item4" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+        <input name="item4" value="{{ aluno.item4 }}"
+               type="text" class="form-control" disabled>
+    </div>
+    {% endfor %}
+
+    <h6 class="mt-3">5 - Relação do Aluno com os Professores:</h6>
+    <div class="col-md item5">
+        <input name="item5" class="form-control" disabled>
+    </div>
+    {% for aluno in nome_alunoquery %}
+    <div class="col-sm item5" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+        <input name="item5" value="{{ aluno.item5 }}"
+               type="text" class="form-control" disabled>
+    </div>
+    {% endfor %}
+
+    <h6 class="mt-3">6 - Relação Interpessoal do Aluno com os Pares:</h6>
+    <div class="col-md item6">
+        <input name="item6" class="form-control" disabled>
+    </div>
+    {% for aluno in nome_alunoquery %}
+    <div class="col-sm item6" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+        <input name="item6" value="{{ aluno.item6 }}"
+               type="text" class="form-control" disabled>
+    </div>
+    {% endfor %}
+    <hr>
+    <h4>Itens da Ata do Conselho Disciplinar</h4>
+    <div class="col-md itens_cd mt-1">
+            <textarea name="itens_cd" class="form-control" placeholder="Itens do Conselho Selecionados" rows="5"
+                      disabled></textarea>
+    </div>
+    {% for aluno in nome_alunoquery %}
+    <div class="col-sm itens_cd mt-1" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+        <textarea name="itens_cd" class="form-control" rows="5"
+                  disabled>{{ aluno.itens_cd }}</textarea>
+    </div>
+    {% endfor %}
+    <div class="col-md mt-2 consideracoes_finais">
+            <textarea name="consideracoes_finais" class="form-control" placeholder="Considerações Finais" rows="3"
+                      disabled></textarea>
+    </div>
+    {% for aluno in nome_alunoquery %}
+    <div class="col-sm mt-2 consideracoes_finais" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+        <textarea name="consideracoes_finais" class="form-control" rows="3"
+                  disabled>{{ aluno.consideracoes_finais }}</textarea>
+    </div>
+    {% endfor %}
+
+    <script>
+        $(document).ready(function() {
+            $("#option").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "opcao1") {
+                    $(".codigo, .turma, .serie,.unidade,.cidade,.estado,.ordem,.data_cd,.diretoria,.coordenacao,.capelania,.secretaria,.orientacao,.ourto, .professores_presentes,.responsavel_legal,.apresentacao_cd, .item1,.item2,.item3,.item4,.item5,.item6, .itens_cd, .consideracoes_finais").val("").hide();
+                } else {
+                    $(".codigo, .turma, .serie,.unidade,.cidade,.estado,.ordem,.data_cd,.diretoria,.coordenacao,.capelania,.secretaria,.orientacao,.ourto, .professores_presentes,.responsavel_legal,.apresentacao_cd, .item1,.item2,.item3,.item4,.item5,.item6, .itens_cd, .consideracoes_finais").hide();
+                    $(".codigo[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".turma[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".serie[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".unidade[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".cidade[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".estado[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".ordem[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".data_cd[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".diretoria[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".coordenacao[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".capelania[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".secretaria[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".orientacao[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".ourto[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".professores_presentes[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".responsavel_legal[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".apresentacao_cd[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".item1[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".item2[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".item3[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".item4[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".item5[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".item6[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".itens_cd[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".consideracoes_finais[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    // Atualizar a imagem do aluno com base no código da matrícula
+                    var codigoAluno = $(".codigo[data-matricula='" + selectedOption + "'] input[name='codigo']").val();
+                    $("#codigo_aluno").val(codigoAluno);
+                    var fotoAlunoSrc = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpg";
+                    $(".foto-aluno img").attr("src", fotoAlunoSrc);
+                }
+            });
+            // Display initially four empty fields
+            $(".codigo, .turma, .serie,.unidade,.cidade,.estado,.ordem,.data_cd,.diretoria,.coordenacao,.capelania,.secretaria,.orientacao,.ourto, .professores_presentes,.responsavel_legal,.apresentacao_cd, .item1,.item2,.item3,.item4,.item5,.item6, .itens_cd, .consideracoes_finais").slice(0, 1).show();
+        });
+
+
+    </script>
+    <script>
+                function carregarFoto() {
+                    var codigo = document.getElementById("codigo").value;
+                    var img = document.getElementById("foto");
+                    img.src = "static/foto_alunos/" + codigo + ".jpg";
+                }
+
+    </script>
+
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('conselho_disciplinar')}}">
+                <button>Back</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

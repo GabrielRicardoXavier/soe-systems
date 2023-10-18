@@ -1,0 +1,564 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Ata do Conselho de Disciplinar</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <div class="row g-3 position:absolute end-50 ">
+        <div class="d-flex align-items-center">
+            <div class="col-sm-2 foto-aluno">
+                <label style="width: 150px; height: 200px; display: block; overflow: hidden; position: relative;">
+                    <img src="{{ url_for('static', filename='foto_alunos/default_alunos.jpg') }}"
+                         style="width: 100%; height: 100%; object-fit: cover;">
+                </label>
+            </div>
+            <h1 class="mx-auto" style="width: 700px; color:red">Itens da Ata do Conselho Disciplinar</h1>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row g-3 mt-1">
+            <div class="col-sm">
+                <input type="text" class="form-control" value="{{ aluno_selecionado_cd.aluno_codigo }}"
+                       name="codigo" placeholder="Matrícula" aria-label="Matrícula" disabled>
+            </div>
+            <div class="col-md">
+                <input type="text" class="form-control" value="{{ aluno_selecionado_cd.aluno_nome }}"
+                       placeholder="Alunos" aria-label="Alunos" disabled>
+            </div>
+        </div>
+
+        <hr>
+        <h5>Descrição</h5>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="CONSTITUEM AÇÕES PROIBIDAS AOS ESTUDANTES E INCOMPATÍVEIS À FILOSOFIA DA UNIDADE ESCOLAR"
+                   id="PropCD1">
+            <b><label class="form-check-label" for="PropCD1">
+                ⠀⠀1 - CONSTITUEM AÇÕES PROIBIDAS AOS ESTUDANTES E INCOMPATÍVEIS À FILOSOFIA DA UNIDADE ESCOLAR:
+            </label></b>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="ausentar-se da Unidade Escolar sem a autorização da coordenação disciplinar ou da administração
+            escolar" id="PropCD2">
+            <label class="form-check-label" for="PropCD2">
+                1.01. ausentar-se da Unidade Escolar sem a autorização da coordenação disciplinar ou da administração
+                escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="envolver-se em atividades alheias às praticadas durante a permanência no ambiente escolar ou em
+            eventos extraclasse" id="PropCD3">
+            <label class="form-check-label" for="PropCD3">
+                1.02. envolver-se em atividades alheias às praticadas durante a permanência no ambiente escolar ou em
+                eventos extraclasse;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="portar e/ou fazer uso de cigarros, bebidas alcoólicas, drogas lícitas e ilícitas ou quaisquer outras
+            substâncias tóxicas/entorpe- centes, seja nas dependências e imediações da Unidade Escolar" id="PropCD4">
+            <label class="form-check-label" for="PropCD4">
+                1.03. portar e/ou fazer uso de cigarros, bebidas alcoólicas, drogas lícitas e ilícitas ou quaisquer
+                outras
+                substâncias tóxicas/entorpe- centes, seja nas dependências e imediações da Unidade Escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="promover eventos de qualquer natureza nas dependências e imediações da Unidade Escolar ou, mesmo em
+            outros luga- res, quando envolver o nome da Unidade Escolar ou de sua Instituição mantenedora, sem prévia e
+            expressa autorização por escrito da administração escolar ou da mantenedora" id="PropCD5">
+            <label class="form-check-label" for="PropCD5">
+                1.04. promover eventos de qualquer natureza nas dependências e imediações da Unidade Escolar ou, mesmo
+                em
+                outros luga- res, quando envolver o nome da Unidade Escolar ou de sua Instituição mantenedora, sem
+                prévia e
+                expressa autorização por escrito da administração escolar ou da mantenedora;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="impedir a entrada de colegas na Unidade Escolar ou sua frequência às aulas, bem como incitá-los à
+            ausência coletiva" id="PropCD6">
+            <label class="form-check-label" for="PropCD6">
+                1.05. impedir a entrada de colegas na Unidade Escolar ou sua frequência às aulas, bem como incitá-los à
+                ausência coletiva;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="usar piercings, joias, bijuterias, correntes ou quaisquer outros adornos afins, em qualquer parte do
+            corpo, sob pena de recolhi- mento dos referidos itens e devolução exclusiva aos pais ou responsáveis"
+                   id="PropCD7">
+            <label class="form-check-label" for="PropCD7">
+                1.06. usar piercings, joias, bijuterias, correntes ou quaisquer outros adornos afins, em qualquer parte
+                do
+                corpo, sob pena de recolhi- mento dos referidos itens e devolução exclusiva aos pais ou responsáveis;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="manter cabelos compridos, tinturas e/ou cortes extravagantes para o sexo masculino, bem como, manter
+            cabelos tingidos com coloração extravagante e/ou cortes não convencionais para o sexo feminino"
+                   id="PropCD8">
+            <label class="form-check-label" for="PropCD8">
+                1.07. manter cabelos compridos, tinturas e/ou cortes extravagantes para o sexo masculino, bem como,
+                manter
+                cabelos tingidos com coloração extravagante e/ou cortes não convencionais para o sexo feminino;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="usar maquiagem e/ou esmalte nas unhas das mãos e dos pés com cores escuras, extravagantes ou não
+            convencionais" id="PropCD9">
+            <label class="form-check-label" for="PropCD9">
+                1.08. usar maquiagem e/ou esmalte nas unhas das mãos e dos pés com cores escuras, extravagantes ou não
+                convencionais;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="namorar, “ficar”, ou manter qualquer tipo de relacionamento físico-afetivo nas dependências ou
+            imediações da Unidade Escolar, sendo vetado todo e qualquer tipo de contato físico entre os alunos (abraços,
+            beijos, mãos dadas, etc.), independen- temente do relacionamento estabelecido entre eles e, sobretudo,
+            independentemente de gênero e/ou orientação sexual" id="PropCD10">
+            <label class="form-check-label" for="PropCD10">
+                1.09. namorar, “ficar”, ou manter qualquer tipo de relacionamento físico-afetivo nas dependências ou
+                imediações da Unidade Escolar, sendo vetado todo e qualquer tipo de contato físico entre os alunos
+                (abraços,
+                beijos, mãos dadas, etc.), independen- temente do relacionamento estabelecido entre eles e, sobretudo,
+                independentemente de gênero e/ou orientação sexual;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="usar bonés, gorros, toucas, capuzes e outros itens semelhantes nos ambientes fechados da unidade
+            escolar (salas de aula, biblioteca, auditório, dependências internas, corredores, etc.), sob pena de
+            recolhimento e devolução exclusiva aos pais ou responsáveis em caso de uso inadequado" id="PropCD11">
+            <label class="form-check-label" for="PropCD11">
+                1.10. usar bonés, gorros, toucas, capuzes e outros itens semelhantes nos ambientes fechados da unidade
+                escolar (salas de aula, biblioteca, auditório, dependências internas, corredores, etc.), sob pena de
+                recolhimento e devolução exclusiva aos pais ou responsáveis em caso de uso inadequado;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="alterar, desvirtuar, corromper, deformar ou de qualquer forma descaracterizar o padrão do uniforme
+            escolar, mediante o uso de golas rasgadas, calças cortadas, sem a faixa de identificação, com barras
+            desfeitas ou abertas, ou quaisquer outras modificações" id="PropCD12">
+            <label class="form-check-label" for="PropCD12">
+                1.11. alterar, desvirtuar, corromper, deformar ou de qualquer forma descaracterizar o padrão do uniforme
+                escolar, mediante o uso de golas rasgadas, calças cortadas, sem a faixa de identificação, com barras
+                desfeitas ou abertas, ou quaisquer outras modificações;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="nas dependências ou imediações da Unidade Escolar: acessar websites cujo conteúdo seja impróprio para
+            o ambiente escolar e incompatível com a filosofia da Instituição mantenedora (tais como namoro eletrônico,
+            pornografia, esoterismo, jogos ou similares), praticar jogos de azar, mediante o uso de cartas, tabuleiros
+            ou outros artigos afins, e proceder à leitura de livros e revistas cujo conteúdo seja impróprio para o
+            ambiente escolar e incompatível com a filosofia da Instituição mantenedora, sob pena de recolhimento dos
+            referidos itens e entrega apenas aos pais ou responsáveis" id="PropCD13">
+            <label class="form-check-label" for="PropCD13">
+                1.12. nas dependências ou imediações da Unidade Escolar: acessar websites cujo conteúdo seja impróprio
+                para
+                o ambiente escolar e incompatível com a filosofia da Instituição mantenedora (tais como namoro
+                eletrônico,
+                pornografia, esoterismo, jogos ou similares), praticar jogos de azar, mediante o uso de cartas,
+                tabuleiros
+                ou outros artigos afins, e proceder à leitura de livros e revistas cujo conteúdo seja impróprio para o
+                ambiente escolar e incompatível com a filosofia da Instituição mantenedora, sob pena de recolhimento dos
+                referidos itens e entrega apenas aos pais ou responsáveis;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="trazer para a Unidade Escolar equipamentos eletrônicos estranhos às atividades acadêmicas, que
+            prejudiquem o apren- dizado ou perturbem o ambiente escolar, tais como MP3, MP4, MP5, máquina digital, e
+            outros objetos similares, sendo vetada sua utilização nas dependências da Unidade Escolar" id="PropCD14">
+            <label class="form-check-label" for="PropCD14">
+                1.13. trazer para a Unidade Escolar equipamentos eletrônicos estranhos às atividades acadêmicas, que
+                prejudiquem o apren- dizado ou perturbem o ambiente escolar, tais como MP3, MP4, MP5, máquina digital, e
+                outros objetos similares, sendo vetada sua utilização nas dependências da Unidade Escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="tirar fotos, realizar gravações de áudio e/ou vídeo, emitir comentários desairosos, publicar conteúdo
+            ofensivo na internet ou praticar qualquer conduta no ambiente escolar que viole a imagem, a honra e/ou a
+            integridade moral de alunos, professores, funcionários e administradores da Unidade Escolar, sob pena de
+            adoção das medidas judiciais cabíveis" id="PropCD15">
+            <label class="form-check-label" for="PropCD15">
+                1.14. tirar fotos, realizar gravações de áudio e/ou vídeo, emitir comentários desairosos, publicar
+                conteúdo
+                ofensivo na internet ou praticar qualquer conduta no ambiente escolar que viole a imagem, a honra e/ou a
+                integridade moral de alunos, professores, funcionários e administradores da Unidade Escolar, sob pena de
+                adoção das medidas judiciais cabíveis;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="envolver-se em brigas, ou praticar outras condutas incompatíveis com o adequado comportamento social,
+            seja nas de- pendências e imediações da Unidade Escolar" id="PropCD16">
+            <label class="form-check-label" for="PropCD16">
+                1.15. envolver-se em brigas, ou praticar outras condutas incompatíveis com o adequado comportamento
+                social,
+                seja nas de- pendências e imediações da Unidade Escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="usar de meios fraudulentos quando da realização das avaliações ou quaisquer outras atividades
+            acadêmicas" id="PropCD17">
+            <label class="form-check-label" for="PropCD17">
+                1.16. usar de meios fraudulentos quando da realização das avaliações ou quaisquer outras atividades
+                acadêmicas;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="promover festas comemorativas, aniversários, premiações, ou quaisquer outros eventos especiais nas
+            dependências da Unidade Escolar sem prévia e expressa autorização da administração escolar" id="PropCD18">
+            <label class="form-check-label" for="PropCD18">
+                1.17. promover festas comemorativas, aniversários, premiações, ou quaisquer outros eventos especiais nas
+                dependências da Unidade Escolar sem prévia e expressa autorização da administração escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="comercializar qualquer produto no ambiente escolar sem o consentimento da administração escolar"
+                   id="PropCD19">
+            <label class="form-check-label" for="PropCD19">
+                1.18. comercializar qualquer produto no ambiente escolar sem o consentimento da administração escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="promover jogos, competições, excursões, coletas, rifas ou outras formas de arrecadação, listas, abaixo
+            assinados, pedidos, ou outras campanhas e manifestações de qualquer natureza" id="PropCD20">
+            <label class="form-check-label" for="PropCD20">
+                1.19. promover jogos, competições, excursões, coletas, rifas ou outras formas de arrecadação, listas,
+                abaixo
+                assinados, pedidos, ou outras campanhas e manifestações de qualquer natureza;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="praticar atos de bullying ou cyberbullying contra alunos, professores, funcionários e administradores,
+            mediante a adoção de apelidos pejorativos, xingamentos, práticas discriminatórias ou quaisquer outras
+            atitudes que exponham as pessoas a situações embaraçosas, vexatórias e de constrangimento" id="PropCD21">
+            <label class="form-check-label" for="PropCD21">
+                1.20. praticar atos de bullying ou cyberbullying contra alunos, professores, funcionários e
+                administradores,
+                mediante a adoção de apelidos pejorativos, xingamentos, práticas discriminatórias ou quaisquer outras
+                atitudes que exponham as pessoas a situações embaraçosas, vexatórias e de constrangimento;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="distribuir e/ou veicular qualquer tipo de informação ou publicação, dentro ou fora da Unidade Escolar
+            e mesmo através da internet, que envolva o nome da Unidade Escolar, da Instituição mantenedora, de
+            estudantes, professores, funcionários ou administradores, sem prévia e expressa autorização da administração
+            escolar" id="PropCD22">
+            <label class="form-check-label" for="PropCD22">
+                1.21. distribuir e/ou veicular qualquer tipo de informação ou publicação, dentro ou fora da Unidade
+                Escolar
+                e mesmo através da internet, que envolva o nome da Unidade Escolar, da Instituição mantenedora, de
+                estudantes, professores, funcionários ou administradores, sem prévia e expressa autorização da
+                administração
+                escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="fazer-se acompanhar nas dependências da Unidade Escolar de pessoas estranhas ao ambiente, sem a devida
+            identificação e autorização do setor responsável pela portaria e/ou recepção" id="PropCD23">
+            <label class="form-check-label" for="PropCD23">
+                1.22. fazer-se acompanhar nas dependências da Unidade Escolar de pessoas estranhas ao ambiente, sem a
+                devida
+                identificação e autorização do setor responsável pela portaria e/ou recepção;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="andar de bicicleta, skate, patins, tênis de rodinha ou quaisquer outros itens similares nas
+            dependências da unidade Escolar" id="PropCD24">
+            <label class="form-check-label" for="PropCD24">
+                1.23. andar de bicicleta, skate, patins, tênis de rodinha ou quaisquer outros itens similares nas
+                dependências da unidade Escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="amassar, rabiscar, adulterar, rasurar ou deixar de entregar as correspondências encaminhadas pela
+            Unidade Escolar aos pais ou responsáveis, tais como informativos, comunicados, circulares, cartas, convites,
+            boletins e outros" id="PropCD25">
+            <label class="form-check-label" for="PropCD25">
+                1.24. amassar, rabiscar, adulterar, rasurar ou deixar de entregar as correspondências encaminhadas pela
+                Unidade Escolar aos pais ou responsáveis, tais como informativos, comunicados, circulares, cartas,
+                convites,
+                boletins e outros;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="faltar às aulas sem apresentar justificativa razoável por escrito" id="PropCD26">
+            <label class="form-check-label" for="PropCD26">
+                1.25. faltar às aulas sem apresentar justificativa razoável por escrito;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="escrever, desenhar, pichar, grafitar ou de qualquer forma grafar sinais nos edifícios, equipamentos,
+            dependências ou móveis da Unidade Escolar, sob pena de indenização do dano material causado ao patrimônio
+            escolar" id="PropCD27">
+            <label class="form-check-label" for="PropCD27">
+                1.26. escrever, desenhar, pichar, grafitar ou de qualquer forma grafar sinais nos edifícios,
+                equipamentos,
+                dependências ou móveis da Unidade Escolar, sob pena de indenização do dano material causado ao
+                patrimônio
+                escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="infringir as normas que estabelecem o funcionamento e uso das bibliotecas e dos diversos laboratórios
+            e/ou salas de atividades específicas oferecidas pela unidade Escolar" id="PropCD28">
+            <label class="form-check-label" for="PropCD28">
+                1.27. infringir as normas que estabelecem o funcionamento e uso das bibliotecas e dos diversos
+                laboratórios
+                e/ou salas de atividades específicas oferecidas pela unidade Escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="usar papéis timbrados da Unidade Escolar, ou similares, sem prévia e expressa autorização por escrito
+            da administração escolar" id="PropCD29">
+            <label class="form-check-label" for="PropCD29">
+                1.28. usar papéis timbrados da Unidade Escolar, ou similares, sem prévia e expressa autorização por
+                escrito
+                da administração escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="portar e/ou usar armas de qualquer tipo, explosivos, substâncias tóxicas, estiletes, objetos
+            pontiagudos e cortantes, que ameacem a saúde, segurança e integridade física própria ou do outro"
+                   id="PropCD30">
+            <label class="form-check-label" for="PropCD30">
+                1.29. portar e/ou usar armas de qualquer tipo, explosivos, substâncias tóxicas, estiletes, objetos
+                pontiagudos e cortantes, que ameacem a saúde, segurança e integridade física própria ou do outro;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="trazer para o ambiente escolar áudios, fotos, imagens, livros e revistas que firam à moral dos alunos,
+            professores, funcionários e administradores" id="PropCD31">
+            <label class="form-check-label" for="PropCD31">
+                1.30. trazer para o ambiente escolar áudios, fotos, imagens, livros e revistas que firam à moral dos
+                alunos,
+                professores, funcionários e administradores;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="compartilhar com uma ou mais pessoas, fotos, áudios e vídeos que firam à moral dos alunos,
+            professores, funcionários e admi- nistradores" id="PropCD32">
+            <label class="form-check-label" for="PropCD32">
+                1.31. compartilhar com uma ou mais pessoas, fotos, áudios e vídeos que firam à moral dos alunos,
+                professores, funcionários e admi- nistradores;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="violar as normas que eventualmente forem criadas após a publicação deste Código, bem como as demais
+            normas civis e penais vigentes no território nacional" id="PropCD33">
+            <label class="form-check-label" for="PropCD33">
+                1.32. violar as normas que eventualmente forem criadas após a publicação deste Código, bem como as
+                demais
+                normas civis e penais vigentes no território nacional.
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="SÃO CONSIDERADAS FALTAS OU OCORRÊNCIAS DISCIPLINARES GRAVES, DENTRE OUTRAS" id="PropCD34">
+            <B><label class="form-check-label" for="PropCD34">
+                ⠀⠀2 - SÃO CONSIDERADAS FALTAS OU OCORRÊNCIAS DISCIPLINARES GRAVES, DENTRE OUTRAS:
+            </label></B>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="reincidir em atos de indisciplina previstos no Regimento Escolar e neste código"
+                   id="PropCD35">
+            <label class="form-check-label" for="PropCD35">
+                2.01. reincidir em atos de indisciplina previstos no Regimento Escolar e neste código;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="promover e/ou participar de brigas no ambiente escolar" id="PropCD36">
+            <label class="form-check-label" for="PropCD36">
+                2.02. promover e/ou participar de brigas no ambiente escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="faltar às aulas propositadamente, permanecendo nas imediações da unidade Escolar"
+                   id="PropCD37">
+            <label class="form-check-label" for="PropCD37">
+                2.03. faltar às aulas propositadamente, permanecendo nas imediações da unidade Escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="desrespeitar ou desafiar a autoridade do diretor, dos professores, coordenadores e funcionários"
+                   id="PropCD38">
+            <label class="form-check-label" for="PropCD38">
+                2.04. desrespeitar ou desafiar a autoridade do diretor, dos professores, coordenadores e funcionários;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="falsificar documentos e/ou assinaturas" id="PropCD39">
+            <label class="form-check-label" for="PropCD39">
+                2.05. falsificar documentos e/ou assinaturas;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="utilizar, adquirir, vender, expor à venda, oferecer, guardar ou portar qualquer tipo de substância
+            entorpecente ou tóxica, bem como armas de qualquer espécie, nas dependências e imediações da unidade
+            Escolar" id="PropCD40">
+            <label class="form-check-label" for="PropCD40">
+                2.06. utilizar, adquirir, vender, expor à venda, oferecer, guardar ou portar qualquer tipo de substância
+                entorpecente ou tóxica, bem como armas de qualquer espécie, nas dependências e imediações da unidade
+                Escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="violar a integridade moral, física e psicológica dos alunos, professores, funcionários e
+            administradores" id="PropCD41">
+            <label class="form-check-label" for="PropCD41">
+                2.07. violar a integridade moral, física e psicológica dos alunos, professores, funcionários e
+                administradores;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="causar danos materiais ao patrimônio da Unidade Escolar" id="PropCD42">
+            <label class="form-check-label" for="PropCD42">
+                2.08. causar danos materiais ao patrimônio da Unidade Escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="sair da Unidade Escolar sem permissão expressa da coordenação ou administração escolar"
+                   id="PropCD43">
+            <label class="form-check-label" for="PropCD43">
+                2.09. sair da Unidade Escolar sem permissão expressa da coordenação ou administração escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox"
+                   value="praticar atos discriminatórios contra alunos, professores, funcionários e administradores"
+                   id="PropCD44">
+            <label class="form-check-label" for="PropCD44">
+                2.10. praticar atos discriminatórios contra alunos, professores, funcionários e administradores.
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="PELA INOBSERVÂNCIA DE SEUS DEVERES E PELA TRANSGRESSÃO DAS PROIBIÇÕES, OS ESTUDANTES ESTARÃO SUJEITOS ÀS
+            SEGUINTES MEDIDAS SÓCIO EDUCATIVAS, A SEREM APLICADAS GRADUALMENTE CONFORME A GRAVIDADE DOS ATOS"
+                   id="PropCD45">
+            <b><label class="form-check-label" for="PropCD45">
+                3 - PELA INOBSERVÂNCIA DE SEUS DEVERES E PELA TRANSGRESSÃO DAS PROIBIÇÕES, OS ESTUDANTES ESTARÃO
+                SUJEITOS ÀS
+                SEGUINTES MEDIDAS SÓCIO EDUCATIVAS, A SEREM APLICADAS GRADUALMENTE CONFORME A GRAVIDADE DOS ATOS:
+            </label></b>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="diálogo individual entre a coordenação disciplinar, orientação educacional, capelania, professor (a)
+            ou administrador com o estudante, relembrando e enfatizando as normas regimentais e éticas da Unidade
+            Escolar" id="PropCD46">
+            <label class="form-check-label" for="PropCD46">
+                3.01. diálogo individual entre a coordenação disciplinar, orientação educacional, capelania, professor
+                (a)
+                ou administrador com o estudante, relembrando e enfatizando as normas regimentais e éticas da Unidade
+                Escolar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="repreensão ou orientação por escrito, em formulário próprio, feita pelo professor, orientador
+            educacional ou coordenador disciplinar, enviado aos pais e responsáveis com solicitação de assinatura"
+                   id="PropCD47">
+            <label class="form-check-label" for="PropCD47">
+                3.02. repreensão ou orientação por escrito, em formulário próprio, feita pelo professor, orientador
+                educacional ou coordenador disciplinar, enviado aos pais e responsáveis com solicitação de assinatura;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="itens_cd" class="form-check-input" type="checkbox" value="afastamento da sala de aula, ficando o estudante em outro ambiente para realização de atividades
+            pedagógicas sob a tutela de um educador" id="PropCD48">
+            <label class="form-check-label" for="PropCD48">
+                3.03. afastamento da sala de aula, ficando o estudante em outro ambiente para realização de atividades
+                pedagógicas sob a tutela de um educador;
+            </label>
+        </div>
+        <hr>
+        <h6>Considerações Finais</h6>
+
+        <div class="col-md mt-2">
+            <textarea name="consideracoes_finais" class="form-control" rows="5"></textarea>
+        </div>
+        <input type="submit" class="btn btn-secondary mt-2" value="Continuar">
+    </form>
+    <script>
+                // Atualizar a imagem do aluno com base no código da matrícula
+                    var codigoAluno = $(".codigo[data-matricula='" + selectedOption + "'] input[name='codigo']").val();
+                    $("#codigo_aluno").val(codigoAluno);
+                    var fotoAlunoSrc = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpg";
+                    $(".foto-aluno img").attr("src", fotoAlunoSrc);
+
+    </script>
+    <script>
+                function carregarFoto() {
+                    var codigo = document.getElementById("codigo").value;
+                    var img = document.getElementById("foto");
+                    img.src = "static/foto_alunos/" + codigo + ".jpg";
+                }
+
+    </script>
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('conselho_disciplinar_avaliacao')}}">
+                <button>Back</button>
+            </a>
+            <a href="{{url_for('conselho_disciplinar')}}">
+                <button>End</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Ata do Conselho Disciplinar</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row g-3 position:absolute end-50 ">
+            <div class="d-flex align-items-center">
+                <div class="col-sm-2 foto-aluno">
+                    <label style="width: 150px; height: 200px; display: block; overflow: hidden; position: relative;">
+                        <img src="{{ url_for('static', filename='foto_alunos/default_alunos.jpg') }}"
+                             style="width: 100%; height: 100%; object-fit: cover;">
+                    </label>
+                </div>
+                <h1 class="mx-auto" style="width: 500px; color:red">Avaliação Prévia do Aluno</h1>
+            </div>
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-sm">
+                <input name="codigo" type="text" class="form-control" value="{{ aluno_selecionado_cd.aluno_codigo }}"
+                       placeholder="Matrícula" aria-label="Matrícula" disabled>
+            </div>
+            <div class="col-md">
+                <input type="text" class="form-control" value="{{ aluno_selecionado_cd.aluno_nome }}"
+                       placeholder="Alunos" aria-label="Alunos" disabled>
+            </div>
+        </div>
+        <hr>
+        <h6>1 - Quanto ao Aproveitamento Acadêmico do Aluno:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item1" id="Exelente101CD" value="Excelente">
+                <label class="form-check-label" for="Exelente101CD">Excelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item1" id="Suficiente101CC" value="Suficiente">
+                <label class="form-check-label" for="Suficiente101CC">Suficiente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item1" id="Satisfatorio101CD" value="Satisfatório">
+                <label class="form-check-label" for="Satisfatorio101CD">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item1" id="Insuficiente101CD" value="Insuficiente">
+                <label class="form-check-label" for="Insuficiente101CD">Insuficiente</label>
+            </div>
+        </div>
+
+
+        <h6 class="mt-3">2 - Antecendentes Indiciplinares Anteriores do Aluno:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item2" id="Excessivo102CD" value="Excessivo">
+                <label class="form-check-label" for="Excessivo102CD">Excessivo</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item2" id="Muito102CD" value="Muito">
+                <label class="form-check-label" for="Muito102CD">Muito</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item2" id="Pouco102CD" value="Pouco">
+                <label class="form-check-label" for="Pouco102CD">Pouco</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item2" id="Nada102CD" value="Nada">
+                <label class="form-check-label" for="Nada102CD">Nada</label>
+            </div>
+        </div>
+
+        <h6 class="mt-3">3 - Quanto a Participação do Aluno em Classe:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item3" id="Exelente103CD" value="Exelente">
+                <label class="form-check-label" for="Exelente103CD">Exelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item3" id="Suficiente103CD" value="Suficiente">
+                <label class="form-check-label" for="Suficiente103CD">Suficiente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item3" id="Satisfatorio103CD" value="Satisfatório">
+                <label class="form-check-label" for="Satisfatorio103CD">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item3" id="Insuficiente103CD" value="Insuficiente">
+                <label class="form-check-label" for="Insuficiente103CD">Insuficiente</label>
+            </div>
+        </div>
+
+        <h6 class="mt-3">4 - Quanto a Frequebcia do Aluno em Sala:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item4" id="Exelente104CD" value="Exelente">
+                <label class="form-check-label" for="Exelente104CD">Exelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item4" id="Regular104CD" value="Regular">
+                <label class="form-check-label" for="Regular104CD">Regular</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item4" id="Satisfatoria104CD" value="Satisfatório">
+                <label class="form-check-label" for="Satisfatoria104CD">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item4" id="Baixa104CD" value="Baixa">
+                <label class="form-check-label" for="Baixa104CD">Baixa</label>
+            </div>
+        </div>
+
+        <h6 class="mt-3">5 - Relação do Aluno com os Professores:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item5" id="Exelente105CD" value="Exelente">
+                <label class="form-check-label" for="Exelente105CD">Exelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item5" id="Suficiente105CD" value="Suficiente">
+                <label class="form-check-label" for="Suficiente105CD">Suficiente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item5" id="Satisfatorio105CD" value="Satisfatório">
+                <label class="form-check-label" for="Satisfatorio105CD">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item5" id="Insuficiente105CD" value="Insuficiente">
+                <label class="form-check-label" for="Insuficiente105CD">Insuficiente</label>
+            </div>
+        </div>
+
+        <h6 class="mt-3">6 - Relação Interpessoal do Aluno com os Pares:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item6" id="Exelente106CD" value="Exelente">
+                <label class="form-check-label" for="Exelente106CD">Exelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item6" id="Boa106CD" value="Boa">
+                <label class="form-check-label" for="Boa106CD">Boa</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item6" id="Satisfatoria106CD" value="Satisfatório">
+                <label class="form-check-label" for="Satisfatoria106CD">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="item6" id="Baixa106CD" value="Baixa">
+                <label class="form-check-label" for="Baixa106CD">Baixa</label>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-secondary mt-2" value="Continuar">
+    </form>
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('conselho_disciplinar_estatisticas')}}">
+                <button>Back</button>
+            </a>
+            <a href="{{url_for('conselho_disciplinar_composicao')}}">
+                <button onclick="FuncaoalertaCD()">Next</button>
+            </a>
+            <script>
+                // Atualizar a imagem do aluno com base no código da matrícula
+                    var codigoAluno = $(".codigo[data-matricula='" + selectedOption + "'] input[name='codigo']").val();
+                    $("#codigo_aluno").val(codigoAluno);
+                    var fotoAlunoSrc = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpg";
+                    $(".foto-aluno img").attr("src", fotoAlunoSrc);
+
+            </script>
+            <script>
+                function carregarFoto() {
+                    var codigo = document.getElementById("codigo").value;
+                    var img = document.getElementById("foto");
+                    img.src = "static/foto_alunos/" + codigo + ".jpg";
+                }
+
+
+            </script>
+            <script>
+                function FuncaoalertaCD() {
+                  alert("Após Leitura dos Registros Anteriores, Selecione a Esquerda os itens elencados anteriormente, em seguida, dê duplo clique nela para adicionar novos itens. Se for o Caso!");
+                }
+
+
+
+
+            </script>
+        </div>
+    </div>
+</div>
+{% endblock %}

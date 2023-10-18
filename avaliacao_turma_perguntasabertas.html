@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">CP - Avaliação Turma</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+
+    <div class="row g-3 position:absolute end-50 ">
+        <div class="d-flex align-items-center">
+            <div class="image pe-3">
+
+            </div>
+            <h1 class="mx-auto" style="width: 450px; color:red">Perguntas Abertas</h1>
+        </div>
+    </div>
+
+    <hr>
+
+    <!--    <div class="row g-3 mt-1">-->
+    <!--        <div class="col-md-2">-->
+    <!--            <select id="Turma_avaliacaoTurma" class="form-select">-->
+    <!--                <option selected>Turma</option>-->
+    <!--                <option>...</option>-->
+    <!--                <option>...</option>-->
+    <!--            </select>-->
+    <!--        </div>-->
+
+    <!--        <div class="col-sm-3">-->
+    <!--            <input type="text" class="form-control" placeholder="Série" aria-label="Serie">-->
+    <!--        </div>-->
+
+    <!--        <div class="col-md-2">-->
+    <!--            <select id="Bim_avaliacaoTurma" class="form-select">-->
+    <!--                <option selected>Bimestre</option>-->
+    <!--                <option>...</option>-->
+    <!--                <option>...</option>-->
+    <!--            </select>-->
+    <!--        </div>-->
+
+    <!--        <div class="col-sm">-->
+    <!--            <input type="text" class="form-control" placeholder="Professor Tutor (Conselheiro)"-->
+    <!--                   aria-label="ProfessorTutor">-->
+    <!--        </div>-->
+
+    <!--        <div class="col-sm">-->
+    <!--            <input type="text" class="form-control" placeholder="Representante de Turma"-->
+    <!--                   aria-label="RepresentanteTurma">-->
+    <!--        </div>-->
+    <!--        <hr>-->
+    <form method="post">
+        <h5>3 - Perguntas abertas para uma pesquisa escolar:</h5>
+        <p>3.01 - Indiquem: coisas que mais gostam nas aulas.</p>
+        <div class="input-group mt-0">
+            <textarea name="resposta301" class="form-control" placeholder="Resposta"
+                      aria-label="With textarea"></textarea>
+        </div>
+
+        <p>3.02 - Indiquem: coisas que não gostam nas aulas.</p>
+        <div class="input-group mt-0">
+            <textarea name="resposta302" class="form-control" placeholder="Resposta"
+                      aria-label="With textarea"></textarea>
+        </div>
+
+        <p>3.03 - O que mudariam nesta classe?</p>
+        <div class="input-group mt-0">
+            <textarea name="resposta303" class="form-control" placeholder="Resposta"
+                      aria-label="With textarea"></textarea>
+        </div>
+
+        <p>3.04 - Indiquem: pontos que tornariam o ensino dos professores ainda melhor?</p>
+        <div class="input-group mt-0">
+            <textarea name="resposta304" class="form-control" placeholder="Resposta"
+                      aria-label="With textarea"></textarea>
+        </div>
+
+        <p>3.05 - De modo geral, o que de importante a turma aprende com as aulas?</p>
+        <div class="input-group mt-0">
+            <textarea name="resposta305" class="form-control" placeholder="Resposta"
+                      aria-label="With textarea"></textarea>
+        </div>
+
+        <p>3.06 - Algum comentário ou sugestão para ajudar a melhorar as aulas?</p>
+        <div class="input-group mt-0">
+            <textarea name="resposta306" class="form-control" placeholder="Resposta"
+                      aria-label="With textarea"></textarea>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-secondary mt-0">Confirma</button>
+    </form>
+
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('avaliacao_turma_avalieprofessor')}}">
+                <button>Back</button>
+            </a>
+            <a href="{{url_for('avaliacao_turma_recomendacoes')}}">
+                <button>Next</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

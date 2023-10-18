@@ -1,0 +1,652 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Ata do Conselho de Classe</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <div class="row g-3 position:absolute end-50 ">
+        <div class="d-flex align-items-center">
+            <h1 class="mx-auto" style="width: 160px; color:red">Pesquisa</h1>
+        </div>
+    </div>
+    <hr>
+    <div class="row g-3 mt-0 mb-0">
+        <div class="col-md-2">
+            <label>Turma:</label>
+            <select name="turma" id="option" class="form-select" aria-label="Default select example">
+                <option value="opcao1">Selecione a Turma</option>
+                {% for Turma in turma_cc_query %}
+                <option value="{{ Turma.turma }}">
+                    {{ Turma.turma }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-sm serie">
+            <label>Serie:</label>
+            <input type="text" class="form-control" placeholder="Série" aria-label="Série" disabled>
+        </div>
+        <div class="col-md ordem">
+            <label>Ordem:</label>
+            <input type="text" class="form-control" placeholder="Ordem" aria-label="Ordem" disabled>
+        </div>
+        <div class="col-md-2 bimestre">
+            <label>Bimestre:</label>
+            <input type="text" class="form-control" placeholder="Bimestre" aria-label="Bimestre" disabled>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm serie" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Serie:</label>
+            <input name="serie" value="{{ Turma.serie }}" type="text" class="form-control" disabled>
+        </div>
+
+        <div class="col-md ordem" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Ordem:</label>
+            <input name="ordem" value="{{ Turma.ordem }}" type="text" class="form-control" disabled>
+        </div>
+
+        <div class="col-md-2 bimestre" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Bimestre:</label>
+            <input name="bimestre" value="{{ Turma.bimestre }}" type="text" class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row g-3 mb-0">
+        <div class="col-sm unidade">
+            <label>Unidade:</label>
+            <input name="unidade" type="text" class="form-control" placeholder="Unidade" aria-label="Unidade" disabled>
+        </div>
+        <div class="col-sm-2 estado">
+            <label>Estado:</label>
+            <input name="estado" type="text" class="form-control" placeholder="Estado" aria-label="Estado" disabled>
+        </div>
+        <div class="col-sm-3 cidade">
+            <label>Cidade:</label>
+            <input name="cidade" type="text" class="form-control" placeholder="Cidade" aria-label="Cidade" disabled>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group data">
+                <label>Data:</label>
+                <input name="data" type="text" class="form-control" placeholder="Data" aria-label="Data" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="row g-3 mb-0">
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm unidade" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Unidade:</label>
+            <input name="unidade" value="{{ Turma.unidade }}" type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm-2 estado" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Estado:</label>
+            <input name="estado" value="{{ Turma.estado }}" type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm-3 cidade" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Cidade:</label>
+            <input name="cidade" value="{{ Turma.cidade }}" type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm-2 data" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Data:</label>
+            <input name="data" value="{{ Turma.data_cc }}" type="text" class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row g-3 mt-0">
+        <div class="col-sm-1 dia">
+            <label>Dia:</label>
+            <input name="dia" type="text" class="form-control" placeholder="Dia" aria-label="Dia" disabled>
+        </div>
+        <div class="col-sm-2 mes">
+            <label>Mês:</label>
+            <input name="mes" type="text" class="form-control" placeholder="Mês" aria-label="Mês" disabled>
+        </div>
+        <div class="col-sm-1 ano">
+            <label>Ano:</label>
+            <input name="ano" type="text" class="form-control" placeholder="Ano" aria-label="Ano" disabled>
+        </div>
+        <div class="col-sm periodo_inicial">
+            <label>Período Inicial:</label>
+            <input name="periodo_inicial" type="text" class="form-control" placeholder="Período Inicial"
+                   aria-label="Período Inicial" disabled>
+        </div>
+        <div class="col-sm periodo_final">
+            <label>Período Final:</label>
+            <input name="periodo_final" type="text" class="form-control" placeholder="Período Final"
+                   aria-label="Período Final" disabled>
+        </div>
+    </div>
+    <div class="row g-3 mb-0">
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm-1 dia" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Dia:</label>
+            <input name="dia" value="{{ Turma.dia }}" type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm-1 mes" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Mês:</label>
+            <input name="mes" value="{{ Turma.mes }}" type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm-2 ano" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Ano:</label>
+            <input name="ano" value="{{ Turma.ano }}" type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm-4 periodo_inicial" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Período Inicial:</label>
+            <input name="periodo_inicial" value="{{ Turma.periodo_inicial }}" type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm-4 periodo_final" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <label>Período Final:</label>
+            <input name="periodo_final" value="{{ Turma.periodo_final }}" type="text" class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="mx-auto mt-5" style="width: 100px; color:blue">Equipe</h2>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md diretoria">
+            <textarea name="diretoria" class="form-control" style="height: 1px;" placeholder="Diretoria"
+                      aria-label="With textarea" disabled></textarea>
+        </div>
+
+        <div class="col-md secretaria">
+            <textarea name="secretaria" class="form-control" style="height: 1px;" placeholder="Secretaria"
+                      aria-label="With textarea" disabled></textarea>
+        </div>
+    </div>
+    <div class="row g-3 mt-0 mb-0">
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm diretoria" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <input name="diretoria" value="{{ Turma.diretoria }}" type="text" class="form-control" disabled>
+        </div>
+        <div class="col-sm secretaria" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <input name="secretaria" value="{{ Turma.secretaria }}" type="text" class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mt-2">
+        <div class="row g-3">
+            <div class="col-md coordenacao">
+                <input name="coordenacao" type="text" class="form-control" placeholder="Coordenação"
+                       aria-label="Coordenação" disabled>
+            </div>
+            <div class="col-md orientacao">
+                <input name="orientacao" type="text" class="form-control" placeholder="Orientação"
+                       aria-label="Orientação" disabled>
+            </div>
+            {% for Turma in turma_cc_query %}
+            <div class="col-sm coordenacao" data-matricula="{{ Turma.turma }}" style="display: none;">
+                <input name="coordenacao" value="{{ Turma.coordenacao }}" type="text" class="form-control" disabled>
+            </div>
+            <div class="col-sm orientacao" data-matricula="{{ Turma.turma }}" style="display: none;">
+                <input name="orientacao" value="{{ Turma.orientacao }}" type="text" class="form-control" disabled>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="mt-2">
+        <div class="row g-3">
+            <div class="col-md capelania">
+            <textarea name="capelania" class="form-control" style="height: 1px;" placeholder="Capelania"
+                      aria-label="With textarea" disabled></textarea>
+            </div>
+            <div class="col-md outro">
+            <textarea name="outro" class="form-control" style="height: 1px;" placeholder="Outro"
+                      aria-label="With textarea" disabled></textarea>
+            </div>
+            {% for Turma in turma_cc_query %}
+            <div class="col-sm capelania" data-matricula="{{ Turma.turma }}" style="display: none;">
+                <input name="capelania" value="{{ Turma.capelania }}" type="text" class="form-control" disabled>
+            </div>
+            <div class="col-sm outro" data-matricula="{{ Turma.turma }}" style="display: none;">
+                <input name="outro" value="{{ Turma.ourto }}" type="text" class="form-control" disabled>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <hr>
+    <h6>Professores Presentes:</h6>
+    <div class="mt-1">
+        <div class="professores_presentes">
+            <textarea name="professores_presentes" class="form-control" rows="4" placeholder="Professores"
+                      aria-label="Professores" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm professores_presentes" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <textarea name="professores_presentes" class="form-control" rows="4" disabled>{{ Turma.professores_presentes }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="row g-3">
+        <div class="col-md orador">
+            <textarea name="orador" class="form-control" rows="1" placeholder="Orador"
+                      aria-label="With textarea" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm orador" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <textarea name="orador" class="form-control" rows="1" disabled>{{ Turma.orador }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="row g-3 mt-1">
+        <div class="col-md tema_explanado_cc">
+            <textarea name="tema_explanado_cc" class="form-control" rows="5"
+                      placeholder="Tema Explanado no Conselho de Classe"
+                      aria-label="With textarea" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm tema_explanado_cc" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <textarea name="tema_explanado_cc" class="form-control" rows="5"
+                      disabled>{{ Turma.tema_explanado_cc }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <h2 class="mx-auto" style="width: 100px; color:blue">Estatísticas</h2>
+    <div class="row g-3 mt-1">
+        <div class="col-md">
+            <h5 style="color: blue">Quantidade e Nomes de Alunos com Média Baixa por Disciplina</h5>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" width="12px">Componentes</th>
+                    <th scope="col" width="12px">QTD</th>
+                    <th scope="col">Alunos</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Português</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Artes</th>
+                    <td>--</td>
+                    <td>--</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Matematica</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Geografia</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">História</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Ed.Fisica</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Física</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Química</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Inglês</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Religião</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Redação</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Espanhol</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <hr>
+        <div class="col-md">
+            <h5 style="color: blue">Quantidade e Nomes de Alunos Faltosos por Disciplina</h5>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col" width="12px">Componentes</th>
+                    <th scope="col" width="12px">QTD</th>
+                    <th scope="col">Alunos</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Português</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Artes</th>
+                    <td>--</td>
+                    <td>--</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Matematica</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Geografia</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">História</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Ed.Fisica</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Física</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Química</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Inglês</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Religião</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Redação</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <tr>
+                    <th scope="row">Espanhol</th>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <hr>
+    <h2 class="mx-auto" style="width: 290px; color:blue">Avaliação da Turma</h2>
+    <h6>1 - Quanto ao Aproveitamento da Turma:</h6>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md mt-0 quanto_ao_aproveitamento">
+            <textarea name="quanto_ao_aproveitamento" rows="1" class="form-control" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm quanto_ao_aproveitamento mt-0" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <textarea name="quanto_ao_aproveitamento" class="form-control" rows="1" disabled>{{ Turma.quanto_ao_aproveitamento }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <h6 class="mt-3">2 - Quanto a Disciplina da Turma:</h6>
+    <div class="row g-3 mt-1">
+        <div class="col-md mt-0 quanto_a_disciplina">
+            <textarea name="quanto_a_disciplina" rows="1" class="form-control" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm quanto_a_disciplina mt-0" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <textarea name="quanto_a_disciplina" class="form-control" rows="1"
+                      disabled>{{ Turma.quanto_a_disciplina }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h6 class="mt-3">3 - Quanto a Participação da Turma em Classe:</h6>
+    <div class="row g-3 mt-1">
+        <div class="col-md mt-0 quanto_a_participacao">
+            <textarea name="quanto_a_participacao" rows="1" class="form-control" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm quanto_a_participacao mt-0" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <textarea name="quanto_a_participacao" class="form-control" rows="1" disabled>{{ Turma.quanto_a_participacao }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h6 class="mt-3">4 - Quanto a Frequência da Turma:</h6>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md mt-0 quanto_a_frequencia">
+            <textarea name="quanto_a_frequencia" rows="1" class="form-control" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm quanto_a_frequencia mt-0" data-matricula="{{ Turma.turma }}" style="display: none;">
+            <textarea name="quanto_a_frequencia" class="form-control" rows="1"
+                      disabled>{{ Turma.quanto_a_frequencia }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <h6 class="mt-3">5 - Quanto a Comunicação da Turma com os Professores:</h6>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md quanto_a_comunicacao_com_professor mt-0">
+            <textarea name="quanto_a_comunicacao_com_professor" rows="1" class="form-control" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm quanto_a_comunicacao_com_professor mt-0" data-matricula="{{ Turma.turma }}"
+             style="display: none;">
+            <textarea name="quanto_a_comunicacao_com_professor" class="form-control" rows="1" disabled>{{ Turma.quanto_a_comunicacao_com_professor }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <h6 class="mt-3">6 - Quanto a Relação Interpessoal da Turma:</h6>
+    <div class="row g-3 mt-1">
+        <div class="col-md quanto_a_relacao_interpessoal mt-0">
+            <textarea name="quanto_a_relacao_interpessoal" rows="1" class="form-control" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm quanto_a_relacao_interpessoal mt-0" data-matricula="{{ Turma.turma }}"
+             style="display: none;">
+            <textarea name="quanto_a_relacao_interpessoal" class="form-control" rows="1" disabled>{{ Turma.quanto_a_relacao_interpessoal }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <h2 class="mx-auto" style="width: 200px; color:blue">Apontamentos</h2>
+    <h6>Alunos que se destacaram positivamente no bimestre</h6>
+
+    <div class="row g-3 mt-1">
+        <div class="col-md mt-2 alunos_destaque_positivo">
+            <input name="alunos_destaque_positivo" type="text" class="form-control" disabled>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm alunos_destaque_positivo mt-2" data-matricula="{{ Turma.turma }}"
+             style="display: none;">
+            <input name="alunos_destaque_positivo" value="{{ Turma.alunos_destaque_positivo }}" type="text"
+                   class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h6>Alunos apontados com algum grau de dificuldades</h6>
+    <div class="row g-3 mt-1">
+        <div class="col-md alunos_com_dificuldade mt-2">
+            <input name="alunos_com_dificuldade" type="text" class="form-control" disabled>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm alunos_com_dificuldade mt-2" data-matricula="{{ Turma.turma }}"
+             style="display: none;">
+            <input name="alunos_com_dificuldade" value="{{ Turma.alunos_com_dificuldade }}" type="text"
+                   class="form-control" disabled>
+        </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <h2 class="mx-auto" style="width: 380px; color:blue">Composição da Proposta</h2>
+    <div class="row g-3 mt-1">
+        <div class="col-md opcoes_proposicao">
+            <textarea name="opcoes_proposicao" class="form-control" rows="5"
+                      placeholder="Proposições para a turma"
+                      aria-label="With textarea" disabled></textarea>
+        </div>
+        {% for Turma in turma_cc_query %}
+        <div class="col-sm opcoes_proposicao mt-0" data-matricula="{{ Turma.turma }}"
+             style="display: none;">
+            <textarea name="opcoes_proposicao" class="form-control" rows="5"
+                      disabled>{{ Turma.opcoes_proposicao }}</textarea>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="col-md mt-2 consideracoes_finais">
+            <textarea name="consideracoes_finais" class="form-control" rows="4" placeholder="Descrição"
+                      aria-label="With textarea" disabled></textarea>
+    </div>
+    {% for Turma in turma_cc_query %}
+    <div class="col-sm consideracoes_finais mt-2 consideracoes_finais_turma" data-matricula="{{ Turma.turma }}"
+         style="display: none;">
+        <textarea name="consideracoes_finais" class="form-control consideracoes-textarea" rows="4" disabled>{{ Turma.consideracoes_finais }}</textarea>
+    </div>
+    {% endfor %}
+
+    <script>
+        $(document).ready(function() {
+            $("#option").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "opcao1") {
+                    $(".serie, .ordem, .bimestre, .unidade ,.estado ,.cidade, .data, .dia, .mes, .ano, .periodo_inicial, .periodo_final, .diretoria, .secretaria, .coordenacao, .orientacao, .capelania, .outro, .professores_presentes, .orador, .tema_explanado_cc, .quanto_ao_aproveitamento, .quanto_a_disciplina, .quanto_a_participacao, .quanto_a_frequencia, .quanto_a_comunicacao_com_professor, .quanto_a_relacao_interpessoal, .alunos_destaque_positivo, .alunos_com_dificuldade, .opcoes_proposicao, .consideracoes_finais").val("").hide();
+                } else {
+                    $(".serie, .ordem, .bimestre, .unidade ,.estado , .cidade, .data, .dia, .mes, .ano, .periodo_inicial, .periodo_final, .diretoria, .secretaria, .coordenacao, .orientacao, .capelania, .outro, .professores_presentes, .orador, .tema_explanado_cc, .quanto_ao_aproveitamento, .quanto_a_disciplina, .quanto_a_participacao, .quanto_a_frequencia, .quanto_a_comunicacao_com_professor, .quanto_a_relacao_interpessoal, .alunos_destaque_positivo, .alunos_com_dificuldade, .opcoes_proposicao, .consideracoes_finais").hide();
+
+                    $(".serie[data-matricula='" + selectedOption + "']").val("Série da turma").show();
+                    $(".ordem[data-matricula='" + selectedOption + "']").val("ordem da turma").show();
+                    $(".bimestre[data-matricula='" + selectedOption + "']").val("bimestre da turma").show();
+                    $(".unidade[data-matricula='" + selectedOption + "']").val("unidade da turma").show();
+                    $(".estado[data-matricula='" + selectedOption + "']").val("estado da turma").show();
+                    $(".cidade[data-matricula='" + selectedOption + "']").val("cidade da turma").show();
+                    $(".data[data-matricula='" + selectedOption + "']").val("data da turma").show();
+                    $(".dia[data-matricula='" + selectedOption + "']").val("dia da turma").show();
+                    $(".mes[data-matricula='" + selectedOption + "']").val("mes da turma").show();
+                    $(".ano[data-matricula='" + selectedOption + "']").val("ano da turma").show();
+                    $(".periodo_inicial[data-matricula='" + selectedOption + "']").val("periodo_inicial da turma").show();
+                    $(".periodo_final[data-matricula='" + selectedOption + "']").val("periodo_final da turma").show();
+                    $(".diretoria[data-matricula='" + selectedOption + "']").val("diretoria da turma").show();
+                    $(".secretaria[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".coordenacao[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".orientacao[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".capelania[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".outro[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".professores_presentes[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".orador[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".tema_explanado_cc[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".quanto_ao_aproveitamento[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".quanto_a_disciplina[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".quanto_a_participacao[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".quanto_a_frequencia[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".quanto_a_comunicacao_com_professor[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".quanto_a_relacao_interpessoal[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".alunos_destaque_positivo[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".alunos_com_dificuldade[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".opcoes_proposicao[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                    $(".consideracoes_finais[data-matricula='" + selectedOption + "']").val("secretaria da turma").show();
+                   var consideracoesFinaisText = $(".consideracoes_finais_turma[data-matricula='" + selectedOption + "'] textarea").val();
+                consideracoesFinaisText = consideracoesFinaisText.replace(/;/g, "\n");
+                $(".consideracoes_finais_turma[data-matricula='" + selectedOption + "'] textarea").val(consideracoesFinaisText);
+            }
+        });
+
+        // Display initially four empty fields
+        $(".serie, .ordem, .bimestre, .unidade ,.estado ,.cidade, .data, .dia, .mes, .ano, .periodo_inicial, .periodo_final, .diretoria, .secretaria, .coordenacao, .orientacao, .capelania, .outro, .professores_presentes, .orador, .tema_explanado_cc, .quanto_ao_aproveitamento, .quanto_a_disciplina, .quanto_a_participacao, .quanto_a_frequencia, .quanto_a_comunicacao_com_professor, .quanto_a_relacao_interpessoal, .alunos_destaque_positivo, .alunos_com_dificuldade, .opcoes_proposicao, .consideracoes_finais").slice(0, 1).show();
+    });
+    </script>
+
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('conselho_classe')}}">
+                <button>Back</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

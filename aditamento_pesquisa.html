@@ -1,0 +1,404 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+     aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+    <div class="offcanvas-header bg-light">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+             width="290" height="100">
+        <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <hr>
+        <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+        <hr>
+        <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+        <hr>
+        <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+        <hr>
+        <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+        <hr>
+        <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+            AFLs</h5></a>
+        <hr>
+        <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+            Classe</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+            Disciplinar</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+            Aluno</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação das
+            Turma</h5></a>
+        <hr>
+        <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+            Anual</h5></a>
+        <hr>
+        <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+            Individualizado</h5></a>
+        <hr>
+        <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+        <hr>
+        <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+            Recuperação Simultânea</h5></a>
+        <hr>
+        <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+            P3</h5></a>
+    </div>
+</div>
+
+
+<div class="container">
+
+    <h1 style="color: orange">Aditamento</h1>
+
+    <hr>
+
+    <div class="d-flex align-items-center">
+        <div class="col-sm-2 foto-aluno">
+            <img src="{{ url_for('static', filename='foto_alunos/default_alunos.jpeg') }}" width="120">
+        </div>
+        <h1 class="mx-auto" style="width: 500px; color:red">Editar Cadastro do Aluno</h1>
+    </div>
+
+    <!-- BANCO DE DADOS DE ANAMNESE (coluna de nomes de alunos) -->
+    <form method="POST">
+        <div class="row g-3 mt-1">
+            <div class="col-md-5">
+                <select name="nome_aluno" id="option" class="form-select" aria-label="Default select example">
+                    <option value="opcao1">Selecione o Aluno</option>
+                    {% for alunoAdita in nomes_aditamentoquery %}
+                    <option value="{{ alunoAdita.nome_aluno }}">
+                        {{ alunoAdita.nome_aluno }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-1 codigo">
+                <input placeholder="Matrícula" type="text" class="form-control" disabled>
+            </div>
+            <input type="hidden" name="codigo_aluno" id="codigo_aluno" value="">
+            <div class="col-sm-4 serie">
+                <input placeholder="Série" type="text" class="form-control" disabled>
+            </div>
+            <div class="col-sm-2 turma">
+                <input placeholder="Turma" type="text" class="form-control" disabled>
+            </div>
+
+            {% for alunoAdita in nomes_aditamentoquery %}
+            <div class="col-sm-1 codigo" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="codigo" value="{{ alunoAdita.codigo_aluno }}" type="text"
+                       class="form-control">
+            </div>
+            <div class="col-sm-4 serie" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="serie" value="{{ alunoAdita.serie_matricula }}" type="text" class="form-control">
+            </div>
+            <div class="col-sm-2 turma" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="turma" value="{{ alunoAdita.turma_matricula }}" type="text" class="form-control">
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-sm-6 nome_mae">
+                <input name="nome_mae" type="text" class="form-control" placeholder="Nome da Mãe" disabled>
+            </div>
+            <div class="col-sm-6 endereco">
+                <input name="endereco" type="text" class="form-control" placeholder="Endereço" disabled>
+            </div>
+            {% for alunoAdita in nomes_aditamentoquery %}
+            <div class="col-sm-6 nome_mae" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="nome_mae" value="{{ alunoAdita.nome_mae }}" type="text"
+                       class="form-control">
+            </div>
+            <div class="col-sm-6 endereco" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="endereco" value="{{ alunoAdita.endereco }}" type="text" class="form-control">
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row g-3 mt-1">
+
+            <div class="col-sm diagnostico">
+                <input name="diagnostico" type="text" class="form-control" placeholder="Diagnóstico" disabled>
+            </div>
+            <div class="col-sm-4 unidade_escolar">
+                <input name="unidade_escolar" type="text" class="form-control" placeholder="Unidade Escolar" disabled>
+            </div>
+            <div class="col-sm-2 nascimento">
+                <input name="nascimento" type="text" class="form-control" placeholder="Nascimento" disabled>
+            </div>
+            {% for alunoAdita in nomes_aditamentoquery %}
+            <div class="col-sm-3 unidade_escolar" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="unidade_escolar" value="{{ alunoAdita.unidade_escolar }}" type="text"
+                       class="form-control">
+            </div>
+            <div class="col-sm diagnostico" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="diagnostico" value="{{ alunoAdita.diagnostico }}" type="text" class="form-control">
+            </div>
+            <div class="col-sm-2 nascimento" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="nascimento" value="{{ alunoAdita.nascimento }}" type="text" class="form-control">
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-sm-1 dia_laudo">
+                <input name="dia_laudo" type="text" class="form-control" placeholder="Dia" aria-label="Dia_Laudo"
+                       disabled>
+            </div>
+            <div class="col-sm-1 mes_laudo">
+                <input name="mes_laudo" type="text" class="form-control" placeholder="Mês" aria-label="Mes_Laudo"
+                       disabled>
+            </div>
+            <div class="col-sm-1 ano_laudo">
+                <input name="ano_laudo" type="text" class="form-control" placeholder="Ano" aria-label="Ano_Laudo"
+                       disabled>
+            </div>
+            <div class="col-sm-4 nome_medico">
+                <input name="nome_medico" type="text" class="form-control" placeholder="Médico" aria-label="Medico"
+                       disabled>
+            </div>
+            <div class="col-sm-2 crm">
+                <input name="crm" type="text" class="form-control" placeholder="CRM" aria-label="CRM" disabled>
+            </div>
+            <div class="col-sm-3 protocolo">
+                <input name="protocolo" type="text" class="form-control" placeholder="Protocolo" aria-label="Protocolo"
+                       disabled>
+            </div>
+            {% for alunoAdita in nomes_aditamentoquery %}
+            <div class="col-sm-1 dia_laudo" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="dia_laudo" value="{{ alunoAdita.dia_laudo }}" type="text"
+                       class="form-control">
+            </div>
+            <div class="col-sm-1 mes_laudo" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="mes_laudo" value="{{ alunoAdita.dia_laudo }}" type="text" class="form-control">
+            </div>
+            <div class="col-sm-1 ano_laudo" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="ano_laudo" value="{{ alunoAdita.ano_laudo }}" type="text" class="form-control">
+            </div>
+            <!--     -->
+            <div class="col-sm-4 nome_medico" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="nome_medico" value="{{ alunoAdita.nome_medico }}" type="text"
+                       class="form-control">
+            </div>
+            <div class="col-sm-2 crm" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="crm" value="{{ alunoAdita.crm }}" type="text" class="form-control">
+            </div>
+            <div class="col-sm-3 protocolo" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="protocolo" value="{{ alunoAdita.protocolo }}" type="text" class="form-control">
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row g-3 mt-1 mb-3">
+            <div class="col-sm-5 nome_responsavel">
+                <input name="nome_responsavel" type="text" class="form-control" placeholder="Nome do Responsável"
+                       aria-label="Nome_Responsavel" disabled>
+            </div>
+            <div class="col-sm-3 numero_registro">
+                <input name="numero_registro" type="text" class="form-control" placeholder="CPF" aria-label="CPF"
+                       disabled>
+            </div>
+            <div class="col-sm-2 orgao">
+                <input name="orgao" type="text" class="form-control" placeholder="Nº Registro" aria-label="Registro"
+                       disabled>
+            </div>
+            <div class="col-sm-1 uf">
+                <input name="uf" type="text" class="form-control" placeholder="Orgão" aria-label="Orgao" disabled>
+            </div>
+            <div class="col-sm-1 cpf">
+                <input name="cpf" type="text" class="form-control" placeholder="UF" aria-label="UF" disabled>
+            </div>
+            <!--########################################################################################################-->
+            {% for alunoAdita in nomes_aditamentoquery %}
+            <div class="col-sm-5 nome_responsavel" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="nome_responsavel" value="{{ alunoAdita.nome_responsavel }}" type="text"
+                       class="form-control">
+            </div>
+            <div class="col-sm-3 cpf" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="cpf" value="{{ alunoAdita.cpf }}" type="text" class="form-control">
+            </div>
+            <div class="col-sm-2 numero_registro" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="numero_registro" value="{{ alunoAdita.numero_registro }}" type="text" class="form-control">
+            </div>
+            <div class="col-sm-1 orgao" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="orgao" value="{{ alunoAdita.orgao }}" type="text" class="form-control">
+            </div>
+            <div class="col-sm-1 uf" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                <input name="uf" value="{{ alunoAdita.uf }}" type="text"
+                       class="form-control">
+            </div>
+            {% endfor %}
+        </div>
+
+
+        <div class="row g-3 mt-0">
+            <hr>
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-sm">
+                <label style="color:Blue" for="Familia1" class="form-label">Família</label>
+                <div class="fm1">
+                    <input name="fm1" type="text" class="form-control" id="Familia1" aria-label="Familia1" disabled>
+                </div>
+                <div class="fm2">
+                    <input name="fm2" type="text" class="form-control" id="Familia2" aria-label="Familia2" disabled>
+                </div>
+                <div class="fm3">
+                    <input name="fm3" type="text" class="form-control" id="Familia3" aria-label="Familia3" disabled>
+                </div>
+                <div class="fm4">
+                    <input name="fm4" type="text" class="form-control" id="Familia4" aria-label="Familia4" disabled>
+                </div>
+                <div class="fm5">
+                    <input name="fm5" type="text" class="form-control" id="Familia5" aria-label="Familia5" disabled>
+                </div>
+                <div class="fm6">
+                    <input name="fm6" type="text" class="form-control" id="Familia6" aria-label="Familia6" disabled>
+                </div>
+                <!--##############################################################################-->
+                {% for alunoAdita in nomes_aditamentoquery %}
+                <div class="col-sm fm1" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="fm1" value="{{ alunoAdita.fm1 }}" type="text"
+                           class="form-control">
+                </div>
+                <div class="col-sm fm2" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="fm2" value="{{ alunoAdita.fm2 }}" type="text" class="form-control">
+                </div>
+                <div class="col-sm fm3" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="fm3" value="{{ alunoAdita.fm3 }}" type="text" class="form-control">
+                </div>
+                <!--     -->
+                <div class="col-sm fm4" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="fm4" value="{{ alunoAdita.fm4 }}" type="text"
+                           class="form-control">
+                </div>
+                <div class="col-sm fm5" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="fm5" value="{{ alunoAdita.fm5 }}" type="text" class="form-control">
+                </div>
+                <div class="col-sm fm6" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="fm6" value="{{ alunoAdita.fm6 }}" type="text" class="form-control">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row g-3 mt-3">
+            <hr>
+        </div>
+
+        <div class="row g-3 mt-0 mb-3">
+            <div class="col-sm">
+                <label style="color:Blue" for="Escola1" class="form-label">Escola</label>
+                <div class="ec1"><input name="ec1" type="text" class="form-control" id="Escola1" aria-label="Escola1"
+                                        disabled></div>
+                <div class="ec2"><input name="ec2" type="text" class="form-control" id="Escola2" aria-label="Escola2"
+                                        disabled></div>
+                <div class="ec3"><input name="ec3" type="text" class="form-control" id="Escola3" aria-label="Escola3"
+                                        disabled></div>
+                <div class="ec4"><input name="ec4" type="text" class="form-control" id="Escola4" aria-label="Escola4"
+                                        disabled></div>
+                <div class="ec5"><input name="ec5" type="text" class="form-control" id="Escola5" aria-label="Escola5"
+                                        disabled></div>
+                <div class="ec6"><input name="ec6" type="text" class="form-control" id="Escola6" aria-label="Escola6"
+                                        disabled></div>
+                {% for alunoAdita in nomes_aditamentoquery %}
+                <div class="col-sm ec1" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="ec1" value="{{ alunoAdita.ec1 }}" type="text"
+                           class="form-control">
+                </div>
+                <div class="col-sm ec2" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="ec2" value="{{ alunoAdita.ec2 }}" type="text" class="form-control">
+                </div>
+                <div class="col-sm ec3" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="ec3" value="{{ alunoAdita.ec3 }}" type="text" class="form-control">
+                </div>
+                <!--     -->
+                <div class="col-sm ec4" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="ec4" value="{{ alunoAdita.ec4 }}" type="text"
+                           class="form-control">
+                </div>
+                <div class="col-sm ec5" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="ec5" value="{{ alunoAdita.ec5 }}" type="text" class="form-control">
+                </div>
+                <div class="col-sm ec6" data-matricula="{{ alunoAdita.nome_aluno }}" style="display: none;">
+                    <input name="ec6" value="{{ alunoAdita.ec6 }}" type="text" class="form-control">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <input type="submit" class="btn btn-secondary mt-2" value="Salvar">
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+            $(document).ready(function() {
+                $("#option").change(function() {
+                    var selectedOption = $(this).val();
+                    if (selectedOption === "opcao1") {
+                        $(".codigo, .serie, .turma, .nome_mae, .endereco, .unidade_escolar, .diagnostico, .nascimento, .dia_laudo, .mes_laudo, .ano_laudo, .nome_medico, .crm, .protocolo, .nome_responsavel, .numero_registro, .orgao, .uf, .cpf, .fm1, .fm2, .fm3, .fm4, .fm5, .fm6, .ec1, .ec2, .ec3, .ec4, .ec5, .ec6").val("").hide();
+                    } else {
+                        $(".codigo, .serie, .turma, .nome_mae, .endereco, .unidade_escolar, .diagnostico, .nascimento, .dia_laudo, .mes_laudo, .ano_laudo, .nome_medico, .crm, .protocolo, .nome_responsavel, .numero_registro, .orgao, .uf, .cpf, .fm1, .fm2, .fm3, .fm4, .fm5, .fm6, .ec1, .ec2, .ec3, .ec4, .ec5, .ec6").hide();
+                        $(".codigo[data-matricula='" + selectedOption + "']").val("Matrícula do aluno Adita").show();
+                        $(".serie[data-matricula='" + selectedOption + "']").val("Série do aluno Adita").show();
+                        $(".turma[data-matricula='" + selectedOption + "']").val("Turma do aluno Adita").show();
+                        $(".nome_mae[data-matricula='" + selectedOption + "']").val("Nome Mãe Adita").show();
+                        $(".endereco[data-matricula='" + selectedOption + "']").val("Endereço Adita").show();
+                        $(".unidade_escolar[data-matricula='" + selectedOption + "']").val("Unidade Escolar Adita").show();
+                        $(".diagnostico[data-matricula='" + selectedOption + "']").val("Diágnostico Adita").show();
+                        $(".nascimento[data-matricula='" + selectedOption + "']").val("Nascimento Adita").show();
+                        $(".dia_laudo[data-matricula='" + selectedOption + "']").val("Dia Laudo Adita").show();
+                        $(".mes_laudo[data-matricula='" + selectedOption + "']").val("Mês Laudo Adita").show();
+                        $(".ano_laudo[data-matricula='" + selectedOption + "']").val("Ano Laudo Adita").show();
+                        $(".nome_medico[data-matricula='" + selectedOption + "']").val("Nome Medico Adita").show();
+                        $(".crm[data-matricula='" + selectedOption + "']").val("Crm Adita").show();
+                        $(".protocolo[data-matricula='" + selectedOption + "']").val("Protocolo Adita").show();
+                        $(".nome_responsavel[data-matricula='" + selectedOption + "']").val("Nome Responsavel Adita").show();
+                        $(".numero_registro[data-matricula='" + selectedOption + "']").val("Numero Registro Adita").show();
+                        $(".orgao[data-matricula='" + selectedOption + "']").val("Orgao Adita").show();
+                        $(".uf[data-matricula='" + selectedOption + "']").val("Uf Adita").show();
+                        $(".cpf[data-matricula='" + selectedOption + "']").val("Cpf Adita").show();
+                        $(".fm1[data-matricula='" + selectedOption + "']").val("Fm1 Adita").show();
+                        $(".fm2[data-matricula='" + selectedOption + "']").val("Fm2 Adita").show();
+                        $(".fm3[data-matricula='" + selectedOption + "']").val("Fm3 Adita").show();
+                        $(".fm4[data-matricula='" + selectedOption + "']").val("Fm4 Adita").show();
+                        $(".fm5[data-matricula='" + selectedOption + "']").val("Fm5 Adita").show();
+                        $(".fm6[data-matricula='" + selectedOption + "']").val("Fm6 Adita").show();
+                        $(".ec1[data-matricula='" + selectedOption + "']").val("Ec1 Adita").show();
+                        $(".ec2[data-matricula='" + selectedOption + "']").val("Ec2 Adita").show();
+                        $(".ec3[data-matricula='" + selectedOption + "']").val("Ec3 Adita").show();
+                        $(".ec4[data-matricula='" + selectedOption + "']").val("Ec4 Adita").show();
+                        $(".ec5[data-matricula='" + selectedOption + "']").val("Ec5 Adita").show();
+                        $(".ec6[data-matricula='" + selectedOption + "']").val("Ec6 Adita").show();
+                        // Atualizar a imagem do aluno com base no código da matrícula
+                        var codigoAluno = $(".codigo[data-matricula='" + selectedOption + "'] input[name='codigo']").val();
+                        $("#codigo_aluno").val(codigoAluno);
+
+                        // Tentar carregar a imagem com extensão .jpg
+                        var fotoAlunoSrcJPG = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpg";
+
+                        // Se a imagem .jpg não existir, tentar carregar a imagem .jpeg
+                        var img = new Image();
+                        img.src = fotoAlunoSrcJPG;
+                        img.onload = function() {
+                            $(".foto-aluno img").attr("src", fotoAlunoSrcJPG);
+                        };
+                        img.onerror = function() {
+                            var fotoAlunoSrcJPEG = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpeg";
+                            $(".foto-aluno img").attr("src", fotoAlunoSrcJPEG);
+                        };
+                    }
+                });
+
+                // Exibir quatro campos vazios inicialmente
+                $(".codigo, .serie, .turma, .nome_mae, .endereco, .unidade_escolar, .diagnostico, .nascimento, .dia_laudo, .mes_laudo, .ano_laudo, .nome_medico, .crm, .protocolo, .nome_responsavel, .numero_registro, .orgao, .uf, .cpf, .fm1, .fm2, .fm3, .fm4, .fm5, .fm6, .ec1, .ec2, .ec3, .ec4, .ec5, .ec6").slice(0, 1).show();
+            });
+
+    </script>
+</div>
+
+{% endblock %}

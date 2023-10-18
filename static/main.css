@@ -1,0 +1,68 @@
+.card{
+  width: 600px;
+  border: none;
+  border-radius: 10px;
+
+  background-color: #fff;
+}
+
+.stats{
+
+    background: #f2f5f8 !important;
+    color: #000 !important;
+}
+.articles{
+  font-size:10px;
+  color: #a1aab9;
+}
+.number1{
+  font-weight:500;
+}
+.followers{
+    font-size:10px;
+  color: #a1aab9;
+
+}
+.number2{
+  font-weight:500;
+}
+.rating{
+    font-size:10px;
+    color: #a1aab9;
+}
+.number3{
+    font-weight:500;
+}
+
+.meupost{
+    background: #f2f5f8 !important;
+}
+
+.sem-borda {
+    border: none;
+}
+.custom-disable {
+    overflow-y: scroll; /* Habilita a barra de rolagem vertical */
+}
+
+.custom-disable:disabled {
+    background-color: #ffffff; /* Defina a cor desejada de fundo para o textarea desabilitado */
+    opacity: 1; /* Garante que o textarea desabilitado não pareça opaco */
+    cursor: default; /* Mantém o cursor padrão quando estiver sobre o textarea desabilitado */
+}
+
+.smaller-font {
+    font-size: 14px;
+}
+
+.box {
+ width: 50%;
+ float: left;
+ height: 300px;/*Altura da linha*/
+}
+
+.linha-vertical {
+ border-left: 2px solid;/* Adiciona borda esquerda na div como ser fosse uma linha.*/
+ box-sizing: border-box;
+}
+

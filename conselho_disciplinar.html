@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Ata do Conselho Disciplinar</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row g-3 position:absolute end-50 ">
+            <div class="d-flex align-items-center">
+                <div class="col-sm-2 foto-aluno">
+                    <label style="width: 150px; height: 200px; display: block; overflow: hidden; position: relative;">
+                        <img src="{{ url_for('static', filename='foto_alunos/default_alunos.jpg') }}"
+                             style="width: 100%; height: 100%; object-fit: cover;">
+                    </label>
+                </div>
+                <h1 class="mx-auto" style="width: 500px; color:red">Comissão Disciplinar</h1>
+            </div>
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-sm-1 codigo">
+                <input name="ra" placeholder="Matrícula" type="text" class="form-control" disabled>
+            </div>
+            {% for aluno in nome_alunoquery %}
+            <div class="col-sm-1 codigo" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+                <input name="codigo" id="codigo" value="{{ aluno.aluno_codigo }}"
+                       type="text" class="form-control" onkeyup="carregarFoto()" disabled>
+            </div>
+            {% endfor %}
+
+            <div class="col-md-4">
+                <select name="aluno_nome" id="option" class="form-select" aria-label="Default select example">
+                    <option value="opcao1">Selecione o Aluno</option>
+                    {% for aluno in nome_alunoquery %}
+                    <option value="{{ aluno.aluno_nome }}">
+                        {{ aluno.aluno_nome }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-3 turma">
+                <input type="text" class="form-control" placeholder="Turma" aria-label="Turma" disabled>
+            </div>
+
+            <div class="col-sm serie">
+                <input type="text" class="form-control" placeholder="Série" aria-label="Série" disabled>
+            </div>
+            {% for aluno in nome_alunoquery %}
+            <div class="col-sm-3 turma" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+                <input name="turma_aluno" value="{{ aluno.matricula_turma }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            <div class="col-sm-4 serie" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+                <input name="serie_aluno" value="{{ aluno.matricula_serie }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="row g-3 mt-1">
+            <div class="col-sm-3">
+                <input name="unidade" type="text" class="form-control" placeholder="Unidade" aria-label="Unidade">
+            </div>
+
+            <div class="col-sm-2">
+                <select id="estado" name="estado" class="form-select">
+                    <option value="">Estado</option>
+                    {% for sigla, estado in estados.items() %}
+                    <option value="{{ sigla }}">{{ estado }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select id="cidade" name="cidade" class="form-select">
+                    <option value="">Cidade</option>
+                </select>
+
+            </div>
+            <div class="col-md-3">
+                <select name="ordem" id="CD_Ordem" class="form-select">
+                    <option selected>Ordem</option>
+                    <option>primeira reunião</option>
+                    <option>segunda reunião</option>
+                    <option>terceira reunião</option>
+                    <option>quarta reunião</option>
+                    <option>quinta reunião</option>
+                    <option>reunião extraordinária</option>
+                </select>
+            </div>
+
+            <div class="col-sm">
+                <div>
+                    <input type="date" id="diaa" class="form-control" name="data_cd">
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6>Descreva:</h6>
+
+        <div class="row g-3 mt-1">
+            <div class="col-md mt">
+            <textarea name="diretoria" class="form-control" style="height: 1px;" placeholder="Diretoria"
+                      aria-label="With textarea"></textarea>
+            </div>
+
+
+            <div class="col-md mt">
+            <textarea name="coordenacao" class="form-control" style="height: 1px;" placeholder="Secretaria"
+                      aria-label="With textarea"></textarea>
+            </div>
+        </div>
+        <div class="col-md mt-2">
+            <div class="row g-3 ">
+                <div class="col-md mt">
+                    <select name="capelania" id="Coordenacao" class="form-select">
+                        <option>Coordenação</option>
+                        <option value="...">...</option>
+                        <option value="...1">...1</option>
+                    </select>
+                </div>
+                <div class="col-md mt">
+                    <select name="secretaria" id="Orientacao" class="form-select">
+                        <option>Orientação</option>
+                        <option value="...">...</option>
+                        <option value="...1">...1</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-md mt-2">
+            <textarea name="orientacao" class="form-control" style="height: 1px;" placeholder="Capelania"
+                      aria-label="With textarea"></textarea>
+            </div>
+            <div class="col-md mt-2">
+            <textarea name="ourto" class="form-control" style="height: 1px;" placeholder="Outro"
+                      aria-label="With textarea"></textarea>
+            </div>
+        </div>
+        <hr>
+        <h6>Professores Presentes:</h6>
+        <div class="mt-1">
+            {% for Prof_Nome in professoresquery %}
+            {% if loop.index % 6 == 1 %} {# Abre uma nova linha a cada 5 professores #}
+            <div class="row">
+                {% endif %}
+                <div class="col-2"> {# Divide o espaço em 5 colunas para cada professor #}
+                    <div class="form-check">
+                        <input name="professores_presentes" class="form-check-input" type="checkbox"
+                               value="{{ Prof_Nome.professor }}"
+                               id="{{ Prof_Nome.professor }}">
+                        <label class="form-check-label" for="{{ Prof_Nome.professor }}">
+                            {{ Prof_Nome.professor }}
+                        </label>
+                    </div>
+                </div>
+                {% if loop.index % 6 == 0 or loop.last %} {# Fecha a linha a cada 5 professores ou no último #}
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <hr>
+        <div class=" mt-2">
+        <textarea name="responsavel_legal" class="form-control" style="height: 1px;"
+                  placeholder="Responsável Legal Convocado"
+                  aria-label="With textarea"></textarea>
+        </div>
+
+        <div class=" mt-2">
+        <textarea name="apresentacao_cd" class="form-control" style="height: 600px;"
+                  placeholder="Apresentação da demanda no Conselho Disciplinar"
+                  aria-label="With textarea"></textarea>
+        </div>
+        <input type="submit" class="btn btn-secondary mt-2" value="Continuar">
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#option").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "opcao1") {
+                    $(".codigo, .turma, .serie").val("").hide();
+                } else {
+                    $(".codigo, .turma, .serie").hide();
+                    $(".codigo[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".turma[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".serie[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    // Atualizar a imagem do aluno com base no código da matrícula
+                        var codigoAluno = $(".codigo[data-matricula='" + selectedOption + "'] input[name='codigo']").val();
+                        $("#codigo_aluno").val(codigoAluno);
+
+                        // Tentar carregar a imagem com extensão .jpg
+                        var fotoAlunoSrcJPG = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpg";
+
+                        // Se a imagem .jpg não existir, tentar carregar a imagem .jpeg
+                        var img = new Image();
+                        img.src = fotoAlunoSrcJPG;
+                        img.onload = function() {
+                            $(".foto-aluno img").attr("src", fotoAlunoSrcJPG);
+                        };
+                        img.onerror = function() {
+                            var fotoAlunoSrcJPEG = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpeg";
+                            $(".foto-aluno img").attr("src", fotoAlunoSrcJPEG);
+                        };
+                    }
+                });
+            // Display initially four empty fields
+            $(".codigo, .turma, .serie").slice(0, 1).show();
+        });
+
+
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#estado').change(function() {
+                var estado = $(this).val();
+                $.ajax({
+                    url: '/cidades/' + estado,
+                    type: 'GET',
+                    success: function(data) {
+                        var cidadeSelect = $('#cidade');
+                        cidadeSelect.empty();
+                        if (data.length > 0) {
+                            $.each(data, function(index, cidade) {
+                                cidadeSelect.append('<option value="' + cidade + '">' + cidade + '</option>');
+                            });
+                        } else {
+                            cidadeSelect.append('<option value="">Nenhuma cidade encontrada</option>');
+                        }
+                    }
+                });
+            });
+        });
+
+
+
+    </script>
+    <hr>
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-3">
+            <a href="{{url_for('conselho_disciplinar_pesquisa')}}" style="text-decoration: none;">
+                <button type="button" class="btn btn-secondary mt-0">Pesquisar</button>
+            </a>
+            <button style="color: grey; border-color: grey;">Back</button>
+            <a href="{{url_for('conselho_disciplinar_estatisticas')}}">
+                <button>Next</button>
+            </a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,542 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Formulário do Conselho Participativo</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row g-3 position:absolute end-50 ">
+            <div class="d-flex align-items-center">
+                <div class="image pe-3">
+                    <div class="col-sm-2 foto-aluno">
+                        <img src="{{ url_for('static', filename='foto_alunos/default_alunos.jpg') }}" width="120">
+                    </div>
+                </div>
+                <h1 class="mx-auto" style="width: 500px; color:red">Cadastro do Aluno</h1>
+            </div>
+        </div>
+        <hr>
+        <div class="row g-3 mt-1">
+            <div class="col-sm-12 mt-0">
+                <p style="color: blue" class="mt-0 mb-0">Brasília, {{ formatted_date }}</p>
+            </div>
+            <div class="col-sm-1 codigo">
+                <input name="ra" type="text" class="form-control" placeholder="Matrícula" aria-label="RA">
+            </div>
+            {% for aluno in nome_alunoquery %}
+            <div class="col-sm-1 codigo" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+                <input name="codigo" value="{{ aluno.aluno_codigo }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            {% endfor %}
+            <div class="col-md-5">
+                <select name="aluno_nome" id="option" class="form-select" aria-label="Default select example">
+                    <option value="opcao1">Selecione o Aluno</option>
+                    {% for aluno in nome_alunoquery %}
+                    <option name="{{ aluno.aluno_nome }}" value="{{ aluno.aluno_nome }}">
+                        {{ aluno.aluno_nome }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-3 serie">
+                <input name="serie" type="text" class="form-control" placeholder="Série" aria-label="Serie">
+            </div>
+
+            <div class="col-sm-1 turma">
+                <input name="turma" type="text" class="form-control" placeholder="Turma" aria-label="Turma">
+            </div>
+            {% for aluno in nome_alunoquery %}
+            <div class="col-sm-3 serie" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+                <input name="serie" value="{{ aluno.matricula_serie }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            <div class="col-sm-1 turma" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+                <input name="turma" value="{{ aluno.matricula_turma }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            {% endfor %}
+            <div class="col-md-2">
+                <select name="bimestre" id="bimestre" class="form-select">
+                    <option selected>Bimestre</option>
+                    <option id="1º Bimestre" value="1º Bimestre">1º Bimestre</option>
+                    <option id="2º Bimestre" value="2º Bimestre">2º Bimestre</option>
+                    <option id="3º Bimestre" value="3º Bimestre">3º Bimestre</option>
+                    <option id="4º Bimestre" value="4º Bimestre">4º Bimestre</option>
+                </select>
+            </div>
+        </div>
+        <hr>
+        <div class="col-md">
+            <div>
+                <h5 style="color: blue" class="mt-2">Quadro de Médias Bimestrais</h5>
+                <div class="tabela_notas">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Bimestre</th>
+                            <th scope="col">Portu</th>
+                            <th scope="col">Artes</th>
+                            <th scope="col">Matem</th>
+                            <th scope="col">Geogr</th>
+                            <th scope="col">Histó</th>
+                            <th scope="col">Ed.Fi</th>
+                            <th scope="col">Físic</th>
+                            <th scope="col">Quími</th>
+                            <th scope="col">Ingle</th>
+                            <th scope="col">Relig</th>
+                            <th scope="col">Redac</th>
+                            <th scope="col">Espan</th>
+                        </tr>
+
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <th scope="row">1°⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</th>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2°</th>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3°</th>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4°</th>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Média Geral</th>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% for aluno in nome_alunoquery %}
+            <div class="tabela_notas" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Bimestre</th>
+                        <th scope="col">Portu</th>
+                        <th scope="col">Artes</th>
+                        <th scope="col">Matem</th>
+                        <th scope="col">Geogr</th>
+                        <th scope="col">Histó</th>
+                        <th scope="col">Ed.Fi</th>
+                        <th scope="col">Físic</th>
+                        <th scope="col">Quími</th>
+                        <th scope="col">Ingle</th>
+                        <th scope="col">Relig</th>
+                        <th scope="col">Redac</th>
+                        <th scope="col">Espan</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    {% for notas in notas_alunosquery if notas.aluno_nome_notas == aluno.aluno_nome %}
+                    <tr>
+                        <th scope="row">1°⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</th>
+                        <td id="port_1Bimestre" style="color:blue">{{ notas.port_1Bimestre }}</td>
+                        <td id="arte_1Bimestre" style="color:blue">{{ notas.arte_1Bimestre }}</td>
+                        <td id="mate_1Bimestre" style="color:blue">{{ notas.mate_1Bimestre }}</td>
+                        <td id="geog_1Bimestre" style="color:blue">{{ notas.geog_1Bimestre }}</td>
+                        <td id="hist_1Bimestre" style="color:blue">{{ notas.hist_1Bimestre }}</td>
+                        <td id="edfis_1Bimestre" style="color:blue">{{ notas.edfis_1Bimestre }}</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td id="ingl_1Bimestre" style="color:blue">{{ notas.ingl_1Bimestre }}</td>
+                        <td id="reli_1Bimestre" style="color:blue">{{ notas.reli_1Bimestre }}</td>
+                        <td id="redac_1Bimestre" style="color:blue">{{ notas.redac_1Bimestre }}</td>
+                        <td id="espa_1Bimestre" style="color:blue">{{ notas.espa_1Bimestre }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2°</th>
+                        <td id="port_2Bimestre" style="color:blue">{{ notas.port_2Bimestre }}</td>
+                        <td id="arte_2Bimestre" style="color:blue">{{ notas.arte_2Bimestre }}</td>
+                        <td id="mate_2Bimestre" style="color:blue">{{ notas.mate_2Bimestre }}</td>
+                        <td id="geog_2Bimestre" style="color:blue">{{ notas.geog_2Bimestre }}</td>
+                        <td id="hist_2Bimestre" style="color:blue">{{ notas.hist_2Bimestre }}</td>
+                        <td id="edfis_2Bimestre" style="color:blue">{{ notas.edfis_2Bimestre }}</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td id="ingl_2Bimestre" style="color:blue">{{ notas.ingl_2Bimestre }}</td>
+                        <td id="reli_2Bimestre" style="color:blue">{{ notas.reli_2Bimestre }}</td>
+                        <td id="redac_2Bimestre" style="color:blue">{{ notas.redac_2Bimestre }}</td>
+                        <td id="espa_2Bimestre" style="color:blue">{{ notas.espa_2Bimestre }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3°</th>
+                        <td id="port_3Bimestre" style="color:blue">{{ notas.port_3Bimestre }}</td>
+                        <td id="arte_3Bimestre" style="color:blue">{{ notas.arte_3Bimestre }}</td>
+                        <td id="mate_3Bimestre" style="color:blue">{{ notas.mate_3Bimestre }}</td>
+                        <td id="geog_3Bimestre" style="color:blue">{{ notas.geog_3Bimestre }}</td>
+                        <td id="hist_3Bimestre" style="color:blue">{{ notas.hist_3Bimestre }}</td>
+                        <td id="edfis_3Bimestre" style="color:blue">{{ notas.edfis_3Bimestre }}</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td id="ingl_3Bimestre" style="color:blue">{{ notas.ingl_3Bimestre }}</td>
+                        <td id="reli_3Bimestre" style="color:blue">{{ notas.reli_3Bimestre }}</td>
+                        <td id="redac_3Bimestre" style="color:blue">{{ notas.redac_3Bimestre }}</td>
+                        <td id="espa_3Bimestre" style="color:blue">{{ notas.espa_3Bimestre }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4°</th>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Média Geral</th>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endfor %}
+
+
+        </div>
+        <div class="col-md">
+            <h5 style="color: blue" class="mt-2">Quadro de Notas: Peso x Nota Alcançada</h5>
+            <div class="tabela_faltas">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">⠀</th>
+                        <th scope="col">Portu</th>
+                        <th scope="col">Artes</th>
+                        <th scope="col">Matem</th>
+                        <th scope="col">Geogr</th>
+                        <th scope="col">Histó</th>
+                        <th scope="col">Ed.Fi</th>
+                        <th scope="col">Físic</th>
+                        <th scope="col">Quími</th>
+                        <th scope="col">Ingle</th>
+                        <th scope="col">Relig</th>
+                        <th scope="col">Redac</th>
+                        <th scope="col">Espan</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Peso da P1</th>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nota da P1 Alcançada</th>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Faltas</th>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            {% for aluno in nome_alunoquery %}
+            <div class="tabela_faltas" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">⠀</th>
+                        <th scope="col">Portu</th>
+                        <th scope="col">Artes</th>
+                        <th scope="col">Matem</th>
+                        <th scope="col">Geogr</th>
+                        <th scope="col">Histó</th>
+                        <th scope="col">Ed.Fi</th>
+                        <th scope="col">Físic</th>
+                        <th scope="col">Quími</th>
+                        <th scope="col">Ingle</th>
+                        <th scope="col">Relig</th>
+                        <th scope="col">Redac</th>
+                        <th scope="col">Espan</th>
+                        <!-- Adicione as colunas de Peso_Nota_P1 aqui -->
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for notas in peso_notas_alunosquery if notas.aluno_nome_notas == aluno.aluno_nome %}
+                    <tr>
+                        <th scope="row">Peso da P1</th>
+                        <td id="port_P1_PesoNota">{{ notas.port_P1_PesoNota }}</td>
+                        <td id="mate_P1_PesoNota">{{ notas.mate_P1_PesoNota }}</td>
+                        <td id="geog_P1_PesoNota">{{ notas.geog_P1_PesoNota }}</td>
+                        <td id="espa_P1_PesoNota">{{ notas.espa_P1_PesoNota }}</td>
+                        <td id="hist_P1_PesoNota">{{ notas.hist_P1_PesoNota }}</td>
+                        <td id="ingl_P1_PesoNota">{{ notas.ingl_P1_PesoNota }}</td>
+                        <td id="arte_P1_PesoNota">{{ notas.arte_P1_PesoNota }}</td>
+                        <td id="edfis_P1_PesoNota">{{ notas.edfis_P1_PesoNota }}</td>
+                        <td id="fisic_P1_PesoNota">{{ notas.fisic_P1_PesoNota }}</td>
+                        <td id="quimi_P1_PesoNota">{{ notas.quimi_P1_PesoNota }}</td>
+                        <td id="reli_P1_PesoNota">{{ notas.reli_P1_PesoNota }}</td>
+                        <td id="redac_P1_PesoNota">{{ notas.redac_P1_PesoNota }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nota da P1 Alcançada</th>
+                        <td id="port_notas_P1">{{ notas.port_notas_P1 }}</td>
+                        <td id="mate_notas_P1">{{ notas.mate_notas_P1 }}</td>
+                        <td id="geog_notas_P1">{{ notas.geog_notas_P1 }}</td>
+                        <td id="espa_notas_P1">{{ notas.espa_notas_P1 }}</td>
+                        <td id="hist_notas_P1">{{ notas.hist_notas_P1 }}</td>
+                        <td id="ingl_notas_P1">{{ notas.ingl_notas_P1 }}</td>
+                        <td id="arte_notas_P1">{{ notas.arte_notas_P1 }}</td>
+                        <td id="edfis_notas_P1">{{ notas.edfis_notas_P1 }}</td>
+                        <td id="fisic_notas_P1">{{ notas.fisic_notas_P1 }}</td>
+                        <td id="quimi_notas_P1">{{ notas.quimi_notas_P1 }}</td>
+                        <td id="reli_notas_P1">{{ notas.reli_notas_P1 }}</td>
+                        <td id="redac_notas_P1">{{ notas.redac_notas_P1 }}</td>
+                    </tr>
+                    {% endfor %}
+                    {% for notas in notas_alunosquery if notas.aluno_nome_notas == aluno.aluno_nome %}
+                    <tr>
+                        <th scope="row">Faltas</th>
+                        <td id="total_faltas_port">{{ notas.total_faltas_port }}</td>
+                        <td id="total_faltas_arte">{{ notas.total_faltas_arte }}</td>
+                        <td id="total_faltas_mate">{{ notas.total_faltas_mate }}</td>
+                        <td id="total_faltas_geog">{{ notas.total_faltas_geog }}</td>
+                        <td id="total_faltas_hist">{{ notas.total_faltas_hist }}</td>
+                        <td id="total_faltas_edfis">{{ notas.total_faltas_edfis }}</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td id="total_faltas_ingl">{{ notas.total_faltas_ingl }}</td>
+                        <td id="total_faltas_reli">{{ notas.total_faltas_reli }}</td>
+                        <td id="total_faltas_redac">{{ notas.total_faltas_redac }}</td>
+                        <td id="total_faltas_espa">{{ notas.total_faltas_espa }}</td>
+                    </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endfor %}
+        </div>
+        <input type="submit" class="btn btn-secondary mt-2" value="Salvar">
+    </form>
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-7 ">
+            <button style="color: grey; border-color: grey;">Voltar</button>
+            <a style="text-decoration: none;" href="{{url_for('avaliacao_aluno_apontamento')}}">
+                <button>Prosseguir</button>
+            </a>
+            <a style="text-decoration: none;" href="{{url_for('importar_notas')}}">
+                <button class="btn btn-secondary mb-1">Importar Notas</button>
+            </a>
+            <a style="text-decoration: none;" href="{{url_for('importar_peso_notas')}}">
+                <button class="btn btn-secondary mb-1">Importar Pesos das Notas</button>
+            </a>
+        </div>
+    </div>
+    <script>
+        document.getElementById("option").addEventListener("change", function() {
+            var selectedOption = this.options[this.selectedIndex];
+            var alunoId = selectedOption.getAttribute("data-id");
+            document.getElementById("aluno_id").value = alunoId;
+        });
+
+    </script>
+    <script>
+    $(document).ready(function() {
+        $("#option").change(function() {
+            var selectedOption = $(this).val();
+            if (selectedOption === "opcao1") {
+                $(".codigo, .serie, .turma, .tabela_notas, .tabela_faltas").hide();
+            } else {
+                $(".codigo, .serie, .turma, .tabela_notas, .tabela_faltas").hide();
+                $(".codigo[data-matricula='" + selectedOption + "']").show();
+                $(".serie[data-matricula='" + selectedOption + "']").show();
+                $(".turma[data-matricula='" + selectedOption + "']").show();
+                $(".tabela_notas[data-matricula='" + selectedOption + "']").show(); // Show the selected student's table
+                $(".tabela_faltas[data-matricula='" + selectedOption + "']").show();
+                var codigoAluno = $(".codigo[data-matricula='" + selectedOption + "'] input[name='codigo']").val();
+                $("#codigo_aluno").val(codigoAluno);
+
+                // Atualizar a imagem do aluno com base no código da matrícula
+                    var codigoAluno = $(".codigo[data-matricula='" + selectedOption + "'] input[name='codigo']").val();
+                    $("#codigo_aluno").val(codigoAluno);
+
+                    // Tentar carregar a imagem com extensão .jpg
+                    var fotoAlunoSrcJPG = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpg";
+
+                    // Se a imagem .jpg não existir, tentar carregar a imagem .jpeg
+                    var img = new Image();
+                    img.src = fotoAlunoSrcJPG;
+                    img.onload = function() {
+                        $(".foto-aluno img").attr("src", fotoAlunoSrcJPG);
+                    };
+                    img.onerror = function() {
+                        var fotoAlunoSrcJPEG = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpeg";
+                        $(".foto-aluno img").attr("src", fotoAlunoSrcJPEG);
+                    };
+                }
+            });
+
+            // Display initially four empty fields
+            $(".codigo, .serie, .turma, .mae_nome, .endereco, .unidade_escolar, .diagnostico, .nome_responsavel, .nascimento, .cpf, .numero_registro, .orgao, .uf").slice(0, 1).show();
+        });
+
+    </script>
+</div>
+{% endblock %}

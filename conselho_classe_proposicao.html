@@ -1,0 +1,464 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Conselho de Classe</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <div class="row g-3 position:absolute end-50 ">
+        <h1 class="mx-auto" style="width: 1250px; color:red">Composição da Proposta de Intervenção às Necessidades da
+            Turma</h1>
+    </div>
+    <form method="post">
+        <div class="row g-3 mt-1">
+            <div class="col-sm turma">
+                <input name="turma" type="text" class="form-control" placeholder="Turma" aria-label="Turma"
+                       value="{{ turma_selecionada_cc.turma }}" disabled>
+            </div>
+            <div class="col-sm serie">
+                <input name="serie" type="text" class="form-control" placeholder="Série" aria-label="Série"
+                       value="{{ turma_selecionada_cc.serie }}" disabled>
+            </div>
+        </div>
+        <hr>
+        <h5>Descrição</h5>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="01 - Identificar os elementos necessários que intervêm no processo de ensino e de aprendizagem, levando em
+            conta, o aluno, o contexto escolar, e o contexto familiar" id="PropCC1">
+            <label class="form-check-label" for="PropCC1">
+                01 - Identificar os elementos necessários que intervêm no processo de ensino e de aprendizagem, levando
+                em
+                conta, o aluno, o contexto escolar, e o contexto familiar;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="02 - Rever as práticas pedagógicas e a fundamentações teóricas que embasam o processo do ensino diante do
+            trabalho com os estudantes" id="PropCC2">
+            <label class="form-check-label" for="PropCC2">
+                02 - Rever as práticas pedagógicas e a fundamentações teóricas que embasam o processo do ensino diante
+                do
+                trabalho com os estudantes;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="03 - Investigar as necessidades educacionais especiais dos alunos que apresentam dificuldades"
+                   id="PropCC3">
+            <label class="form-check-label" for="PropCC3">
+                03 - Investigar as necessidades educacionais especiais dos alunos que apresentam dificuldades;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="04 - Considerar as diferenças individuais dos alunos e valorizar as competências dos estudantes"
+                   id="PropCC4">
+            <label class="form-check-label" for="PropCC4">
+                04 - Considerar as diferenças individuais dos alunos e valorizar as competências dos estudantes;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="05 - Construir caminhos para a remoção de barreiras na aprendizagem com propostas incluídas nos
+            planejamentos de aulas" id="PropCC5">
+            <label class="form-check-label" for="PropCC5">
+                05 - Construir caminhos para a remoção de barreiras na aprendizagem com propostas incluídas nos
+                planejamentos de aulas;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="06 - Propor através dos planejamentos, condições para que os estudantes sejam autores da aprendizagem,
+            saindo da posição passiva" id="PropCC6">
+            <label class="form-check-label" for="PropCC6">
+                06 - Propor através dos planejamentos, condições para que os estudantes sejam autores da aprendizagem,
+                saindo da posição passiva;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="07 - Rever e atualizar as práticas avaliativas tradicionais, normativas, padronizadas e classificatórias
+            empregadas a este aos alunos" id="PropCC7">
+            <label class="form-check-label" for="PropCC7">
+                07 - Rever e atualizar as práticas avaliativas tradicionais, normativas, padronizadas e classificatórias
+                empregadas a este aos alunos;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="08 - Mudar linguagem e código aplicável aos alunos que apresentam dificuldades de comunicação e sinalização
+            diferenciadas" id="PropCC8">
+            <label class="form-check-label" for="PropCC8">
+                08 - Mudar linguagem e código aplicável aos alunos que apresentam dificuldades de comunicação e
+                sinalização
+                diferenciadas;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="09 - Avaliar a possibilidade de aceleração para aluno com altas habilidades/ superdotados"
+                   id="PropCC9">
+            <label class="form-check-label" for="PropCC9">
+                09 - Avaliar a possibilidade de aceleração para aluno com altas habilidades/ superdotados;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="10 - Avaliar as estratégias metacognitivas para aluno com altas habilidades/ superdotados"
+                   id="PropCC10">
+            <label class="form-check-label" for="PropCC10">
+                10 - Avaliar as estratégias metacognitivas para aluno com altas habilidades/ superdotados;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="11 - Estimular estratégias metacognitivas" id="PropCC11">
+            <label class="form-check-label" for="PropCC11">
+                11 - Estimular estratégias metacognitivas;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="12 - Utilizar de diversas explicações para o mesmo assunto de modo a atingir todos os estudantes"
+                   id="PropCC12">
+            <label class="form-check-label" for="PropCC12">
+                12 - Utilizar de diversas explicações para o mesmo assunto de modo a atingir todos os estudantes;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="13 - Empregar esforços para que a organização do tempo de explicação seja coerente com o tempo de atenção
+            dos alunos" id="PropCC13">
+            <label class="form-check-label" for="PropCC13">
+                13 - Empregar esforços para que a organização do tempo de explicação seja coerente com o tempo de
+                atenção
+                dos alunos;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="14 - Estimular os alunos a raciocinar, construir hipóteses etc" id="PropCC14">
+            <label class="form-check-label" for="PropCC14">
+                14 - Estimular os alunos a raciocinar, construir hipóteses etc.
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="15 - Reforçar a importância conferida às disciplinas em sala de aula" id="PropCC15">
+            <label class="form-check-label" for="PropCC15">
+                15 - Reforçar a importância conferida às disciplinas em sala de aula;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="16 - Reforçar as providências que são tomadas em caso de indisciplina" id="PropCC16">
+            <label class="form-check-label" for="PropCC16">
+                16 - Reforçar as providências que são tomadas em caso de indisciplina;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="17 - Especificar a natureza da interação professor/aluno"
+                   id="PropCC17">
+            <label class="form-check-label" for="PropCC17">
+                17 - Especificar a natureza da interação professor/aluno;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="18 - Trabalhar, junto com o setor de disciplina e capelania, a qualidade das relações que se estabelece
+            entre os colegas" id="PropCC18">
+            <label class="form-check-label" for="PropCC18">
+                18 - Trabalhar, junto com o setor de disciplina e capelania, a qualidade das relações que se estabelece
+                entre os colegas;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="19 - Trabalhar o “clima” emocional que predomina na sala de aula em decorrência das relações do aluno com os
+            colegas e com o professor" id="PropCC19">
+            <label class="form-check-label" for="PropCC19">
+                19 - Trabalhar o “clima” emocional que predomina na sala de aula em decorrência das relações do aluno
+                com os
+                colegas e com o professor;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="20 - Valorizar as respostas dos estudantes contribuindo para sua autoimagem positiva"
+                   id="PropCC20">
+            <label class="form-check-label" for="PropCC20">
+                20 - Valorizar as respostas dos estudantes contribuindo para sua autoimagem positiva;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="21 - Estimular a participação dos estudantes nos planos de trabalhos" id="PropCC21">
+            <label class="form-check-label" for="PropCC21">
+                21 - Estimular a participação dos estudantes nos planos de trabalhos;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="22 - Solicitar participação das famílias nos planos de trabalhos" id="PropCC22">
+            <label class="form-check-label" for="PropCC22">
+                22 - Solicitar participação das famílias nos planos de trabalhos;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="23 - Promoção da mudança de alunos quanto a turma ou turno quando após avaliação dos benefícios apontados"
+                   id="PropCC23">
+            <label class="form-check-label" for="PropCC23">
+                23 - Promoção da mudança de alunos quanto a turma ou turno quando após avaliação dos benefícios
+                apontados;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="24 - Separar os estudantes de colegas, quando constatado o prejuízo de rendimento de ambos"
+                   id="PropCC24">
+            <label class="form-check-label" for="PropCC24">
+                24 - Separar os estudantes de colegas, quando constatado o prejuízo de rendimento de ambos.
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="25 - Incentivar a prática e repetição de exercícios e leitura" id="PropCC25">
+            <label class="form-check-label" for="PropCC25">
+                25 - Incentivar a prática e repetição de exercícios e leitura,
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="26 - Aplicar o reforço positivo (Observando os excessos)"
+                   id="PropCC26">
+            <label class="form-check-label" for="PropCC26">
+                26 - Aplicar o reforço positivo (Observando os excessos).
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="27 - Manter uma boa comunicação com as famílias"
+                   id="PropCC27">
+            <label class="form-check-label" for="PropCC27">
+                27 - Manter uma boa comunicação com as famílias.
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="28 - Variar a rotina de ensino incluindo recursos a serem utilizados seja de ambiente, elementos ou
+            instrumentos" id="PropCC28">
+            <label class="form-check-label" for="PropCC28">
+                28 - Variar a rotina de ensino incluindo recursos a serem utilizados seja de ambiente, elementos ou
+                instrumentos.
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="29 - Minimizar as distrações dos alunos em sala de aula"
+                   id="PropCC29">
+            <label class="form-check-label" for="PropCC29">
+                29 - Minimizar as distrações dos alunos em sala de aula;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="30 - Corpo docente em conjunto com o SOE ensinar métodos de estudo e estratégias de aprendizagem"
+                   id="PropCC30">
+            <label class="form-check-label" for="PropCC30">
+                30 - Corpo docente em conjunto com o SOE ensinar métodos de estudo e estratégias de aprendizagem;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="31 - Famílias sob orientação do SOE, buscarão ensinar métodos de estudo e estratégias de aprendizagem"
+                   id="PropCC31">
+            <label class="form-check-label" for="PropCC31">
+                31 - Famílias sob orientação do SOE, buscarão ensinar métodos de estudo e estratégias de aprendizagem;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="32 - Oferecer instrução intensiva e explícita sobre as estratégias de estudos" id="PropCC32">
+            <label class="form-check-label" for="PropCC32">
+                32 - Oferecer instrução intensiva e explícita sobre as estratégias de estudos;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="33 - Fornecer aulas de reforços e/ou monitoria"
+                   id="PropCC33">
+            <label class="form-check-label" for="PropCC33">
+                33 - Fornecer aulas de reforços e/ou monitoria;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="34 - Manter os alunos com dificuldades de aprendizagem longe de janelas e portas"
+                   id="PropCC34">
+            <label class="form-check-label" for="PropCC34">
+                34 - Manter os alunos com dificuldades de aprendizagem longe de janelas e portas;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="35 - Trazer para perto da mesa do professor na primeira carteira, alunos apontados com dificuldades de
+            aprendizagem" id="PropCC35">
+            <label class="form-check-label" for="PropCC35">
+                35 - Trazer para perto da mesa do professor na primeira carteira, alunos apontados com dificuldades de
+                aprendizagem;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="36 - Oferecer oportunidade para pensamento de alto nível"
+                   id="PropCC36">
+            <label class="form-check-label" for="PropCC36">
+                36 - Oferecer oportunidade para pensamento de alto nível;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="37 - Estimular atividades em pares" id="PropCC37">
+            <label class="form-check-label" for="PropCC37">
+                37 - Estimular atividades em pares;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="38 - Mudar alunos de lugar sempre que perceber que algo ‘ameaça’ a atenção ao conteúdo"
+                   id="PropCC38">
+            <label class="form-check-label" for="PropCC38">
+                38 - Mudar alunos de lugar sempre que perceber que algo ‘ameaça’ a atenção ao conteúdo;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="39 - Solicitar acompanhamento familiar das notas e notificações por meio do portal"
+                   id="PropCC39">
+            <label class="form-check-label" for="PropCC39">
+                39 - Solicitar acompanhamento familiar das notas e notificações por meio do portal;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="40 - Solicitar às famílias acompanhamento na realização de tarefas, avaliações e entrega de trabalhos"
+                   id="PropCC40">
+            <label class="form-check-label" for="PropCC40">
+                40 - Solicitar às famílias acompanhamento na realização de tarefas, avaliações e entrega de trabalhos;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="41 - Desafiar os estudantes a atingirem metas de leitura estabelecidas" id="PropCC41">
+            <label class="form-check-label" for="PropCC41">
+                41 - Desafiar os estudantes a atingirem metas de leitura estabelecidas;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="42 - Promover junto ao SOE uma reunião para orientações de rotinas de estudos" id="PropCC42">
+            <label class="form-check-label" for="PropCC42">
+                42 - Promover junto ao SOE uma reunião para orientações de rotinas de estudos;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="43 - Designar o professor(a) conselheiro(a) da turma em conjunto com o SOE, para orientar os alunos quanto
+            ao desempenho acadêmico" id="PropCC43">
+            <label class="form-check-label" for="PropCC43">
+                43 - Designar o professor(a) conselheiro(a) da turma em conjunto com o SOE, para orientar os alunos
+                quanto
+                ao desempenho acadêmico;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="44 - Incentivar a capacidade de atenção e escuta ativa em sala de aula: Os alunos devem estar atentos às
+            palavras-chave e nas dicas dadas pelo professor" id="PropCC44">
+            <label class="form-check-label" for="PropCC44">
+                44 - Incentivar a capacidade de atenção e escuta ativa em sala de aula: Os alunos devem estar atentos às
+                palavras-chave e nas dicas dadas pelo professor;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="45 - Incentivar e registrar as autoavaliações de alunos"
+                   id="PropCC45">
+            <label class="form-check-label" for="PropCC45">
+                45 - Incentivar e registrar as autoavaliações de alunos;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="46 - Encaminhar ao SOE e/ou Setor de Disciplina para autoavaliação de alunos junto aos responsáveis"
+                   id="PropCC46">
+            <label class="form-check-label" for="PropCC46">
+                46 - Encaminhar ao SOE e/ou Setor de Disciplina para autoavaliação de alunos junto aos responsáveis;
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox" value="47 - Permitir pausas frequentes nos estudos com idas ao banheiro e consumo de água para circular e voltarem
+            mais concentrados" id="PropCC47">
+            <label class="form-check-label" for="PropCC47">
+                47 - Permitir pausas frequentes nos estudos com idas ao banheiro e consumo de água para circular e
+                voltarem
+                mais concentrados.
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="opcoes_proposicao" class="form-check-input" type="checkbox"
+                   value="48 - Recomenda-se a participação no Clube de Desbravadores" id="PropCC48">
+            <label class="form-check-label" for="PropCC48">
+                48 - Recomenda-se a participação no Clube de Desbravadores;
+            </label>
+        </div>
+        <input type="submit" class="btn btn-secondary mt-2" value="Continuar">
+    </form>
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('conselho_classe_apontamentos')}}">
+                <button>Back</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

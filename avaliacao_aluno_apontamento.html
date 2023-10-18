@@ -1,0 +1,518 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Formulário do Conselho Participativo</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <form method="post" action="/avaliacao%aluno%apontamento">
+        <div class="row g-3 position:absolute end-50 ">
+            <div class="d-flex align-items-center">
+                <div class="image pe-3 foto_aluno">
+                    <img name="foto_aluno" src="{{ foto_aluno }}"
+                         width="120">
+                </div>
+                <h1 class="mx-auto" style="width: 480px; color:red">Instruções Acadêmicas</h1>
+            </div>
+        </div>
+        <hr>
+        <div class="row g-3 mt-1">
+            <div class="col-sm-12 mt-0">
+                <p style="color: blue" class="mt-0 mb-0">Brasília, {{ formatted_date }}</p>
+            </div>
+        </div>
+        <hr>
+        <h5 style="color: blue">APONTAMENTOS DO CONSELHO</h5>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Teve boa participação nas aulas. PARABÉNS!" id="Av_AlunoApontamento1"
+                   name="opcao100_01">
+            <label class="form-check-label" for="Av_AlunoApontamento1">
+                100.01 -Teve boa participação nas aulas. PARABÉNS!
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Apresentou Ótimo Comportamento e Desempenho Acadêmico" id="Av_AlunoApontamento2"
+                   name="opcao100_02">
+            <label class="form-check-label" for="Av_AlunoApontamento2">
+                100.02 - Apresentou Ótimo Comportamento e Desempenho Acadêmico
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Apresentou Bom Comportamento e Desempenho Acadêmico" id="Av_AlunoApontamento3"
+                   name="opcao100_03">
+            <label class="form-check-label" for="Av_AlunoApontamento3">
+                100.03 - Apresentou Bom Comportamento e Desempenho Acadêmico
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Apresentou Bom Comportamento" id="Av_AlunoApontamento4" name="opcao100_04">
+            <label class="form-check-label" for="Av_AlunoApontamento4">
+                100.04 - Apresentou Bom Comportamento
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Apresentou Bom Desempenho Acadêmico" id="Av_AlunoApontamento5" name="opcao100_05">
+            <label class="form-check-label" for="Av_AlunoApontamento5">
+                100.05 - Apresentou Bom Desempenho Acadêmico
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="É comprometido com as tarefas de casa" id="Av_AlunoApontamento6" name="opcao100_06">
+            <label class="form-check-label" for="Av_AlunoApontamento6">
+                100.06 - É comprometido com as tarefas de casa
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="É comprometido com as tarefas de aula" id="Av_AlunoApontamento7" name="opcao100_07">
+            <label class="form-check-label" for="Av_AlunoApontamento7">
+                100.07 - É comprometido com as tarefas de aula
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="É responsável com os materiais escolares" id="Av_AlunoApontamento8" name="opcao100_08">
+            <label class="form-check-label" for="Av_AlunoApontamento8">
+                100.08 - É responsável com os materiais escolares
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="É atento" id="Av_AlunoApontamento9" name="opcao100_09">
+            <label class="form-check-label" for="Av_AlunoApontamento9">
+                100.09 - É atento
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Tem os conteúdos em dia no caderno" id="Av_AlunoApontamento10" name="opcao100_10">
+            <label class="form-check-label" for="Av_AlunoApontamento10">
+                100.10 - Tem os conteúdos em dia no caderno
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="É pontual na entrega dos trabalhos" id="Av_AlunoApontamento11" name="opcao100_11">
+            <label class="form-check-label" for="Av_AlunoApontamento11">
+                100.11 - É pontual na entrega dos trabalhos
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Participa das atividades em grupo" id="Av_AlunoApontamento12" name="opcao100_12">
+            <label class="form-check-label" for="Av_AlunoApontamento12">
+                100.12 - Participa das atividades em grupo
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Apresenta um bom desempenho social" id="Av_AlunoApontamento13" name="opcao100_13">
+            <label class="form-check-label" for="Av_AlunoApontamento13">
+                100.13 - Apresenta um bom desempenho social
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Obteve crescimento no bimestre" id="Av_AlunoApontamento14" name="opcao100_14">
+            <label class="form-check-label" for="Av_AlunoApontamento14">
+                100.14 - Obteve crescimento no bimestre
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Demonstrou Comprometimento e Esforço" id="Av_AlunoApontamento15" name="opcao100_15">
+            <label class="form-check-label" for="Av_AlunoApontamento15">
+                100.15 - Demonstrou Comprometimento e Esforço
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Merece destaque pelo bom comportamento" id="Av_AlunoApontamento16" name="opcao100_16">
+            <label class="form-check-label" for="Av_AlunoApontamento16">
+                100.16 - Merece destaque pelo bom comportamento
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Você está apresentando resultados satisfatórios, mas pode melhorar" id="Av_AlunoApontamento17" name="opcao100_17">
+            <label class="form-check-label" for="Av_AlunoApontamento17">
+                100.17 - Você está apresentando resultados satisfatórios, mas pode melhorar
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Procure esforçar-se mais, pois você tem condições" id="Av_AlunoApontamento18" name="opcao100_18">
+            <label class="form-check-label" for="Av_AlunoApontamento18">
+                100.18 - Procure esforçar-se mais, pois você tem condições
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Parabéns pelo seu desempenho acadêmico" id="Av_AlunoApontamento19" name="opcao100_19">
+            <label class="form-check-label" for="Av_AlunoApontamento19">
+                100.19 - Parabéns pelo seu desempenho acadêmico
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Parabéns! você realiza suas tarefas com responsabilidade" id="Av_AlunoApontamento20" name="opcao100_20">
+            <label class="form-check-label" for="Av_AlunoApontamento20">
+                100.20 - Parabéns! você realiza suas tarefas com responsabilidade
+            </label>
+        </div>
+        <hr>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deve participar de toda atividade de recuperação paralela" id="Av_AlunoApontamento100" name="opcao100">
+            <label class="form-check-label" for="Av_AlunoApontamento100">
+                100 - Deve participar de toda atividade de recuperação paralela
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deve cessar o comportamento indisciplinado em sala de aula" id="Av_AlunoApontamento101" name="opcao101">
+            <label class="form-check-label" for="Av_AlunoApontamento101">
+                101 - Deve cessar o comportamento indisciplinado em sala de aula
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa desenvolver comprometimento com os estudos" id="Av_AlunoApontamento102" name="opcao102">
+            <label class="form-check-label" for="Av_AlunoApontamento102">
+                102 - Precisa desenvolver comprometimento com os estudos
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deve cessar conversas e brincadeiras durante as aulas" id="Av_AlunoApontamento103" name="opcao103">
+            <label class="form-check-label" for="Av_AlunoApontamento103">
+                103 - Deve cessar conversas e brincadeiras durante as aulas
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Houve crescimento no bimestre" id="Av_AlunoApontamento104" name="opcao104">
+            <label class="form-check-label" for="Av_AlunoApontamento104">
+                104 - Houve crescimento no bimestre
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deve evitar faltas nas aulas de recuperação" id="Av_AlunoApontamento21" name="opcao105">
+            <label class="form-check-label" for="Av_AlunoApontamento21">
+                105 - Deve evitar faltas nas aulas de recuperação
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Apresentou dificuldade" id="Av_AlunoApontamento22" name="opcao106">
+            <label class="form-check-label" for="Av_AlunoApontamento22">
+                106 - Apresentou dificuldade
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Apresentou rendimento insuficiente" id="Av_AlunoApontamento23" name="opcao107">
+            <label class="form-check-label" for="Av_AlunoApontamento23">
+                107 - Apresentou rendimento insuficiente
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deixou de fazer algumas tarefas designadas" id="Av_AlunoApontamento24" name="opcao108">
+            <label class="form-check-label" for="Av_AlunoApontamento24">
+                108 - Deixou de fazer algumas tarefas designadas
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deixou de trazer o material necessário frequentemente" id="Av_AlunoApontamento25" name="opcao109">
+            <label class="form-check-label" for="Av_AlunoApontamento25">
+                109 - Deixou de trazer o material necessário frequentemente
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Apresentou desinteresse nas aulas" id="Av_AlunoApontamento26" name="opcao110">
+            <label class="form-check-label" for="Av_AlunoApontamento26">
+                110 - Apresentou desinteresse nas aulas
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa admitir suas ações e decisões" id="Av_AlunoApontamento27" name="opcao111">
+            <label class="form-check-label" for="Av_AlunoApontamento27">
+                111 - Precisa admitir suas ações e decisões
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Vem apresentando resultados satisfatórios, entretanto, deve focar ainda mais" id="Av_AlunoApontamento28" name="opcao112">
+            <label class="form-check-label" for="Av_AlunoApontamento28">
+                112 - Vem apresentando resultados satisfatórios, entretanto, deve focar ainda mais
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Suas atitudes estão melhorando, isso favorece sua performance" id="Av_AlunoApontamento29" name="opcao113">
+            <label class="form-check-label" for="Av_AlunoApontamento29">
+                113 - Suas atitudes estão melhorando, isso favorece sua performance
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa esforçar-se mais, pois tem condições de melhorar" id="Av_AlunoApontamento30" name="opcao114">
+            <label class="form-check-label" for="Av_AlunoApontamento30">
+                114 - Precisa esforçar-se mais, pois tem condições de melhorar
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Apresenta dificuldades acadêmicas durante o bimestre" id="Av_AlunoApontamento31" name="opcao115">
+            <label class="form-check-label" for="Av_AlunoApontamento31">
+                115 - Apresenta dificuldades acadêmicas durante o bimestre
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa cessar as faltas às aulas de educação física" id="Av_AlunoApontamento32" name="opcao116">
+            <label class="form-check-label" for="Av_AlunoApontamento32">
+                116 - Precisa cessar as faltas às aulas de educação física
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deve comparecer às aulas de reforço" id="Av_AlunoApontamento33" name="opcao117">
+            <label class="form-check-label" for="Av_AlunoApontamento33">
+                117 - Deve comparecer às aulas de reforço
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deve utilizar a própria memória ao invés de recorrer à cola em avaliação" id="Av_AlunoApontamento34" name="opcao118">
+            <label class="form-check-label" for="Av_AlunoApontamento34">
+                118 - Deve utilizar a própria memória ao invés de recorrer à "cola" em avaliação
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Evitar desentendimentos e melhorar seus relacionamentos" id="Av_AlunoApontamento35" name="opcao119">
+            <label class="form-check-label" for="Av_AlunoApontamento35">
+                119 - Evitar desentendimentos e melhorar seus relacionamentos
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="É imprescindível demonstrar maior respeito aos professores." id="Av_AlunoApontamento36" name="opcao120">
+            <label class="form-check-label" for="Av_AlunoApontamento36">
+                120 - É imprescindível demonstrar maior respeito aos professores.
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deve ter mais interesse e dedicação aos estudos" id="Av_AlunoApontamento37" name="opcao121">
+            <label class="form-check-label" for="Av_AlunoApontamento37">
+                121 - Deve ter mais interesse e dedicação aos estudos
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Necessita estar mais atento às explicações dos professores" id="Av_AlunoApontamento38" name="opcao122">
+            <label class="form-check-label" for="Av_AlunoApontamento38">
+                122 - Necessita estar mais atento às explicações dos professores
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa realizar os trabalhos com capricho" id="Av_AlunoApontamento39" name="opcao123">
+            <label class="form-check-label" for="Av_AlunoApontamento39">
+                123 - Precisa realizar os trabalhos com capricho
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa realizar suas tarefas escolares e apresentá-las no tempo estabelecido" id="Av_AlunoApontamento40" name="opcao124">
+            <label class="form-check-label" for="Av_AlunoApontamento40">
+                124 - Precisa realizar suas tarefas escolares e apresentá-las no tempo estabelecido
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Não tem trazido seus materiais para as aulas" id="Av_AlunoApontamento41" name="opcao125">
+            <label class="form-check-label" for="Av_AlunoApontamento41">
+                125 - Não tem trazido seus materiais para as aulas
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa ser mais assíduo às aulas. tem faltas em excesso" id="Av_AlunoApontamento42" name="opcao126">
+            <label class="form-check-label" for="Av_AlunoApontamento42">
+                126 - Precisa ser mais assíduo às aulas. tem faltas em excesso
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa ser pontual. devido aos atrasos, tem perdido prazos" id="Av_AlunoApontamento43" name="opcao127">
+            <label class="form-check-label" for="Av_AlunoApontamento43">
+                127 - Precisa ser pontual. devido aos atrasos, tem perdido prazos
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="A conversa excessiva e nos momentos indevidos está atrapalhando seu desenvolvimento" id="Av_AlunoApontamento44" name="opcao128">
+            <label class="form-check-label" for="Av_AlunoApontamento44">
+                128 - A conversa excessiva e nos momentos indevidos está atrapalhando seu desenvolvimento
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="A conversa excessiva está prejudicando seus colegas" id="Av_AlunoApontamento45" name="opcao129">
+            <label class="form-check-label" for="Av_AlunoApontamento45">
+                129 - A conversa excessiva está prejudicando seus colegas
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Sua participação em aula precisa melhorar" id="Av_AlunoApontamento46" name="opcao130">
+            <label class="form-check-label" for="Av_AlunoApontamento46">
+                130 - Sua participação em aula precisa melhorar
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa ter autocontrole" id="Av_AlunoApontamento47" name="opcao131">
+            <label class="form-check-label" for="Av_AlunoApontamento47">
+                131 - Precisa ter autocontrole
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Deixou de fazer a prova de recuperação" id="Av_AlunoApontamento48" name="opcao132">
+            <label class="form-check-label" for="Av_AlunoApontamento48">
+                132 - Deixou de fazer a prova de recuperação
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Parar de sair da sala com frequência" id="Av_AlunoApontamento49" name="opcao133">
+            <label class="form-check-label" for="Av_AlunoApontamento49">
+                133 - Parar de sair da sala com frequência
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Assegure-se de evitar faltas nos dias das avaliações" id="Av_AlunoApontamento50" name="opcao134">
+            <label class="form-check-label" for="Av_AlunoApontamento50">
+                134 - Assegure-se de evitar faltas nos dias das avaliações
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Parar com as brincadeiras inadequadas em aula" id="Av_AlunoApontamento51" name="opcao135">
+            <label class="form-check-label" for="Av_AlunoApontamento51">
+                135 - Parar com as brincadeiras inadequadas em aula
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Não fazer atividades paralelas durante a aula" id="Av_AlunoApontamento52" name="opcao136">
+            <label class="form-check-label" for="Av_AlunoApontamento52">
+                136 - Não fazer atividades paralelas durante a aula
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Comprometer-se a não mais faltar às aulas de artes" id="Av_AlunoApontamento53" name="opcao137">
+            <label class="form-check-label" for="Av_AlunoApontamento53">
+                137 - Comprometer-se a não mais faltar às aulas de artes
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa respeitar funcionários" id="Av_AlunoApontamento54" name="opcao138">
+            <label class="form-check-label" for="Av_AlunoApontamento54">
+                138 - Precisa respeitar funcionários
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Ter mais interesse: questionar, envolver-se, dedicar-se aos estudos" id="Av_AlunoApontamento55" name="opcao139">
+            <label class="form-check-label" for="Av_AlunoApontamento55">
+                139 - Ter mais interesse: questionar, envolver-se, dedicar-se aos estudos
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Precisa desenvolver o hábito e rotina de estudos" id="Av_AlunoApontamento56" name="opcao140">
+            <label class="form-check-label" for="Av_AlunoApontamento56">
+                140 - Precisa desenvolver o hábito e rotina de estudos
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Realizar todas as tarefas/trabalhos" id="Av_AlunoApontamento57" name="opcao141">
+            <label class="form-check-label" for="Av_AlunoApontamento57">
+                141 - Realizar todas as tarefas/trabalhos
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Chegar pontualmente nas aulas" id="Av_AlunoApontamento58" name="opcao142">
+            <label class="form-check-label" for="Av_AlunoApontamento58">
+                142 - Chegar pontualmente nas aulas
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Realizar atividades propostas em sala" id="Av_AlunoApontamento59" name="opcao143">
+            <label class="form-check-label" for="Av_AlunoApontamento59">
+                143 - Realizar atividades propostas em sala
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Mantenha uma postura adequada, evitando deitar-se ou dormir sobre a carteira" id="Av_AlunoApontamento60" name="opcao144">
+            <label class="form-check-label" for="Av_AlunoApontamento60">
+                144 - Mantenha uma postura adequada, evitando deitar-se ou dormir sobre a carteira
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Não interromper durante a explicação" id="Av_AlunoApontamento61" name="opcao145">
+            <label class="form-check-label" for="Av_AlunoApontamento61">
+                145 - Não interromper durante a explicação
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Desenvolver o hábito de ler" id="Av_AlunoApontamento62" name="opcao146">
+            <label class="form-check-label" for="Av_AlunoApontamento62">
+                146 - Desenvolver o hábito de ler
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Comprometer-se a não mais faltar às aulas de inglês" id="Av_AlunoApontamento63" name="opcao147">
+            <label class="form-check-label" for="Av_AlunoApontamento63">
+                147 - Comprometer-se a não mais faltar às aulas de inglês
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Respeite e seja cortês com seu professor" id="Av_AlunoApontamento64" name="opcao148">
+            <label class="form-check-label" for="Av_AlunoApontamento64">
+                148 - Respeite e seja cortês com seu professor
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Seja mais atento as explicações do(a) professor(a)" id="Av_AlunoApontamento65" name="opcao149">
+            <label class="form-check-label" for="Av_AlunoApontamento65">
+                149 - Seja mais atento as explicações do(a) professor(a)
+            </label>
+        </div>
+        <div class="form-check mt-1">
+            <input class="form-check-input" type="checkbox" value="Evite atividades entregues em branco/sem conteúdo" id="Av_AlunoApontamento66" name="opcao150">
+            <label class="form-check-label" for="Av_AlunoApontamento66">
+                150 - Evite atividades entregues em branco/sem conteúdo
+            </label>
+        </div>
+        <button type="submit" class="btn btn-secondary mt-5">Confirma</button>
+    </form>
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('avaliacao_aluno')}}">
+                <button>Voltar</button>
+            </a>
+            <a href="{{url_for('avaliacao_aluno_proposta')}}">
+                <button>Prosseguir</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

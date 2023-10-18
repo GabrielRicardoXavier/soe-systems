@@ -1,0 +1,411 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">CP - Avaliação Turma</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <a href="{{url_for('importar_professores')}}" style="text-decoration: none;">
+        <button class="btn btn-secondary">Importar Professores</button>
+    </a>
+    <div class="row g-3 position:absolute end-50 ">
+        <div class="d-flex align-items-center">
+            <h1 class="mx-auto" style="width: 365px; color:red">Avalie o Professor</h1>
+        </div>
+    </div>
+    <hr>
+    <form method="post">
+        <div class="row g-3 mt-0">
+            <div class="col-sm">
+                <h5>2 - Avaliação ao corpo docente em como se classificam nos <br>seguintes pontos:</h5>
+                <div class="mt-0">
+                    <div class="form-check">
+                        <input name="opcao_201" class="form-check-input" type="checkbox"
+                               value="Falta preparação de classes" id="Av_Turma201">
+                        <label class="form-check-label" for="Av_Turma201">
+                            2.01 - Falta preparação de classes
+                        </label>
+                    </div>
+
+                    <div class="form-check mt-1">
+                        <input name="opcao_202" class="form-check-input" type="checkbox"
+                               value="Falta clareza na explicação do assunto" id="Av_Turma202">
+                        <label class="form-check-label" for="Av_Turma202">
+                            2.02 - Falta clareza na explicação do assunto
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_203" class="form-check-input" type="checkbox"
+                               value="Falta conhecimento do material disponível" id="Av_Turma203">
+                        <label class="form-check-label" for="Av_Turma203">
+                            2.03 - Falta conhecimento do material disponível
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_204" class="form-check-input" type="checkbox"
+                               value="Falta de inovação nos métodos de ensino" id="Av_Turma204">
+                        <label class="form-check-label" for="Av_Turma204">
+                            2.04 - Falta de inovação nos métodos de ensino
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_205" class="form-check-input" type="checkbox"
+                               value="Falta entusiasmo pelo ensino" id="Av_Turma205">
+                        <label class="form-check-label" for="Av_Turma205">
+                            2.05 - Falta entusiasmo pelo ensino
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_206" class="form-check-input" type="checkbox"
+                               value="Não acessível para ajuda" id="Av_Turma206">
+                        <label class="form-check-label" for="Av_Turma206">
+                            2.06 - Não acessível para ajuda
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_207" class="form-check-input" type="checkbox"
+                               value="Falta agilidade nos atendimentos" id="Av_Turma207">
+                        <label class="form-check-label" for="Av_Turma207">
+                            2.07 - Falta agilidade nos atendimentos
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_208" class="form-check-input" type="checkbox"
+                               value="Falta cordialidade dos profissionais" id="Av_Turma208">
+                        <label class="form-check-label" for="Av_Turma208">
+                            2.08 - Falta cordialidade dos profissionais
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_209" class="form-check-input" type="checkbox"
+                               value="Falta esclarecimento de dúvidas" id="Av_Turma209">
+                        <label class="form-check-label" for="Av_Turma209">
+                            2.09 - Falta esclarecimento de dúvidas
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_210" class="form-check-input" type="checkbox"
+                               value="Falta apoio na solução dos problemas" id="Av_Turma210">
+                        <label class="form-check-label" for="Av_Turma210">
+                            2.10 - Falta apoio na solução dos problemas
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_211" class="form-check-input" type="checkbox"
+                               value="Falta qualidade do atendimento da telefonista" id="Av_Turma211">
+                        <label class="form-check-label" for="Av_Turma211">
+                            2.11 - Falta qualidade do atendimento da telefonista
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_212" class="form-check-input" type="checkbox"
+                               value="Falta qualidade do atendimento da recepção" id="Av_Turma212">
+                        <label class="form-check-label" for="Av_Turma212">
+                            2.12 - Falta qualidade do atendimento da recepção
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_213" class="form-check-input" type="checkbox"
+                               value="Falta qualidade do atendimento da secretaria" id="Av_Turma213">
+                        <label class="form-check-label" for="Av_Turma213">
+                            2.13 - Falta qualidade do atendimento da secretaria
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_214" class="form-check-input" type="checkbox"
+                               value="Falta qualidade do atendimento dos professores" id="Av_Turma214">
+                        <label class="form-check-label" for="Av_Turma214">
+                            2.14 - Falta qualidade do atendimento dos professores
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_215" class="form-check-input" type="checkbox"
+                               value="Falta qualidade do atendimento da direção" id="Av_Turma215">
+                        <label class="form-check-label" for="Av_Turma215">
+                            2.15 - Falta qualidade do atendimento da direção
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_216" class="form-check-input" type="checkbox"
+                               value="Falta qualidade do atendimento da coordenação de disciplina" id="Av_Turma216">
+                        <label class="form-check-label" for="Av_Turma216">
+                            2.16 - Falta qualidade do atendimento da coordenação de disciplina
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_217" class="form-check-input" type="checkbox"
+                               value="Falta qualidade do atendimento da coordenação pedagógica" id="Av_Turma217">
+                        <label class="form-check-label" for="Av_Turma217">
+                            2.17 - Falta qualidade do atendimento da coordenação pedagógica
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_218" class="form-check-input" type="checkbox"
+                               value="Falta qualidade do atendimento da orientação educacional" id="Av_Turma218">
+                        <label class="form-check-label" for="Av_Turma218">
+                            2.18 - Falta qualidade do atendimento da orientação educacional
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_219" class="form-check-input" type="checkbox"
+                               value="Falta qualidade dos Materiais didáticos" id="Av_Turma219">
+                        <label class="form-check-label" for="Av_Turma219">
+                            2.19 - Falta qualidade dos Materiais didáticos
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_220" class="form-check-input" type="checkbox"
+                               value="Falta qualidade dos professores" id="Av_Turma220">
+                        <label class="form-check-label" for="Av_Turma220">
+                            2.20 - Falta qualidade dos professores
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_221" class="form-check-input" type="checkbox"
+                               value="Falta metodologia de ensino" id="Av_Turma221">
+                        <label class="form-check-label" for="Av_Turma221">
+                            2.21 - Falta metodologia de ensino
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_222" class="form-check-input" type="checkbox"
+                               value="Falta Infraestrutura física da escola" id="Av_Turma222">
+                        <label class="form-check-label" for="Av_Turma222">
+                            2.22 - Falta Infraestrutura física da escola
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_223" class="form-check-input" type="checkbox"
+                               value="Processo avaliativo fraco" id="Av_Turma223">
+                        <label class="form-check-label" for="Av_Turma223">
+                            2.23 - Processo avaliativo fraco
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_224" class="form-check-input" type="checkbox"
+                               value="Baixa utilização de recursos tecnológicos" id="Av_Turma224">
+                        <label class="form-check-label" for="Av_Turma224">
+                            2.24 - Baixa utilização de recursos tecnológicos
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_225" class="form-check-input" type="checkbox"
+                               value="Falta tecnologias disponíveis" id="Av_Turma225">
+                        <label class="form-check-label" for="Av_Turma225">
+                            2.25 - Falta tecnologias disponíveis
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_226" class="form-check-input" type="checkbox"
+                               value="Falta eventos escolares intencionais" id="Av_Turma226">
+                        <label class="form-check-label" for="Av_Turma226">
+                            2.26 - Falta eventos escolares intencionais
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_227" class="form-check-input" type="checkbox"
+                               value="Excesso de número de alunos por sala" id="Av_Turma227">
+                        <label class="form-check-label" for="Av_Turma227">
+                            2.27 - Excesso de número de alunos por sala
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_228" class="form-check-input" type="checkbox"
+                               value="Falta clareza dos valores, missão e política institucional" id="Av_Turma228">
+                        <label class="form-check-label" for="Av_Turma228">
+                            2.28 - Falta clareza dos valores, missão e política institucional
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_229" class="form-check-input" type="checkbox"
+                               value="Baixa avaliação da qualidade de ensino" id="Av_Turma229">
+                        <label class="form-check-label" for="Av_Turma229">
+                            2.29 - Baixa avaliação da qualidade de ensino
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_230" class="form-check-input" type="checkbox"
+                               value="Falta articulação do conteúdo teórico" id="Av_Turma230">
+                        <label class="form-check-label" for="Av_Turma230">
+                            2.30 - Falta articulação do conteúdo teórico
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_231" class="form-check-input" type="checkbox"
+                               value="Baixo oferecimento de atividades práticas" id="Av_Turma231">
+                        <label class="form-check-label" for="Av_Turma231">
+                            2.31 - Baixo oferecimento de atividades práticas
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_232" class="form-check-input" type="checkbox"
+                               value="Baixa quantidade de atividades" id="Av_Turma232">
+                        <label class="form-check-label" for="Av_Turma232">
+                            2.32 - Baixa quantidade de atividades
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_233" class="form-check-input" type="checkbox" value="Falta apoio aos alunos"
+                               id="Av_Turma233">
+                        <label class="form-check-label" for="Av_Turma233">
+                            2.33 - Falta apoio aos alunos
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_234" class="form-check-input" type="checkbox"
+                               value="Inadequação do espaço de sala de aula" id="Av_Turma234">
+                        <label class="form-check-label" for="Av_Turma234">
+                            2.34 - Inadequação do espaço de sala de aula
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_235" class="form-check-input" type="checkbox"
+                               value="Espaços para recreação inadequado" id="Av_Turma235">
+                        <label class="form-check-label" for="Av_Turma235">
+                            2.35 - Espaços para recreação inadequado
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_236" class="form-check-input" type="checkbox"
+                               value="Cantina de baixa qualidade" id="Av_Turma236">
+                        <label class="form-check-label" for="Av_Turma236">
+                            2.36 - Cantina de baixa qualidade
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_237" class="form-check-input" type="checkbox"
+                               value="Baixa avaliação da equipe" id="Av_Turma237">
+                        <label class="form-check-label" for="Av_Turma237">
+                            2.37 - Baixa avaliação da equipe
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_238" class="form-check-input" type="checkbox" value="Falta pontualidade"
+                               id="Av_Turma238">
+                        <label class="form-check-label" for="Av_Turma238">
+                            2.38 - Falta pontualidade
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_239" class="form-check-input" type="checkbox"
+                               value="Falta relacionamento com alunos" id="Av_Turma239">
+                        <label class="form-check-label" for="Av_Turma239">
+                            2.39 - Falta relacionamento com alunos
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_240" class="form-check-input" type="checkbox"
+                               value="Falta relacionamento com pais" id="Av_Turma240">
+                        <label class="form-check-label" for="Av_Turma240">
+                            2.40 - Falta relacionamento com pais
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_241" class="form-check-input" type="checkbox"
+                               value="Baixa qualidade na comunicação" id="Av_Turma241">
+                        <label class="form-check-label" for="Av_Turma241">
+                            2.41 - Baixa qualidade na comunicação
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_242" class="form-check-input" type="checkbox"
+                               value="Baixo domínio dos conteúdos" id="Av_Turma242">
+                        <label class="form-check-label" for="Av_Turma242">
+                            2.42 - Baixo domínio dos conteúdos
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_243" class="form-check-input" type="checkbox"
+                               value="Confusa metodologia de trabalho" id="Av_Turma243">
+                        <label class="form-check-label" for="Av_Turma243">
+                            2.43 - Confusa metodologia de trabalho
+                        </label>
+                    </div>
+                    <div class="form-check mt-1">
+                        <input name="opcao_244" class="form-check-input" type="checkbox"
+                               value="Sem adequação da linguagem" id="Av_Turma244">
+                        <label class="form-check-label" for="Av_Turma244">
+                            2.44 - Sem adequação da linguagem
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <h5>À Exceção dos Professores</h5>
+                <div class="mt-1">
+                    {% for Prof_Nome in professoresquery %}
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{ Prof_Nome.professor }}"
+                               id="{{ Prof_Nome.professor }}">
+                        <label class="form-check-label" for="{{ Prof_Nome.professor }}">
+                            {{ Prof_Nome.professor }}
+                        </label>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-secondary mt-0">Confirma</button>
+    </form>
+
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('avaliacao_turma')}}">
+                <button>Back</button>
+            </a>
+            <a href="{{url_for('avaliacao_turma_perguntasabertas')}}">
+                <button>Next</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

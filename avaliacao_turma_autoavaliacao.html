@@ -1,0 +1,382 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">CP - Avaliação Turma</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+
+    <div class="row g-3 position:absolute end-50 ">
+        <div class="d-flex align-items-center">
+            <div class="image pe-3">
+
+            </div>
+            <h1 class="mx-auto" style="width: 480px; color:red">Auto Avaliação da Turma</h1>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row g-3 mt-1">
+        <!--        <div class="col-md-2">-->
+        <!--            <select id="Turma_avaliacaoTurma" class="form-select">-->
+        <!--                <option selected>Turma</option>-->
+        <!--                <option>...</option>-->
+        <!--                <option>...</option>-->
+        <!--            </select>-->
+        <!--        </div>-->
+
+        <!--        <div class="col-sm-3">-->
+        <!--            <input type="text" class="form-control" placeholder="Série" aria-label="Serie">-->
+        <!--        </div>-->
+
+        <!--        <div class="col-md-2">-->
+        <!--            <select id="Bim_avaliacaoTurma" class="form-select">-->
+        <!--                <option selected>Bimestre</option>-->
+        <!--                <option>...</option>-->
+        <!--                <option>...</option>-->
+        <!--            </select>-->
+        <!--        </div>-->
+
+        <!--        <div class="col-sm">-->
+        <!--            <input type="text" class="form-control" placeholder="Professor Tutor (Conselheiro)"-->
+        <!--                   aria-label="ProfessorTutor">-->
+        <!--        </div>-->
+
+        <!--        <div class="col-sm">-->
+        <!--            <input type="text" class="form-control" placeholder="Representante de Turma"-->
+        <!--                   aria-label="RepresentanteTurma">-->
+        <!--        </div>-->
+        <!--        <hr>-->
+        <form method="post">
+            <h5 style="color: blue">5 - Considerando a vivência em classe, selecione as características que representam
+                melhor a turma</h5>
+            <div class="form-check">
+                <input name="opcao_501" class="form-check-input" type="checkbox" value="Somos uma turma bem entrosada" id="Av_Turma501">
+                <label class="form-check-label" for="Av_Turma501">
+                    5.01 - Somos uma turma bem entrosada
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_502" class="form-check-input" type="checkbox" value="Temos um bom relacionamento uns com os outros" id="Av_Turma502">
+                <label class="form-check-label" for="Av_Turma502">
+                    5.02 - Temos um bom relacionamento uns com os outros
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_503" class="form-check-input" type="checkbox" value="Temos alguns em nossa turma um pouco agitados" id="Av_Turma503">
+                <label class="form-check-label" for="Av_Turma503">
+                    5.03 - Temos alguns em nossa turma um pouco agitados
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_504" class="form-check-input" type="checkbox" value="Temos facilidade de arrumar a sala de aula" id="Av_Turma504">
+                <label class="form-check-label" for="Av_Turma504">
+                    5.04 - Temos facilidade de arrumar a sala de aula
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_505" class="form-check-input" type="checkbox" value="As vezes alguns de nós brigamos" id="Av_Turma505">
+                <label class="form-check-label" for="Av_Turma505">
+                    5.05 - As vezes alguns de nós brigamos
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_506" class="form-check-input" type="checkbox" value="Somos fáceis de perdoar" id="Av_Turma506">
+                <label class="form-check-label" for="Av_Turma506">
+                    5.06 - Somos fáceis de perdoar
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_507" class="form-check-input" type="checkbox" value="Ocorrem alguns casos de agressividade verbal em nossa sala" id="Av_Turma507">
+                <label class="form-check-label" for="Av_Turma507">
+                    5.07 - Ocorrem alguns casos de agressividade verbal em nossa sala
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_508" class="form-check-input" type="checkbox" value="A adaptação da nossa turma foi boa" id="Av_Turma508">
+                <label class="form-check-label" for="Av_Turma508">
+                    5.08 - A adaptação da nossa turma foi boa
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_509" class="form-check-input" type="checkbox" value="Alguns de nós temos dificuldades em ser repreendidos" id="Av_Turma509">
+                <label class="form-check-label" for="Av_Turma509">
+                    5.09 - Alguns de nós temos dificuldades em ser repreendidos
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_510" class="form-check-input" type="checkbox" value="Desobedecemos normas de boa convivência em grupo, principalmente nos momentos de desenvolver trabalhos em grupos" id="Av_Turma510">
+                <label class="form-check-label" for="Av_Turma510">
+                    5.10 - Desobedecemos normas de boa convivência em grupo, principalmente nos momentos de desenvolver
+                    trabalhos em grupos
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_511" class="form-check-input" type="checkbox" value="A maioria em nossa turma, tem muita dificuldade de entrosamento" id="Av_Turma511">
+                <label class="form-check-label" for="Av_Turma511">
+                    5.11 - A maioria em nossa turma, tem muita dificuldade de entrosamento
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_512" class="form-check-input" type="checkbox" value="Falamos alto demais" id="Av_Turma512">
+                <label class="form-check-label" for="Av_Turma512">
+                    5.12 - Falamos alto demais
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_513" class="form-check-input" type="checkbox" value="" id="Av_Turma513">
+                <label class="form-check-label" for="Av_Turma513">
+                    5.13 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_514" class="form-check-input" type="checkbox" value="" id="Av_Turma514">
+                <label class="form-check-label" for="Av_Turma514">
+                    5.14 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_515" class="form-check-input" type="checkbox" value="" id="Av_Turma515">
+                <label class="form-check-label" for="Av_Turma515">
+                    5.15 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_516" class="form-check-input" type="checkbox" value="" id="Av_Turma516">
+                <label class="form-check-label" for="Av_Turma516">
+                    5.16 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_517" class="form-check-input" type="checkbox" value="" id="Av_Turma517">
+                <label class="form-check-label" for="Av_Turma517">
+                    5.17 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_518" class="form-check-input" type="checkbox" value="" id="Av_Turma518">
+                <label class="form-check-label" for="Av_Turma518">
+                    5.18 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_519" class="form-check-input" type="checkbox" value="" id="Av_Turma519">
+                <label class="form-check-label" for="Av_Turma519">
+                    5.19 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_520" class="form-check-input" type="checkbox" value="" id="Av_Turma520">
+                <label class="form-check-label" for="Av_Turma520">
+                    5.20 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_521" class="form-check-input" type="checkbox" value="" id="Av_Turma521">
+                <label class="form-check-label" for="Av_Turma521">
+                    5.21 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_522" class="form-check-input" type="checkbox" value="" id="Av_Turma522">
+                <label class="form-check-label" for="Av_Turma522">
+                    5.22 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_523" class="form-check-input" type="checkbox" value="" id="Av_Turma523">
+                <label class="form-check-label" for="Av_Turma523">
+                    5.23 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_524" class="form-check-input" type="checkbox" value="" id="Av_Turma524">
+                <label class="form-check-label" for="Av_Turma524">
+                    5.24 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_525" class="form-check-input" type="checkbox" value="" id="Av_Turma525">
+                <label class="form-check-label" for="Av_Turma525">
+                    5.25 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_526" class="form-check-input" type="checkbox" value="" id="Av_Turma526">
+                <label class="form-check-label" for="Av_Turma526">
+                    5.26 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_527" class="form-check-input" type="checkbox" value="" id="Av_Turma527">
+                <label class="form-check-label" for="Av_Turma527">
+                    5.27 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_528" class="form-check-input" type="checkbox" value="" id="Av_Turma528">
+                <label class="form-check-label" for="Av_Turma528">
+                    5.28 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_529" class="form-check-input" type="checkbox" value="" id="Av_Turma529">
+                <label class="form-check-label" for="Av_Turma529">
+                    5.29 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_530" class="form-check-input" type="checkbox" value="" id="Av_Turma530">
+                <label class="form-check-label" for="Av_Turma530">
+                    5.30 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_531" class="form-check-input" type="checkbox" value="" id="Av_Turma531">
+                <label class="form-check-label" for="Av_Turma531">
+                    5.31 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_532" class="form-check-input" type="checkbox" value="" id="Av_Turma532">
+                <label class="form-check-label" for="Av_Turma532">
+                    5.32 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_533" class="form-check-input" type="checkbox" value="" id="Av_Turma533">
+                <label class="form-check-label" for="Av_Turma533">
+                    5.33 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_534" class="form-check-input" type="checkbox" value="" id="Av_Turma534">
+                <label class="form-check-label" for="Av_Turma534">
+                    5.34 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_535" class="form-check-input" type="checkbox" value="" id="Av_Turma535">
+                <label class="form-check-label" for="Av_Turma535">
+                    5.35 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_536" class="form-check-input" type="checkbox" value="" id="Av_Turma536">
+                <label class="form-check-label" for="Av_Turma536">
+                    5.36 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_537" class="form-check-input" type="checkbox" value="" id="Av_Turma537">
+                <label class="form-check-label" for="Av_Turma537">
+                    5.37 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_538" class="form-check-input" type="checkbox" value="" id="Av_Turma538">
+                <label class="form-check-label" for="Av_Turma538">
+                    5.38 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_539" class="form-check-input" type="checkbox" value="" id="Av_Turma539">
+                <label class="form-check-label" for="Av_Turma539">
+                    5.39 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_540" class="form-check-input" type="checkbox" value="" id="Av_Turma540">
+                <label class="form-check-label" for="Av_Turma540">
+                    5.40 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_541" class="form-check-input" type="checkbox" value="" id="Av_Turma541">
+                <label class="form-check-label" for="Av_Turma541">
+                    5.41 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_542" class="form-check-input" type="checkbox" value="" id="Av_Turma542">
+                <label class="form-check-label" for="Av_Turma542">
+                    5.42 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_543" class="form-check-input" type="checkbox" value="" id="Av_Turma543">
+                <label class="form-check-label" for="Av_Turma543">
+                    5.43 -
+                </label>
+            </div>
+            <div class="form-check mt-1">
+                <input name="opcao_544" class="form-check-input" type="checkbox" value="" id="Av_Turma544">
+                <label class="form-check-label" for="Av_Turma544">
+                    5.44 -
+                </label>
+            </div>
+            <hr>
+            <button type="submit" class="btn btn-secondary mt-0">Confirma</button>
+        </form>
+        <div class="row g-3 mt-1 mb-3">
+            <div class="col-md-2">
+                <a href="{{url_for('avaliacao_turma_recomendacoes')}}">
+                    <button>Back</button>
+                </a>
+                <a href="{{url_for('avaliacao_turma_consideracoesfinais')}}">
+                    <button>Next</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

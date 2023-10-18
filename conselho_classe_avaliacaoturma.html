@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Conselho de Classe</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <div class="row g-3 position:absolute end-50 ">
+        <div class="d-flex align-items-center">
+            <div class="image pe-3">
+
+            </div>
+            <h1 class="mx-auto" style="width: 400px; color:red">Avaliação da Turma</h1>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row g-3 mt-1">
+            <div class="col-sm turma">
+                <input name="turma" type="text" class="form-control" placeholder="Turma" aria-label="Turma"
+                       value="{{ turma_selecionada_cc.turma }}" disabled>
+            </div>
+            <div class="col-sm serie">
+                <input name="serie" type="text" class="form-control" placeholder="Série" aria-label="Série"
+                       value="{{ turma_selecionada_cc.serie }}" disabled>
+            </div>
+        </div>
+        <hr>
+        <h6>1 - Quanto ao Aproveitamento da Turma:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_ao_aproveitamento" id="Excelente101CC"
+                       value="Excelente">
+                <label class="form-check-label" for="Excelente101CC">Excelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_ao_aproveitamento" id="Suficiente101CC"
+                       value="Suficiente">
+                <label class="form-check-label" for="Suficiente101CC">Suficiente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_ao_aproveitamento" id="Satisfatorio101CC"
+                       value="Satisfatório">
+                <label class="form-check-label" for="Satisfatorio101CC">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_ao_aproveitamento" id="Insuficiente101CC"
+                       value="Insuficiente">
+                <label class="form-check-label" for="Insuficiente101CC">Insuficiente</label>
+            </div>
+        </div>
+
+
+        <h6 class="mt-3">2 - Quanto a Disciplina da Turma:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_disciplina" id="Excelente102CC"
+                       value="Excelente">
+                <label class="form-check-label" for="Excelente102CC">Excelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_disciplina" id="Regular102CC" value="Boa">
+                <label class="form-check-label" for="Regular102CC">Regular</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_disciplina" id="Satisfatoria102CC"
+                       value="Satisfatório">
+                <label class="form-check-label" for="Satisfatoria102CC">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_disciplina" id="Baixa102CC" value="Baixa">
+                <label class="form-check-label" for="Baixa102CC">Baixa</label>
+            </div>
+        </div>
+
+        <h6 class="mt-3">3 - Quanto a Participação da Turma em Classe:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_participacao" id="Excelente103CC"
+                       value="Excelente">
+                <label class="form-check-label" for="Excelente103CC">Excelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_participacao" id="Suficiente103CC"
+                       value="Suficiente">
+                <label class="form-check-label" for="Suficiente103CC">Suficiente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_participacao" id="Satisfatorio103CC"
+                       value="Satisfatório">
+                <label class="form-check-label" for="Satisfatorio103CC">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_participacao" id="Insuficiente103CC"
+                       value="Insuficiente">
+                <label class="form-check-label" for="Insuficiente103CC">Insuficiente</label>
+            </div>
+        </div>
+
+        <h6 class="mt-3">4 - Quanto a Frequência da Turma:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_frequencia" id="Excelente104CC"
+                       value="Excelente">
+                <label class="form-check-label" for="Excelente104CC">Excelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_frequencia" id="Regular104CC" value="Boa">
+                <label class="form-check-label" for="Regular104CC">Regular</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_frequencia" id="Satisfatoria104CC"
+                       value="Satisfatório">
+                <label class="form-check-label" for="Satisfatoria104CC">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_frequencia" id="Baixa104CC" value="Baixa">
+                <label class="form-check-label" for="Baixa104CC">Baixa</label>
+            </div>
+        </div>
+
+        <h6 class="mt-3">5 - Quanto a Comunicação da Turma com os Professores:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_comunicacao_com_professor"
+                       id="Excelente105CC" value="Excelente">
+                <label class="form-check-label" for="Excelente105CC">Excelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_comunicacao_com_professor"
+                       id="Suficiente105CC" value="Suficiente">
+                <label class="form-check-label" for="Suficiente105CC">Suficiente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_comunicacao_com_professor"
+                       id="Satisfatorio105CC" value="Satisfatório">
+                <label class="form-check-label" for="Satisfatorio105CC">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_comunicacao_com_professor"
+                       id="Insuficiente105CC" value="Insuficiente">
+                <label class="form-check-label" for="Insuficiente105CC">Insuficiente</label>
+            </div>
+        </div>
+
+        <h6 class="mt-3">6 - Quanto a Relação Interpessoal da Turma:</h6>
+        <div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_relacao_interpessoal"
+                       id="Excelente106CC" value="Excelente">
+                <label class="form-check-label" for="Excelente106CC">Excelente</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_relacao_interpessoal" id="Boa106CC"
+                       value="Boa">
+                <label class="form-check-label" for="Boa106CC">Boa</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_relacao_interpessoal"
+                       id="Satisfatoria106CC" value="Satisfatório">
+                <label class="form-check-label" for="Satisfatoria106CC">Satisfatório</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="quanto_a_relacao_interpessoal" id="Baixa106CC"
+                       value="Baixa">
+                <label class="form-check-label" for="Baixa106CC">Baixa</label>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-secondary mt-2" value="Salvar">
+    </form>
+
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('conselho_classe_estatisticas')}}">
+                <button>Back</button>
+            </a>
+            <a href="{{url_for('conselho_classe_apontamentos')}}">
+                <button>Next</button>
+            </a>
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,378 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">CP - Avaliação Turma</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+
+    <div class="row g-3 position:absolute end-50 ">
+        <div class="d-flex align-items-center">
+            <div class="image pe-3">
+
+            </div>
+            <h1 class="mx-auto" style="width: 450px; color:red">Recomendações</h1>
+        </div>
+    </div>
+
+    <hr>
+    <form method="post">
+        <div class="row g-3 mt-1">
+            <div class="row g-3 mt-1">
+
+                <h5>4 - Considerando a experiência da classe, qual o nível de chance de recomendá-la aos amigos ou
+                    famíliares?</h5>
+                <p>4.01 - Quais satisfeitos estão com o formato geral da aula?</p>
+                <div class="mt-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item401" id="4011" value="1">
+                        <label class="form-check-label" for="4011">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item401" id="4012" value="2">
+                        <label class="form-check-label" for="4012">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item401" id="4013" value="3">
+                        <label class="form-check-label" for="4013">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item401" id="4014" value="4">
+                        <label class="form-check-label" for="4014">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item401" id="4015" value="5">
+                        <label class="form-check-label" for="4015">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item401" id="4016" value="6">
+                        <label class="form-check-label" for="4016">6</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item401" id="4017" value="7">
+                        <label class="form-check-label" for="4017">7</label>
+                    </div>
+                </div>
+
+                <p>4.02 - Considerando o conhecimento dos professores sobre os assuntos que ensinam?</p>
+                <div class="mt-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item402" id="4021" value="1">
+                        <label class="form-check-label" for="4021">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item402" id="4022" value="2">
+                        <label class="form-check-label" for="4022">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item402" id="4023" value="3">
+                        <label class="form-check-label" for="4023">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item402" id="4024" value="4">
+                        <label class="form-check-label" for="4024">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item402" id="4025" value="5">
+                        <label class="form-check-label" for="4025">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item402" id="4026" value="6">
+                        <label class="form-check-label" for="4026">6</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item402" id="4027" value="7">
+                        <label class="form-check-label" for="4027">7</label>
+                    </div>
+                </div>
+
+                <p>4.03 - Quanto a fácil compreensão e clareza do programa de aula?</p>
+                <div class="mt-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item403" id="4031" value="1">
+                        <label class="form-check-label" for="4031">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item403" id="4032" value="2">
+                        <label class="form-check-label" for="4032">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item403" id="4033" value="3">
+                        <label class="form-check-label" for="4033">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item403" id="4034" value="4">
+                        <label class="form-check-label" for="4034">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item403" id="4035" value="5">
+                        <label class="form-check-label" for="4035">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item403" id="4036" value="6">
+                        <label class="form-check-label" for="4036">6</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item403" id="4037" value="7">
+                        <label class="form-check-label" for="4037">7</label>
+                    </div>
+                </div>
+
+                <p>4.04 - Frequência com que a turma foi avaliada no decorrer das aulas?</p>
+                <div class="mt-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item404" id="4041" value="1">
+                        <label class="form-check-label" for="4041">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item404" id="4042" value="2">
+                        <label class="form-check-label" for="4042">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item404" id="4043" value="3">
+                        <label class="form-check-label" for="4043">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item404" id="4044" value="4">
+                        <label class="form-check-label" for="4044">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item404" id="4045" value="5">
+                        <label class="form-check-label" for="4045">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Quest404" id="4046" value="6">
+                        <label class="form-check-label" for="4046">6</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="Quest404" id="4047" value="7">
+                        <label class="form-check-label" for="4047">7</label>
+                    </div>
+                </div>
+
+                <p>4.05 - Do quão benéfica é a classe?</p>
+                <div class="mt-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item405" id="4051" value="1">
+                        <label class="form-check-label" for="4051">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item405" id="4052" value="2">
+                        <label class="form-check-label" for="4052">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item405" id="4053" value="3">
+                        <label class="form-check-label" for="4053">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item405" id="4054" value="4">
+                        <label class="form-check-label" for="4054">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item405" id="4055" value="5">
+                        <label class="form-check-label" for="4055">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item405" id="4056" value="6">
+                        <label class="form-check-label" for="4056">6</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item405" id="4057" value="7">
+                        <label class="form-check-label" for="4057">7</label>
+                    </div>
+                </div>
+
+                <p>4.06 - Em virtude do nível da qualidade de teoria a prática oferecida pela escola</p>
+                <div class="mt-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item406" id="4061" value="1">
+                        <label class="form-check-label" for="4061">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item406" id="4062" value="2">
+                        <label class="form-check-label" for="4062">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item406" id="4063" value="3">
+                        <label class="form-check-label" for="4063">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item406" id="4064" value="4">
+                        <label class="form-check-label" for="4064">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item406" id="4065" value="5">
+                        <label class="form-check-label" for="4065">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item406" id="4066" value="6">
+                        <label class="form-check-label" for="4066">6</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item406" id="4067" value="7">
+                        <label class="form-check-label" for="4067">7</label>
+                    </div>
+                </div>
+
+                <p>4.07 - Em virtude do nível das lições das aulas que serão úteis para o crescimento de carreira dos
+                    alunos?</p>
+                <div class="mt-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item407" id="4071" value="1">
+                        <label class="form-check-label" for="4071">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item407" id="4072" value="2">
+                        <label class="form-check-label" for="4072">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item407" id="4073" value="3">
+                        <label class="form-check-label" for="4073">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item407" id="4074" value="4">
+                        <label class="form-check-label" for="4074">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item407" id="4075" value="5">
+                        <label class="form-check-label" for="4075">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item407" id="4076" value="6">
+                        <label class="form-check-label" for="4076">6</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item407" id="4077" value="7">
+                        <label class="form-check-label" for="4077">7</label>
+                    </div>
+                </div>
+
+                <p>4.08 - Indicando o nível de satisfação com a média geral da turma!</p>
+                <div class="mt-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item408" id="4081" value="1">
+                        <label class="form-check-label" for="4081">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item408" id="4082" value="2">
+                        <label class="form-check-label" for="4082">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item408" id="4083" value="3">
+                        <label class="form-check-label" for="4083">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item408" id="4084" value="4">
+                        <label class="form-check-label" for="4084">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item408" id="4085" value="5">
+                        <label class="form-check-label" for="4085">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item408" id="4086" value="6">
+                        <label class="form-check-label" for="4086">6</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item408" id="4087" value="7">
+                        <label class="form-check-label" for="4087">7</label>
+                    </div>
+                </div>
+
+                <p>4.09 - Quanto a relação de qualidade e valor da mensalidade</p>
+                <div class="mt-0">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item409" id="4091" value="1">
+                        <label class="form-check-label" for="4091">1</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item409" id="4092" value="2">
+                        <label class="form-check-label" for="4092">2</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item409" id="4093" value="3">
+                        <label class="form-check-label" for="4093">3</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item409" id="4094" value="4">
+                        <label class="form-check-label" for="4094">4</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item409" id="4095" value="5">
+                        <label class="form-check-label" for="4095">5</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item409" id="4096" value="6">
+                        <label class="form-check-label" for="4096">6</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="item409" id="4097" value="7">
+                        <label class="form-check-label" for="4097">7</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <button type="submit" class="btn btn-secondary mt-0">Confirma</button>
+    </form>
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('avaliacao_turma_perguntasabertas')}}">
+                <button>Back</button>
+            </a>
+            <a href="{{url_for('avaliacao_turma_autoavaliacao')}}">
+                <button>Next</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
