@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Recuperação Simultânea</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label"><b>Conteúdo do Bimestre</b></label>
+        <textarea class="form-control" rows="4" disabled></textarea>
+    </div>
+    <div class="row g-3">
+        <div class="col-sm-1">
+            <a href="/recuperacao/simultanea">
+                <button class="btn btn-secondary"><i class="bi bi-save"></i> Salvar</button>
+            </a>
+        </div>
+        <div class="col-sm-2">
+            <button class="btn btn-secondary mb-2"><i class="bi bi-trash"></i> Limpar</button>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col-sm-3">
+            <select class="form-select" name="Turma">
+                <option selected>Selecione o Filtro de Turma</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="col-sm-5">
+            <select class="form-select" name="Nome_Aluno">
+                <option selected>Selecione o Aluno</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                       value="option1" checked>
+                <label class="form-check-label" style="color:red">Conteúdo à Recuperar</label>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                       value="option2">
+                <label class="form-check-label" style="color:blue">Conteúdo Recuperado</label>
+            </div>
+        </div>
+        <div class="border border-dark">
+            <h6>Seleção de Conteúdo</h6>
+            <div class="col-sm mt-0">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option1">
+                    <label class="form-check-label">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option2">
+                    <label class="form-check-label">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option3">
+                    <label class="form-check-label">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option4">
+                    <label class="form-check-label">4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option5">
+                    <label class="form-check-label">5</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option6">
+                    <label class="form-check-label">6</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option7">
+                    <label class="form-check-label">7</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option8">
+                    <label class="form-check-label">8</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option9">
+                    <label class="form-check-label">9</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option10">
+                    <label class="form-check-label">10</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option11">
+                    <label class="form-check-label">11</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="option12">
+                    <label class="form-check-label">12</label>
+                </div>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <div class="mt-2" style="overflow-x: auto; white-space: nowrap; max-width: 100%;">
+        <select name="Cars" size="8" style="min-width: 100%;">
+            <option value="Marcadores" style="background-color:#4F4F4F; color:white;" disabled>
+                TURMA⠀⠀ | ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ALUNO⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+                |⠀⠀⠀⠀⠀⠀⠀⠀⠀ À RECUPERAR⠀⠀⠀⠀⠀⠀⠀⠀⠀ | ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀RECUPERADO
+            </option>
+            {% for recuperacao in recuperacaosimultanea %}
+            <option value="1">‎ {{recuperacao.id}} | {{recuperacao.turma}} | {{recuperacao.professor}} | {{recuperacao.componente}} |
+                {{recuperacao.bimestre}} |
+                {{recuperacao.ano_letivo}} | {{recuperacao.turno}} | {{recuperacao.conteudo}}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">PEI</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row g-3 position:absolute end-50 ">
+            <div class="d-flex align-items-center">
+                <div class="image pe-3">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAoHCBUVFRgWFRUYGBgaGhgaGBoaGBgZFRgZGBgZGhkYGhwcIS4lHB4rIRgaJjgmKy8xNTU1GiQ7QDs0Py40NTEBDAwMEA8QHhISHzQkJSs0NDQ0MTQxNDQ0MTQ0NDQ0NDQxNDQ0NDQ0NDQ0NDQ0NDQ0PzQ0NDQ0NDQ0NDQ0NDQ0NP/AABEIAP8AxgMBIgACEQEDEQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAAAgEDBAUGBwj/xAA8EAACAQICBwUGBAYBBQAAAAABAgADEQQhBRIxQVFhcQYiMoGRB6GxwdHwE0JSYhQjcoKS4fEkM0Oywv/EABkBAQADAQEAAAAAAAAAAAAAAAABAgMEBf/EACERAQEAAgIDAAIDAAAAAAAAAAABAhEDIRIxQVFhIjKB/9oADAMBAAIRAxEAPwD2aIiAiIgIiICIiAiJQmAicpp7txh8NcL/ADG4KQFHVvkATONxXtVrE9ykgHPWPzufQSlzkWmFr12J4jX9q+MA7qU+pQ2/9prj7U9IX/7idPwRb6++R5z8J8K9/lZ45oj2t1gQMRh1df1U7q3Uqbg+6ek9n+0mHxi61BwSPEpsHXqvzlplKi42N1ERLKkREBERAREQEREBERAREQERECkRNF2m7QphEBNmqNkiXzPM8BIt0mTfUZGntM08LSZ2IvY6q3sXbgPrPFu0fbSvXLXc6u5FypqPLxdTeY/abTVXE1NZ2HIDZb7+9luXq02Y5D6CZ22tcZIV8YzZk+cxjWY8/cJeGCI8WZ4Wvb6R+GoysSeAzt13SvUT2ijPsFpcUPvsPUn3GRs26w95lGblf/H53hZd1D+puoJFvjMvAY3EUHV6VVgy7Da59fF5TXrWOzUHmR8pNcYo8SEc13ed41Ubj3PsP26GKC0sQFSvuI8FTkP0v+07d187d5PmDCYlkIemddRY22MLG4zHOe5dhe1AxlPVY/zEGfFhxI4jYfI78r45fKzyx+x10RE0ZkREBERAREQEREBERAREQNR2l0wuEoPWbMjJV/Ux2DpvPIGeDaY05UrM1VmLMxNzuHJRuGWzlPQPbNWIp0RewBY7dpNh8vfznkVBWZbWv8COUyy7rXDqJVMVYnjnblJUMbYcN4+sxMZRIPUSwqG9unuhLdrj0t3l1uC3tc8W+MnR1HJC5Hj+VeWez0JmiKE36+77tLlF2UiwNvjx9ZGk7ZuLwbLmcxxJy9LzXOLb7e+bIaUJIBQHm2wdAJdfC03TW1mvwAIXyJj0NNrtxv6g+/bKrWI2j76ydbDhdzct/ncyCAcfr9DJ6qO2Rhq2q2sm3enEcRznSaD0q1CqlakSMwfMeJGHS/UXHCckyZ22cOHUTPwVbar5X2kbQRaxPMZZ9N0ixMr6kwOKWrTWopurKGHnMicZ7L65bB6pNytRh0BCnLlcmdnNZdxjZqqxESUEREBERAREQEREBERA8i9sFPWr0ix7q0ybdWM4HR1XWe5GWwDIf8Cd37YgBWTnTW/k7e6cRoTDa5AOS7zy22+EwyvtvhNyNh/AU6o1fCdosLyzh+zD62y/DmJ2GjdHoTkhy3mdVgMEoGyZebW4x59R7GN4rEDflcD/AFD9kmta2V73/wBz1ZKGUtVcMOEtdoljxvHdmHF7Ll9OU1w0BVIsVtbZa+R6XntNXBKd0sto9eErcqt44vIBos6upU27iLi3ntmgx2F1DZsxubIHztl97Z7NpXRKkHIek4TtFozVubXXYZbDP8oyw+xyOrrrnnbf8jwP1l7BeIBuWewjrfaJjVVam1to3cGXnz3eUz0piovd8X5P/pDNL0yet+yzF6tWrRvkUDgc0YLkN2Te4T0+eJezLEA4yg1/FTqI3VVLWPMavvE9tmmPpll7IiJZUiIgIiICIiAiIgIiIHkPtjUmtSG7UHXxsJy/ZtO+Bb72mdh7XQDWoC/5Gy/vH0M1fY7R5bvnoPnOfkutuninp1GjMORtm+oTGoUrTLRZji2yrLRspB5VFlGWbfGH1ZYSDLL5WW2WUsXla7EplOX0zhQ4ItOrxImixdO5vM8uq2x7jyjSeDsShyIzU8D95f8AEwMDVKbcrMNbipv4vh6Tte0mj9cXXJhsnL0qYc3tZ1yZTsYc/rNsctzTDPHVdh2F7mOpH8rtrDgrFSjDzJHpPc58/wDZ+t+HUpk/+N0YH9oYfIEf2z6AE2wYZqxES6hERAREQEREBERAREQPLPa+Br4e23UqX42utvn75seyVEDDJbfeZ/tD0d+LTUhbkaw5g2uPnMbstTth0HC85eS/ysdfHP4ys2vjqaeN1B4Xu3oM5TDacwzGwrJfmwB9DKYvFpRGsQATtNpzGl+0WCqC1ZEYbmNlOw+FjY7BulZpezp3lHFI3hdT0IPwk2eeOYfCYWs//TYlqbC1gxJGedgcuPPZO77OUsSl1rOHWw1SCSfUy9ulfD66YGQqNaRJsJp9KYu4KA2JBErllqGOO6jpDSlFLh3UHhfP0mhfT9Nzq0keod+qpsOpM1OJwNCjd67lztI2KL7AeMsp20op3UXVA3AWAka3PS+9fWTpBah7xpOo8j7gZzOl6OoBUUZ3GfImdlgNOpWIAN7+sx+0+jgaLlRsF/rInVTl3HOYCurgHfv67xPoPCeBf6V+Anzdoyi17D81xb9wz+K++fSGCUrTQHaFUHqALzow9uPNkRETVmREQEREBERAREQEREDD0jR1kI++HwvOfwFDUTV4Ezqai3BHEEes0Opa45zDlncrfhvVjW6U0atZCjbCCN18+s5PEdiUSiVpouuHR1drlu4dbVZjc6p5W3ZGd+qyFRBvlJuem11eq8q0P2QakXZwNYn+Xqt4TrEkkkC/C1sxPRdCUXCd4WIy25HmM9kv/wAICdkzaVPVFo990tkmom47l5wWMrM1bVHEzvag7hnD4yj/ADr85XP4txfWdhdC61NxUCazA6hUsxQmxBzAubgXO/lOaw/ZM0aju1m1tfIC4JY3NyxzGZynoGES6iK+DDbZa266Ukm+3BYHRC0WLKBc7gNk2uKUGhUv+hifITdVMEq3ymm02CMNiNXb+G9uuqbTPu3tpdSdNP2C0WauLtYaiFahPNWGXnkJ7TOO9m2jBTwq1m8dYBjyUZL67fOdjOvCajizu6rERLqEREBERAREQEREBERApNTjcPY3GwnzB22m2MxdILdDyIPy+cpnNxbDLVa1JOoJYDw9YWnPMtR12WqqM5fvNS2KuwVczNmp1RdvdEy2jLHS4y3WclpHDar63OdZ+KmrcEGc3pvFICAWt0zMjPWk8W9tloqqGQW/2JsHE5fROK1WJGwn7850RrAjKMctwyxsyYmLmv8A4Bq6vTFrujqL7M1IuZl4h7zP7O07szcFt5k/6jGby0Z3xwbbReDFGjTpDMIipfjqgC8zIidjiIiICIiAiIgIiICIiAiIgJbqrdSOIMuRA5mqpF5rMU73AG8keguTOh0lQ1TrDYdvIzWVKYI6Thzxsunfx5SzbHwNWkhsXUOc82AYjpwmzGKQ7GB6ZzS6V0BRxAVnQa6+Fxk46H5HKbHDUKTW11s2dypIXrYHKXwx6Tl43u7WcYb3sbDpl8JzGkLa2ZJ52nYVsFQ1Rerqgne4H5rfmmm0lQwy3s5c6t1CnXF+qiwOzaRIy4l+Pkw9at/xoUxaJmXC9TadDgK5cLbMHfutxnGYzR4xFZSVC01sQmRtlYk8zO2wgCpfyHSZ2SXpbP13NIVWznTaAo6tK52sb+WwffOc/gMMarhRs2seAnZIgAAGQAsOgm/Dj35OPny68VyIidLmIiICIiAiIgIiICIiAiIgIiIFuogIIOwzn3TVYjgSPQzozOddrsTxJ+Mw5tdNuHfaapLbqynWXzH0l2k26X/w7ymP6beWmkxFcFrshv8A0m81mPZ3yVSv7jkB5Tq3wqzEqYVOEjKZNsOaT1HM4bChcvU8TMxiWZVUXJyAG8mXMdUVchMbRGMtiaf9Vj/cCtvfM5O9IyytlydtovAiiltrHNjxP0mdETukkmo8+227qsRElBERAREQEREBERAREQEREBESJNoFuu9lJ4AznxM3H4wN3V2bzx5dJhTl5cpb06eLGydpSX8SV2iUBlGmcummlH0gs1uO0mANtpPF0hNDjklMs61xxjHxON1idX1+kx8NUKsCMiCCOozEoUltDnKyr2PXsFiRURXXYwB6cR1By8pkTzzs5p00Tqtc0yfNTxHzH2e8w2IV1DIwIO8ffunfhnMp+3ncnHcb+mRERNGZERAREQEREBERAROd012zwOFuK2JQMPyKdd+hVbkedpwWmfbSgBGFwzMc7PWIVRz1EJLD+4QPXSZGpUCi5IA4k2ny5pztdi8Y4evVLBW1lQd2kpGyyDfzNzznpXY3ToxVMC9nQAFbk6vS+6Z55+M3ppx8fldbek1tLqMlBY8dg+swa2JZ9py4DITWWdefxl2nXBnNlyZZe3TjxY4+mUogyiuJO0roqgMgzydpiVntK3pbGbQrPNRi1vM97yx+Fcyla49NS1LKYlRLGdHVwmU11fDxOk7216AzY6Pxr0zdWKnfbYeo2GWadOXloy3c9K3V6rrMB2lDWFVdU/qXNfMbR75vqNdXF1YMORBnnqJOS7faXNNFooxV2IZipsyqNmYzBJ+E6ePlyt1e3LycWMm5091ifOWhPaFj8NZRW/FUfkrAvlya4Yf5W5Tt9G+2BDliMMy/upMH89V9W3qZ0bc+nq0TmdF9uNH4iwTEorHLVqXptfgNewbyvOjVgRcG4OwiShOIiB4xpr2w1TdcNQWmP11Drv8A4LYA+bTgNMdrMbib/jYmoyn8gbUTpqJZT5iaUtLRkJCZSVlDATY6D0s+FrLVQ7Nq7mXeDNbKxZuapMrLuPo3QOl6eJpLUQ3DDzB3g8xNg+FVsxPAuynaR8HUuLtTY99fmOfxnuWiNKU66LUpsGVhcEfA8DynLnh43t14Z+U3EnoMuwwuIYbRNgTeQakJS469NJlL7iwtYndMXFtM8JLdaiCJW43ScbNtXSq3NjNhh6QMxGwZBuJl4YEbZGM/KcvXS/Vpgi01uIwh4TdIokKiiXuLOZac3+Cw2qZdpqOc3LUhMLSuMp4em1So2qqjzJ3KBvJkTGrXKNJ2g0umFp67ZsckTex+g3meP4/GNVdnc3Zjcn4AchM3T+mHxVVqj5XyRdyINijnxM1LLtnVhh4xy55+VRVpIOZFZSnNGa5rmZ2jtN4jDn/p69SnyR2C+aeE+YmABIPtgej6L9rmNpraqlKtlkxBR+ravdPkoiebVGiDS3WyY9ZQmXMSM78QD6y1CAGDKRJQpElBECgM3fZrtHVwb6yHWRvGhPdbmP0tzmkgSLJZqplsu4+gezvaqhi17j2f8yNk6+W8cxcToFqAz5ipVCpDKSrDMEEgg8QRmJ1uiu3mMo2DMKyjc471uTrn/leY5cVn9W+PLL/Z7mDFpwWiPaRhnsKoai37u+l/6lztzIE7HA6TpVhrU6iOOKMrD3GZ2We40ll9VlMkjqCTaoBtIHnNdjNO4an48RSXkXS/pe8jxTtsNaQZ5yOP9oGES+oz1T+xCF/yew9LzkdLe0LEvcUgtFeI79T1IsPTzkzDKq3PGPQ9PdoaOFW9R+9buoM3boOHM5TyDtF2hq4x9Z8kF9SmD3V5ni3P4TW16zOSzMWYm5ZiSx6kyAy2TfHCYscuS5dFrSAEneUWXZsUNtkqctMbMesupkYSqTkY8S33j5RV2GMKcoQs1Tn5RIVTnKyULr5oDwuD6/7lkCZFNcmHQ+v/ABLJEhKOrKS5KKIEIvJMsiRJQraUlRKwkBk1eQEkIFxDJLkbj1G2WxJrISk7X2i/USakjZYS3JAwhO/OBKRAmTKSkXgSMoJSVMkYbeM9ZIbZEeIwNokC/VNhIYU7ZOt4Zbw2xpIsGIAvKwhl0Te45fOWnWVoHvj0PmMpOsshKyRKGTtKMJIjKlLyIlxLQLVoknWxgQFpUCAJW0ABJyKrK2hKUqsiqyYXlCEpWQtJCBWAJIShgVtKGVEiTAwz4vOS2sIrLIUjnAyMR4T5SOH8LRWa4iiO4fvdCFgGJSIH/9k="
+                         width="120">
+                </div>
+                <h1 class="mx-auto" style="width: 650px; color:red">Intervenções Necessárias</h1>
+            </div>
+        </div>
+        <hr>
+        <h5 class="mb-2" style="color: red;">8.3 - Desevolvimento da consciência fonológica</h5>
+        <div class="form-check">
+            <input name="item830" class="form-check-input" type="checkbox" value="Nenhuma Intervenção Necessária" id="pei830">
+            <label class="form-check-label" for="pei830">
+                8.3.0 - Nenhuma Intervenção Necessária
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="item831" class="form-check-input" type="checkbox" value="Ler uma palavra, apesar de faltarem letras" id="pei811">
+            <label class="form-check-label" for="pei811">
+                8.3.1 - Ler uma palavra, apesar de faltarem letras
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="item832" class="form-check-input" type="checkbox" value="Ler uma palavra, apesar de faltar uma sílaba" id="pei832">
+            <label class="form-check-label" for="pei832">
+                8.3.2 - Ler uma palavra, apesar de faltar uma sílaba
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="item833" class="form-check-input" type="checkbox" value="Dizer oralmente o som das letras" id="pei833">
+            <label class="form-check-label" for="pei833">
+                8.3.3 - Dizer oralmente o som das letras
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="item834" class="form-check-input" type="checkbox" value="Dividir silabicamente palavras" id="pei834">
+            <label class="form-check-label" for="pei834">
+                8.3.4 - Dividir silabicamente palavras
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="item835" class="form-check-input" type="checkbox" value="Reconhecer o som das letras com grafia e som semelhantes" id="pei835">
+            <label class="form-check-label" for="pei835">
+                8.3.5 - Reconhecer o som das letras com grafia e som semelhantes
+            </label>
+        </div>
+        <div class="form-check">
+            <input name="item836" class="form-check-input" type="checkbox" value="Fazer palavras cruzadas" id="pei836">
+            <label class="form-check-label" for="pei836">
+                8.3.6 - Fazer palavras cruzadas
+            </label>
+        </div>
+        <input type="submit" class="btn btn-secondary mt-2" value="Salvar">
+    </form>
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('pei_intervencao_desenvolvimentodalinguagem')}}">
+                <button>Voltar</button>
+            </a>
+            <a href="{{url_for('pei_intervencao_treinodememoriaauditiva')}}">
+                <button>Prosseguir</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

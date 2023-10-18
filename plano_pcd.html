@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+     aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+    <div class="offcanvas-header bg-light">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+             width="290" height="100">
+        <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <hr>
+        <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+        <hr>
+        <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+        <hr>
+        <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+        <hr>
+        <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+        <hr>
+        <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+            AFLs</h5></a>
+        <hr>
+        <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+            Classe</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+            Disciplinar</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+            Aluno</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação das
+            Turma</h5></a>
+        <hr>
+        <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento Anual</h5>
+        </a>
+        <hr>
+        <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+            Individualizado</h5></a>
+        <hr>
+        <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+        <hr>
+        <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+            Recuperação Simultânea</h5></a>
+        <hr>
+        <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+            P3</h5></a>
+    </div>
+</div>
+<div class="container">
+    <h1 style="color: orange">Plano PCD Individualizado <small style="font-size: 30px">(Registro)</small></h1>
+    <hr>
+    <div class="row g-3 position:absolute end-50 mb-2">
+        <div class="d-flex align-items-center">
+            <div class="col-sm-2 foto-aluno">
+                <label style="width: 150px; height: 200px; display: block; overflow: hidden; position: relative;">
+                    <img src="{{ url_for('static', filename='foto_alunos/default_alunos.jpg') }}"
+                         style="width: 100%; height: 100%; object-fit: cover;">
+                </label>
+            </div>
+            <h1 class="mx-auto" style="width: 800px; color:red; font-size:30px">Registro de Planejamento Individualizado
+                para Alunos</h1>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row g-3">
+            <div class="col-sm-1 codigo">
+                <input placeholder="Matrícula" type="text" class="form-control" disabled>
+            </div>
+            {% for aluno in nome_alunoquery %}
+            <div class="col-sm-1 codigo" data-matricula="{{ aluno.aluno_nome }}" style="display: none;">
+                <input name="codigo" id="codigo" value="{{ aluno.aluno_codigo }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            {% endfor %}
+            <div class="col-md-4">
+                <select name="aluno_nome" id="option" class="form-select" aria-label="Default select example">
+                    <option value="opcao1">Selecione o Aluno</option>
+                    {% for aluno in nome_alunoquery %}
+                    <option value="{{ aluno.aluno_nome }}">
+                        {{ aluno.aluno_nome }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-2">
+                <select name="bimestre" id="Bimestre_Plano_pcd" class="form-select">
+                    <option selected>Bimestre</option>
+                    <option name="bimestre1" value="1° Bimestre">1º Bimestre</option>
+                    <option name="bimestre2" value="2° Bimestre">2º Bimestre</option>
+                    <option name="bimestre3" value="3° Bimestre">3º Bimestre</option>
+                    <option name="bimestre4" value="4° Bimestre">4º Bimestre</option>
+                </select>
+            </div>
+            <div class="col-md">
+                <select class="form-select" name="componentes" onchange="updateFields()">
+                    <option selected>Componentes</option>
+                    <option value="Portugues">Português</option>
+                    <option value="Artes">Artes</option>
+                    <option value="Matematica">Matemática</option>
+                    <option value="Geografia">Geografia</option>
+                    <option value="Historia">História</option>
+                    <option value="EdFisica">Ed.Física</option>
+                    <option value="Fisica">Física</option>
+                    <option value="Quimica">Química</option>
+                    <option value="LinguaInglesa">Língua Inglesa</option>
+                    <option value="Religiao">Religião</option>
+                    <option value="Redacao">Redação</option>
+                    <option value="Espanhol">Espanhol</option>
+                    <option value="Ciencias">Ciências</option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <input name="aula" placeholder="N° Aula" type="text" class="form-control">
+            </div>
+            <div class="col-md-2">
+                <div>
+                    <input class="form-control" type="date" id="diaa" name="data">
+                </div>
+            </div>
+            <hr class="mb-0">
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-sm">
+                <div class="input-group">
+            <textarea name="habilidade" class="form-control" style="height: 100px;" placeholder="Habilidade / BNCC"
+                      aria-label="With textarea"></textarea>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="input-group">
+            <textarea name="conteudo" class="form-control" style="height: 100px;" placeholder="Conteúdo"
+                      aria-label="With textarea"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-sm">
+                <div class="input-group">
+            <textarea name="objetivo" class="form-control" style="height: 100px;" placeholder="Objetivo"
+                      aria-label="With textarea"></textarea>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="input-group">
+            <textarea name="estrategias" class="form-control" style="height: 100px;" placeholder="Estratégias"
+                      aria-label="With textarea"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-sm">
+                <div class="input-group">
+            <textarea name="recursos" class="form-control" style="height: 100px;" placeholder="Recursos"
+                      aria-label="With textarea"></textarea>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="input-group">
+            <textarea name="metas_gerais_para_turma" class="form-control" style="height: 100px;"
+                      placeholder="Metas Gerais para a Turma"
+                      aria-label="With textarea"></textarea>
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-secondary mt-2 mb-2">Salvar</button>
+    </form>
+    <a href="/planoPCD/pesquisa">
+        <button class="btn btn-secondary mt-0 mb-2">Pesquisa</button>
+    </a>
+    <script>
+        $(document).ready(function() {
+            $("#option").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "opcao1") {
+                    $(".codigo").val("").hide();
+                } else {
+                    $(".codigo").hide();
+                    $(".codigo[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    // Atualizar a imagem do aluno com base no código da matrícula
+                    var codigoAluno = $(".codigo[data-matricula='" + selectedOption + "'] input[name='codigo']").val();
+                    $("#codigo_aluno").val(codigoAluno);
+
+                    // Tentar carregar a imagem com extensão .jpg
+                    var fotoAlunoSrcJPG = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpg";
+
+                    // Se a imagem .jpg não existir, tentar carregar a imagem .jpeg
+                    var img = new Image();
+                    img.src = fotoAlunoSrcJPG;
+                    img.onload = function() {
+                        $(".foto-aluno img").attr("src", fotoAlunoSrcJPG);
+                    };
+                    img.onerror = function() {
+                        var fotoAlunoSrcJPEG = "{{ url_for('static', filename='foto_alunos/') }}" + codigoAluno + ".jpeg";
+                        $(".foto-aluno img").attr("src", fotoAlunoSrcJPEG);
+                    };
+                }
+            });
+
+            // Display initially four empty fields
+            $(".codigo").slice(0, 1).show();
+        });
+
+
+
+    </script>
+</div>
+
+{% endblock %}

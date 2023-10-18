@@ -1,0 +1,438 @@
+{% extends 'base.html' %}
+{% block body %}
+<body class="bg-light">
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+     aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+    <div class="offcanvas-header bg-light">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+             width="290" height="100">
+        <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <hr>
+        <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+        <hr>
+        <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+        <hr>
+        <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+        <hr>
+        <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+        <hr>
+        <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+            AFLs</h5></a>
+        <hr>
+        <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+            Classe</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+            Disciplinar</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+            Aluno</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação das
+            Turma</h5></a>
+        <hr>
+        <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+            Anual</h5></a>
+        <hr>
+        <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+            Individualizado</h5></a>
+        <hr>
+        <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+        <hr>
+        <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+            Recuperação Simultânea</h5></a>
+        <hr>
+        <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+            P3</h5></a>
+    </div>
+
+</div>
+<div class="container">
+    <form method="POST">
+        <h2 style="color: orange">Matriz Curricular</h2>
+        <input type="submit" class="btn btn-secondary mt-2" value="Salvar">
+
+        <div class="row g-3 mt-1">
+            <div class="col-md-2">
+                <select name="turma" id="selectDisciplina" class="form-select" aria-label="Default select example">
+                    {% for turmaTabela in turma_query_matriz %}
+                    <option value="{{ turmaTabela.turma }}">{{ turmaTabela.turma }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            {% for turmaselected in turma_query_matriz %}
+            <div class="col-sm-1 serie" data-matricula="{{ turmaselected.turma }}" style="display: none;">
+                <input name="serie_{{ turmaselected.serie }}" value="{{ turmaselected.serie }}"
+                       type="text" class="form-control">
+            </div>
+
+            <div class="col-sm-4 turno" data-matricula="{{ turmaselected.turma }}" style="display: none;">
+                <input name="turno_{{ turmaselected.turno }}" value="{{ turmaselected.turno }}"
+                       type="text" class="form-control">
+            </div>
+
+            <div class="col-sm nivel" data-matricula="{{ turmaselected.turma }}" style="display: none;">
+                <input name="nivel_{{ turmaselected.nivel }}" value="{{ turmaselected.nivel }}"
+                       type="text" class="form-control">
+            </div>
+            {% endfor %}
+        </div>
+        <div class="border p-3 mt-3 border border-2 rounded-3">
+            <h5>Ensino Fundamental Séries Iniciais, Finais e Ensino Médio</h5>
+            <hr>
+
+            <div class="row g-3 ms-5">
+
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">
+                        (+)-Frente Gramática
+                    </label>
+                </div>
+
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox">
+                    <label class="form-check-label">
+                        (+)-Frente Literatura
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina3">
+                    <label class="form-check-label" for="disciplina3">
+                        Aprofundamento em Biologia
+                    </label>
+                </div>
+
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina4">
+                    <label class="form-check-label" for="disciplina4">
+                        Aprofundamento em Física
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina5">
+                    <label class="form-check-label" for="disciplina5">
+                        Aprofundamento em Geografia
+                    </label>
+                </div>
+
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina6">
+                    <label class="form-check-label" for="disciplina6">
+                        Aprofundamento em História
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina7">
+                    <label class="form-check-label" for="disciplina7">
+                        Aprofundamento em Língua Inglesa
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina8">
+                    <label class="form-check-label" for="disciplina8">
+                        Aprofundamento em Química
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina9">
+                    <label class="form-check-label" for="disciplina9">
+                        Argumentação
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina10">
+                    <label class="form-check-label" for="disciplina10">
+                        Arte
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina11">
+                    <label class="form-check-label" for="disciplina11">
+                        Arte, Cultura e Desporto
+                    </label>
+                </div>
+
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina12">
+                    <label class="form-check-label" for="disciplina12">
+                        Biologia
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina13">
+                    <label class="form-check-label" for="disciplina13">
+                        Educação Física
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina14">
+                    <label class="form-check-label" for="disciplina14">
+                        Cultura Geral
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina15">
+                    <label class="form-check-label" for="disciplina15">
+                        Debates Filosóficos
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina16">
+                    <label class="form-check-label" for="disciplina16">
+                        Ensino Religioso
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina17">
+                    <label class="form-check-label" for="disciplina17">
+                        Filosofia
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina18">
+                    <label class="form-check-label" for="disciplina18">
+                        Física
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina19">
+                    <label class="form-check-label" for="disciplina19">
+                        Geografia
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina20">
+                    <label class="form-check-label" for="disciplina20">
+                        História
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina21">
+                    <label class="form-check-label" for="disciplina21">
+                        Investigação Matemática
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina22">
+                    <label class="form-check-label" for="disciplina22">
+                        Itinerário Aprofundamento
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina23">
+                    <label class="form-check-label" for="disciplina23">
+                        Língua Portuguesa
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina24">
+                    <label class="form-check-label" for="disciplina24">
+                        Matemática
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina25">
+                    <label class="form-check-label" for="disciplina25">
+                        Projeto de Vida
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina26">
+                    <label class="form-check-label" for="disciplina26">
+                        Química
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina27">
+                    <label class="form-check-label" for="disciplina27">
+                        Redação
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina28">
+                    <label class="form-check-label" for="disciplina28">
+                        Sociologia
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina29">
+                    <label class="form-check-label" for="disciplina29">
+                        Líng Est.Mod-Espanhol
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina30">
+                    <label class="form-check-label" for="disciplina30">
+                        Líng Est.Mod-Inglês
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina31">
+                    <label class="form-check-label" for="disciplina31">
+                        Agencia de Voluntariado
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina32">
+                    <label class="form-check-label" for="disciplina32">
+                        Educação Religiosa
+                    </label>
+                </div>
+            </div>
+
+            <h5 class="mt-4">Eletivas 2° Bimestre</h5>
+            <div class="row g-3 ms-4 mt-3">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina33">
+                    <label class="form-check-label" for="disciplina33">
+                        Agencia de Voluntariado
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina34">
+                    <label class="form-check-label" for="disciplina34">
+                        Análise de Obras de Artes
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina35">
+                    <label class="form-check-label" for="disciplina35">
+                        Estudo do Direito Constitucional
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina36">
+                    <label class="form-check-label" for="disciplina33">
+                        Marketing e Influência Digital
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="border p-3 mt-4 mb-4 border border-2 rounded-3">
+            <h5>Ensino Infantil</h5>
+            <hr>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina1infantil">
+                    <label class="form-check-label" for="disciplina1infantil">
+                        Corpo, Gestos e Movimentos
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina2infantil">
+                    <label class="form-check-label" for="disciplina2infantil">
+                        Educação Física
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina3infantil">
+                    <label class="form-check-label" for="disciplina3infantil">
+                        Ensino Religioso (Princípios e Valores)
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina4infantil">
+                    <label class="form-check-label" for="disciplina4infantil">
+                        Escuta, Fala, Pensamento e Imaginação
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina5infantil">
+                    <label class="form-check-label" for="disciplina5infantil">
+                        Espaços, Tempos, Quantidades, Relações e Transformações
+                    </label>
+                </div>
+
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina6infantil">
+                    <label class="form-check-label" for="disciplina6infantil">
+                        Inglês - Bilingue
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina7infantil">
+                    <label class="form-check-label" for="disciplina7infantil">
+                        Língua Estrangeira Moderna(Inglês)
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina8infantil">
+                    <label class="form-check-label" for="disciplina8infantil">
+                        Musicalização
+                    </label>
+                </div>
+            </div>
+            <div class="row g-3 ms-5">
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina9infantil">
+                    <label class="form-check-label" for="disciplina9infantil">
+                        O Eu, o Outro, o Nós
+                    </label>
+                </div>
+                <div class="form-check col-md">
+                    <input class="form-check-input" type="checkbox" value="" id="disciplina10infantil">
+                    <label class="form-check-label" for="disciplina10infantil">
+                        Traços, Sons, Cores e Formas
+                    </label>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+            $(document).ready(function() {
+                $("#selectDisciplina").change(function() {
+                    var selectedOption = $(this).val();
+
+                    if (selectedOption === "opcao1") {
+                        $(".serie, .turno, .nivel").val("").hide();
+                    } else {
+                        $(".serie, .turno, .nivel").hide();
+                        $(".serie[data-matricula='" + selectedOption + "']").val("Serie do aluno").show();
+                        $(".turno[data-matricula='" + selectedOption + "']").val("Turno do aluno").show();
+                        $(".nivel[data-matricula='" + selectedOption + "']").val("Nivel do aluno").show();
+                    }
+                });
+
+                // Exibir quatro campos vazios inicialmente
+                $(".serie, .turno, .nivel").slice(0, 3).show();
+            });
+
+
+    </script>
+</div>
+
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+     aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+    <div class="offcanvas-header bg-light">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+             width="290" height="100">
+        <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <hr>
+        <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+        <hr>
+        <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+        <hr>
+        <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+        <hr>
+        <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+        <hr>
+        <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+            AFLs</h5></a>
+        <hr>
+        <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+            Classe</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+            Disciplinar</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+            Aluno</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação das
+            Turma</h5></a>
+        <hr>
+        <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+            Anual</h5></a>
+        <hr>
+        <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+            Individualizado</h5></a>
+        <hr>
+        <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+        <hr>
+        <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+            Recuperação Simultânea</h5></a>
+        <hr>
+        <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+            P3</h5></a>
+    </div>
+</div>
+<div class="container">
+    <h1 style="color: orange">Turma</h1>
+    <hr>
+    <div class="row g-3 position:absolute end-50">
+        <div class="d-flex align-items-center">
+            <div class="image pe-3">
+
+            </div>
+            <h1 class="mx-auto" style="width: 600px; color:red">Aluno(s) Citado(s) no Item 1.18:</h1>
+        </div>
+    </div>
+
+    <form method="POST" action="/turma/alunos%citados">
+        <p style="color: red" class="mt-3">Local e Data:</p>
+        <div class="row g-3">
+            <div class="col-md-2 turma">
+                <input name="turma" type="text" class="form-control" value="{{ turma_selecionada.turma }}"
+                       disabled>
+            </div>
+
+            <div class="col-sm-3 serie">
+                <input name="serie" type="text" class="form-control" placeholder="Série"
+                       value="{{ turma_selecionada.serie }}"
+                       disabled>
+            </div>
+
+            <div class="col-sm-2 turno">
+                <input name="turno" type="text" class="form-control" placeholder="Turno"
+                       value="{{ turma_selecionada.turno }}"
+                       disabled>
+            </div>
+
+            <div class="col-sm professor">
+                <input name="professor" type="text" class="form-control" placeholder="Professor" value="{{ professor }}"
+                       disabled>
+            </div>
+        </div>
+
+        <hr>
+        <p style="color:blue">"Alunos com Desinteresse, Desânimo em Desenvolver as atividades rotineiras e aparentam não ter acompanhamento familiar, apresentado assim um grau na dificuldade de execução."</p>
+        <div class="row g-3">
+            <div class="input-group alunos_citados_118">
+                <textarea name="alunos_citados_118" class="form-control" style="height: 500px;" placeholder="Alunos que Foram Citados no Item 1.18..."></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-secondary mt-3">Confirma</button>
+    </form>
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('turma')}}">
+                <button>Back</button>
+            </a>
+
+            <a href="{{url_for('turma_alunoscitadosvinte')}}">
+                <button>Next</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

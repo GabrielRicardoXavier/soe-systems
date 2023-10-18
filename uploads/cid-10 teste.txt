@@ -1,0 +1,5 @@
+1;Cólera
+2;Ambíase
+3;Peste
+4;Nocardiose
+5;Bartonelose

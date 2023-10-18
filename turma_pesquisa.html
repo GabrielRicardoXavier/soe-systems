@@ -1,0 +1,562 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Turma</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <form method="POST">
+        <div class="row g-3 position:absolute end-50 ">
+            <div class="d-flex align-items-center">
+                <h1 class="mx-auto" style="width: 619px; color:red">Pesquisa das Turmas Protocoladas</h1>
+            </div>
+        </div>
+
+        <p style="color: blue" class="mt-3">Brasília, {{ formatted_date }}</p>
+        <div class="row g-3 mt-1">
+            <div class="col-md-2">
+                <select name="turma" id="option" class="form-select" aria-label="Default select example">
+                    <option value="opcao1">Selecione a Turma</option>
+                    {% for turma in turma_pagina_query %}
+                    <option value="{{ turma.turma }}">
+                        {{ turma.turma }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-3 serie">
+                <input name="serie" type="text" class="form-control" placeholder="Série" disabled>
+            </div>
+            <div class="col-sm turno">
+                <input name="turno" type="text" class="form-control" placeholder="Turno" disabled>
+            </div>
+            <div class="col-sm professor">
+                <input name="professor" type="text" class="form-control" placeholder="Professor" disabled>
+            </div>
+            <!--################################################################################-->
+            {% for turma in turma_pagina_query %}
+            <div class="col-sm-3 serie" data-matricula="{{ turma.turma }}" style="display: none;">
+                <input name="serie" value="{{ turma.serie }}"
+                       type="text" class="form-control">
+            </div>
+            <div class="col-sm turno" data-matricula="{{ turma.turma }}" style="display: none;">
+                <input name="turno" value="{{ turma.turno }}"
+                       type="text" class="form-control">
+            </div>
+            <div class="col-sm professor" data-matricula="{{ turma.turma }}" style="display: none;">
+                <input name="professor" value="{{ turma.professores }}"
+                       type="text" class="form-control">
+            </div>
+            {% endfor %}
+        </div>
+        <hr>
+        <h6>Turma</h6>
+
+        <div class="col-sm-6 opcao101 mb-1">
+            <input name="opcao101" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 101"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao102 mb-1">
+            <input name="opcao102" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 102"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao103 mb-1">
+            <input name="opcao103" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 103"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao104 mb-1">
+            <input name="opcao104" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 104"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao105 mb-1">
+            <input name="opcao105" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 105"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao106 mb-1">
+            <input name="opcao106" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 106"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao107 mb-1">
+            <input name="opcao107" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 107"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao108 mb-1">
+            <input name="opcao108" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 108"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao109 mb-1">
+            <input name="opcao109" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 109"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao110 mb-1">
+            <input name="opcao110" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 110"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao111 mb-1">
+            <input name="opcao111" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 111"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao112 mb-1">
+            <input name="opcao112" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 112"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao113 mb-1">
+            <input name="opcao113" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 113"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao114 mb-1">
+            <input name="opcao114" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 114"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao115 mb-1">
+            <input name="opcao115" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 115"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao116 mb-1">
+            <input name="opcao116" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 116"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao117 mb-1">
+            <input name="opcao117" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 117"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao118 mb-1">
+            <input name="opcao118" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 118"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao119 mb-1">
+            <input name="opcao119" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 119"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao120 mb-1">
+            <input name="opcao120" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 120"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao121 mb-1">
+            <input name="opcao121" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 121"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao122 mb-1">
+            <input name="opcao122" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 122"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao123 mb-1">
+            <input name="opcao123" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 123"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao124 mb-1">
+            <input name="opcao124" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 124"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao125 mb-1">
+            <input name="opcao125" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 125"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao126 mb-1">
+            <input name="opcao126" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 126"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao127 mb-1">
+            <input name="opcao127" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 127"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao128 mb-1">
+            <input name="opcao128" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 128"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao129 mb-1">
+            <input name="opcao129" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 129"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao130 mb-1">
+            <input name="opcao130" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 130"
+                   disabled>
+        </div>
+
+        <div class="col-sm-6 opcao131 mb-1">
+            <input name="opcao131" type="text" class="form-control sem-borda custom-disable" placeholder="Item - 131"
+                   disabled>
+        </div>
+
+        <!-- ########################################################################################################### -->
+        {% for turma in turma_pagina_query %}
+        {% if turma.opcao101 %}
+        <div class="col-sm-6 mb-1 opcao101" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao101" value="{{ turma.opcao101 }}" type="text"
+                   class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao102 %}
+        <div class="col-sm-6 mb-1 opcao102" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao102" value="{{ turma.opcao102 }}" type="text"
+                   class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao103 %}
+        <div class="col-sm-6 mb-1 opcao103" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao103" value="{{ turma.opcao103 }}" type="text"
+                   class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao104 %}
+        <div class="col-sm-6 mb-1 opcao104" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao104" value="{{ turma.opcao104 }}" type="text"
+                   class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao105 %}
+        <div class="col-sm-6 mb-1 opcao105" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao105" value="{{ turma.opcao105 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao106 %}
+        <div class="col-sm-6 mb-1 opcao106" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao106" value="{{ turma.opcao106 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao107 %}
+        <div class="col-sm-6 mb-1 opcao107" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao107" value="{{ turma.opcao107 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao108 %}
+        <div class="col-sm-6 mb-1 opcao108" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao108" value="{{ turma.opcao108 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao109 %}
+        <div class="col-sm-6 mb-1 opcao109" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao109" value="{{ turma.opcao109 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao110 %}
+        <div class="col-sm-6 mb-1 opcao110" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao110" value="{{ turma.opcao110 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao111 %}
+        <div class="col-sm-6 mb-1 opcao111" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao111" value="{{ turma.opcao111 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao112 %}
+        <div class="col-sm-6 mb-1 opcao112" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao112" value="{{ turma.opcao112 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao113 %}
+        <div class="col-sm-6 mb-1 opcao113" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao113" value="{{ turma.opcao113 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao114 %}
+        <div class="col-sm-6 mb-1 opcao114" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao114" value="{{ turma.opcao114 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao115 %}
+        <div class="col-sm-6 mb-1 opcao115" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao115" value="{{ turma.opcao115 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao116 %}
+        <div class="col-sm-6 mb-1 opcao116" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao116" value="{{ turma.opcao116 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao117 %}
+        <div class="col-sm-6 mb-1 opcao117" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao117" value="{{ turma.opcao117 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao118 %}
+        <div class="col-sm-6 mb-1 opcao118" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao118" value="{{ turma.opcao118 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao119 %}
+        <div class="col-sm-6 mb-1 opcao119" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao119" value="{{ turma.opcao119 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao120 %}
+        <div class="col-sm-6 mb-1 opcao120" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao120" value="{{ turma.opcao120 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao121 %}
+        <div class="col-sm-6 mb-1 opcao121" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao121" value="{{ turma.opcao121 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao122 %}
+        <div class="col-sm-6 mb-1 opcao122" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao122" value="{{ turma.opcao122 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao123 %}
+        <div class="col-sm-6 mb-1 opcao123" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao123" value="{{ turma.opcao123 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao124 %}
+        <div class="col-sm-6 mb-1 opcao124" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao124" value="{{ turma.opcao124 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao125 %}
+        <div class="col-sm-6 mb-1 opcao125" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao125" value="{{ turma.opcao125 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao126 %}
+        <div class="col-sm-6 mb-1 opcao126" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao126" value="{{ turma.opcao126 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao127 %}
+        <div class="col-sm-6 mb-1 opcao127" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao127" value="{{ turma.opcao127 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao128 %}
+        <div class="col-sm-6 mb-1 opcao128" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao128" value="{{ turma.opcao128 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao129 %}
+        <div class="col-sm-6 mb-1 opcao129" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao129" value="{{ turma.opcao129 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao130 %}
+        <div class="col-sm-6 mb-1 opcao130" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao130" value="{{ turma.opcao130 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% if turma.opcao131 %}
+        <div class="col-sm-6 mb-1 opcao131" data-matricula="{{ turma.turma }}" style="display: none;">
+            <input name="opcao131" value="{{ turma.opcao131 }}"
+                   type="text" class="form-control sem-borda custom-disable" disabled>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <hr>
+
+        <h5>Turma Citado 18</h5>
+        <div class="input-group alunos_citados_118">
+                    <textarea name="alunos_citados_118" class="form-control sem-borda custom-disable"
+                              style="height: 200px;"
+                              placeholder="Alunos citados no 18" disabled></textarea>
+        </div>
+        {% for turma in turma_pagina_query %}
+        <div class="input-group alunos_citados_118" data-matricula="{{ turma.turma }}" style="display: none;">
+            <textarea name="alunos_citados_118" class="form-control sem-borda custom-disable" style="height: 200px;"
+                      disabled>{{ turma.alunos_citados_118 }}</textarea>
+        </div>
+        {% endfor %}
+        <hr>
+
+        <h5>Turma Citado 20</h5>
+        <div class="input-group alunos_citados_120">
+            <textarea name="alunos_citados_120" class="form-control sem-borda custom-disable" style="height: 200px;"
+                      placeholder="Alunos citados no 20" disabled></textarea>
+        </div>
+        {% for turma in turma_pagina_query %}
+        <div class="input-group alunos_citados_120" data-matricula="{{ turma.turma }}" style="display: none;">
+            <textarea name="alunos_citados_120" class="form-control sem-borda custom-disable" style="height: 200px;"
+                      disabled>{{ turma.alunos_citados_120 }}</textarea>
+        </div>
+        {% endfor %}
+        <hr>
+
+        <h5>Turma Citado 30</h5>
+        <div class="input-group alunos_citados_130">
+            <textarea name="alunos_citados_130" class="form-control sem-borda custom-disable" style="height: 200px;"
+                      placeholder="Alunos citados no 30" disabled></textarea>
+        </div>
+        {% for turma in turma_pagina_query %}
+        <div class="input-group alunos_citados_130" data-matricula="{{ turma.turma }}"
+             style="display: none;">
+            <textarea name="alunos_citados_130" class="form-control sem-borda custom-disable" style="height: 200px;"
+                      disabled>{{ turma.alunos_citados_130 }}</textarea>
+        </div>
+        {% endfor %}
+        <hr>
+        <h5>Observações Adicionais</h5>
+        <div class="input-group alunos_obs_adicionais">
+            <textarea name="alunos_obs_adicionais" class="form-control sem-borda custom-disable" style="height: 200px;"
+                      placeholder="Observações Adicionais" disabled></textarea>
+        </div>
+        {% for turma in turma_pagina_query %}
+        <div class="input-group alunos_obs_adicionais" data-matricula="{{ turma.turma }}"
+             style="display: none;">
+            <textarea name="alunos_obs_adicionais" class="form-control sem-borda custom-disable" style="height: 200px;"
+                      disabled>{{ turma.alunos_obs_adicionais }}</textarea>
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-secondary mt-2 mb-3">Voltar</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#option").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "opcao1") {
+                    $(".serie, .turno, .professor, .opcao101, .opcao102, .opcao103, .opcao104, .opcao105, .opcao106, .opcao107, .opcao108, .opcao109, .opcao110, .opcao111, .opcao112, .opcao113, .opcao114, .opcao115, .opcao116, .opcao117, .opcao118, .opcao119, .opcao120, .opcao121, .opcao122, .opcao123, .opcao124, .opcao125, .opcao126, .opcao127, .opcao128, .opcao129, .opcao130, .opcao131, .alunos_citados_118, .alunos_citados_120, .alunos_citados_130, .alunos_obs_adicionais").val("").hide();
+                } else {
+                    $(".serie, .turno, .professor, .opcao101, .opcao102, .opcao103, .opcao104, .opcao105, .opcao106, .opcao107, .opcao108, .opcao109, .opcao110, .opcao111, .opcao112, .opcao113, .opcao114, .opcao115, .opcao116, .opcao117, .opcao118, .opcao119, .opcao120, .opcao121, .opcao122, .opcao123, .opcao124, .opcao125, .opcao126, .opcao127, .opcao128, .opcao129, .opcao130, .opcao131, .alunos_citados_118, .alunos_citados_120, .alunos_citados_130, .alunos_obs_adicionais").hide();
+                    $(".serie[data-matricula='" + selectedOption + "']").val("Série da Turma").show();
+                    $(".turno[data-matricula='" + selectedOption + "']").val("Turno da Turma").show();
+                    $(".professor[data-matricula='" + selectedOption + "']").val("Professor da Turma").show();
+                    $(".opcao101[data-matricula='" + selectedOption + "']").val("Opção 101").show();
+                    $(".opcao102[data-matricula='" + selectedOption + "']").val("Opção 103").show();
+                    $(".opcao103[data-matricula='" + selectedOption + "']").val("Opção 103").show();
+                    $(".opcao104[data-matricula='" + selectedOption + "']").val("Opção 104").show();
+                    $(".opcao105[data-matricula='" + selectedOption + "']").val("Opção 105").show();
+                    $(".opcao106[data-matricula='" + selectedOption + "']").val("Opção 106").show();
+                    $(".opcao107[data-matricula='" + selectedOption + "']").val("Opção 107").show();
+                    $(".opcao108[data-matricula='" + selectedOption + "']").val("Opção 108").show();
+                    $(".opcao109[data-matricula='" + selectedOption + "']").val("Opção 109").show();
+                    $(".opcao110[data-matricula='" + selectedOption + "']").val("Opção 110").show();
+                    $(".opcao111[data-matricula='" + selectedOption + "']").val("Opção 111").show();
+                    $(".opcao112[data-matricula='" + selectedOption + "']").val("Opção 112").show();
+                    $(".opcao113[data-matricula='" + selectedOption + "']").val("Opção 113").show();
+                    $(".opcao114[data-matricula='" + selectedOption + "']").val("Opção 114").show();
+                    $(".opcao115[data-matricula='" + selectedOption + "']").val("Opção 115").show();
+                    $(".opcao116[data-matricula='" + selectedOption + "']").val("Opção 116").show();
+                    $(".opcao117[data-matricula='" + selectedOption + "']").val("Opção 117").show();
+                    $(".opcao118[data-matricula='" + selectedOption + "']").val("Opção 118").show();
+                    $(".opcao119[data-matricula='" + selectedOption + "']").val("Opção 119").show();
+                    $(".opcao120[data-matricula='" + selectedOption + "']").val("Opção 120").show();
+                    $(".opcao121[data-matricula='" + selectedOption + "']").val("Opção 121").show();
+                    $(".opcao122[data-matricula='" + selectedOption + "']").val("Opção 122").show();
+                    $(".opcao123[data-matricula='" + selectedOption + "']").val("Opção 123").show();
+                    $(".opcao124[data-matricula='" + selectedOption + "']").val("Opção 124").show();
+                    $(".opcao125[data-matricula='" + selectedOption + "']").val("Opção 125").show();
+                    $(".opcao126[data-matricula='" + selectedOption + "']").val("Opção 126").show();
+                    $(".opcao127[data-matricula='" + selectedOption + "']").val("Opção 127").show();
+                    $(".opcao128[data-matricula='" + selectedOption + "']").val("Opção 128").show();
+                    $(".opcao129[data-matricula='" + selectedOption + "']").val("Opção 129").show();
+                    $(".opcao130[data-matricula='" + selectedOption + "']").val("Opção 130").show();
+                    $(".opcao131[data-matricula='" + selectedOption + "']").val("Opção 131").show();
+                    $(".alunos_citados_118[data-matricula='" + selectedOption + "']").val("alunos citados 118").show();
+                    $(".alunos_citados_120[data-matricula='" + selectedOption + "']").val("alunos citados 120").show();
+                    $(".alunos_citados_130[data-matricula='" + selectedOption + "']").val("alunos citados 130").show();
+                    $(".alunos_obs_adicionais[data-matricula='" + selectedOption + "']").val("alunos citados 130").show();
+                }
+            });
+
+            // Display initially four empty fields
+            $(".serie, .turno, .professor, .opcao101, .opcao102, .opcao103, .opcao104, .opcao105, .opcao106, .opcao107, .opcao108, .opcao109, .opcao110, .opcao111, .opcao112, .opcao113, .opcao114, .opcao115, .opcao116, .opcao117, .opcao118, .opcao119, .opcao120, .opcao121, .opcao122, .opcao123, .opcao124, .opcao125, .opcao126, .opcao127, .opcao128, .opcao129, .opcao130, .opcao131 .alunos_citados_118, .alunos_citados_120, .alunos_citados_130, .alunos_obs_adicionais").slice(0, 1).show();
+        });
+
+
+    </script>
+</div>
+{% endblock %}

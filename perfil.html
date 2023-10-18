@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+     aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+    <div class="offcanvas-header bg-light">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+             width="290" height="100">
+        <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <hr>
+        <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+        <hr>
+        <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+        <hr>
+        <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+        <hr>
+        <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+        <hr>
+        <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+            AFLs</h5></a>
+        <hr>
+        <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+            Classe</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+            Disciplinar</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+            Aluno</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação das
+            Turma</h5></a>
+        <hr>
+        <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+            Anual</h5></a>
+        <hr>
+        <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+            Individualizado</h5></a>
+        <hr>
+        <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+        <hr>
+        <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+            Recuperação Simultânea</h5></a>
+        <hr>
+        <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+            P3</h5></a>
+    </div>
+</div>
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-6">
+        <div class="d-flex align-items-center">
+            <div class="image pe-3">
+                <img src="{{ foto_perfil }}" class="rounded" width="200">
+            </div>
+            <div class="ml-3 w-100">
+                <h4 class="mb-0 mt-0">{{ current_user.username }}</h4>
+                <span>{{ current_user.email }}</span>
+                <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                    <div class="d-flex flex-column">
+                        <span class="rating">Telefone</span>
+                        <span class="number3">(61) 98181-8181</span>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span class="rating">Posts</span>
+                        <span class="number3">{{ current_user.contar_posts() }}</span>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <span class="rating">Função</span>
+                        <span class="number3">{{ current_user.funcao }}</span>
+                    </div>
+
+                </div>
+                <div class="ml-3 w-100">
+                    <span class="mb-0 mt-0">Unidade:</span>
+                    <span>Colégio Adventista de Taguatinga</span>
+                </div>
+                <div class="button mt-2 d-flex flex-row align-items-center">
+                    <a class="w-100" href="{{ url_for('editar_perfil') }}">
+                        <button class="btn btn-sm btn-outline-primary w-100">Editar Perfil</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% block form_editar_perfil %}
+{% endblock %}
+{% endblock %}

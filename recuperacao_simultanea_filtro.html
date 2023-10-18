@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Recuperação Simultânea</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <form method="post">
+        <div class="row g-3">
+            <div class="col-sm-4">
+                <select class="form-select" name="Turma" onchange="updateTable()">
+                    <option selected>Selecione a Turma</option>
+                    {% for turma in turmaquery %}
+                        <option value="{{ turma.turma }}">{{ turma.turma }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <select class="form-select" name="Professor" onchange="updateTable()">
+                    <option selected>Selecione o Professor</option>
+                    {% for professor in profquery %}
+                        <option value="{{ professor.professor }}">{{ professor.professor }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <select class="form-select" name="Componentes" onchange="updateTable()">
+                    <option selected>Selecione os Componentes</option>
+                    <option value="Português">Português</option>
+                    <option value="Artes">Artes</option>
+                    <option value="Matemática">Matemática</option>
+                    <option value="Geografia">Geografia</option>
+                    <option value="História">História</option>
+                    <option value="Ed.Física">Ed.Física</option>
+                    <option value="Física">Física</option>
+                    <option value="Química">Química</option>
+                    <option value="Língua Inlgesa">Língua Inlgesa</option>
+                    <option value="Religião">Religião</option>
+                    <option value="Redação">Redação</option>
+                    <option value="Espanhol">Espanhol</option>
+                    <option value="Ciências">Ciências</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <select class="form-select" name="Bimestre" onchange="updateTable()">
+                    <option selected>Selecione o Bimestre</option>
+                    <option value="1° Bimestre">1° Bimestre</option>
+                    <option value="2° Bimestre">2° Bimestre</option>
+                    <option value="3° Bimestre">3° Bimestre</option>
+                    <option value="4° Bimestre">4° Bimestre</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <select class="form-select" name="Ano_Letivo" onchange="updateTable()">
+                    <option selected>Selecione o Ano Letivo</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <option value="2021">2021</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <select class="form-select" name="Turno" onchange="updateTable()">
+                    <option selected>Selecione o Turno</option>
+                    <option value="Matutino">Matutino</option>
+                    <option value="Vespertino">Vespertino</option>
+                    <option value="Noturno">Noturno</option>
+                </select>
+            </div>
+            <hr>
+            <table class="table table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Resultado</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">Turma:</th>
+                    <td id="turma_selecionada">Turma</td>
+                </tr>
+                <tr>
+                    <th scope="row">Professor:</th>
+                    <td id="professor_selecionado">Professor</td>
+                </tr>
+                <tr>
+                    <th scope="row">Componente:</th>
+                    <td id="componente_selecionado">Componente</td>
+                </tr>
+                <tr>
+                    <th scope="row">Bimestre:</th>
+                    <td id="bimestre_selecionado">Bimestre</td>
+                </tr>
+                <tr>
+                    <th scope="row">Anos Letivo:</th>
+                    <td id="ano_selecionado">Ano</td>
+                </tr>
+                <tr>
+                    <th scope="row">Turno:</th>
+                    <td id="turno_selecionado">Turno</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="col-sm-2 d-grid gap-2 col-6 mx-auto">
+                <button type="submit" class="btn btn-success">Adicione Essas Seleções</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        function updateTable() {
+            var turmaSelecionada = document.getElementsByName("Turma")[0].value;
+            var professorSelecionado = document.getElementsByName("Professor")[0].value;
+            var componenteSelecionado = document.getElementsByName("Componentes")[0].value;
+            var bimestreSelecionado = document.getElementsByName("Bimestre")[0].value;
+            var anoLetivoSelecionado = document.getElementsByName("Ano_Letivo")[0].value;
+            var turnoSelecionado = document.getElementsByName("Turno")[0].value;
+
+            document.getElementById("turma_selecionada").textContent = turmaSelecionada;
+            document.getElementById("professor_selecionado").textContent = professorSelecionado;
+            document.getElementById("componente_selecionado").textContent = componenteSelecionado;
+            document.getElementById("bimestre_selecionado").textContent = bimestreSelecionado;
+            document.getElementById("ano_selecionado").textContent = anoLetivoSelecionado;
+            document.getElementById("turno_selecionado").textContent = turnoSelecionado;
+            // Atualize as outras células da tabela da mesma maneira
+        }
+    </script>
+</div>
+{% endblock %}

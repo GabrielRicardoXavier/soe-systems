@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% block head %}
+<style>
+        .table-container {
+            height: 320px; /* Altura fixa para exibir 8 linhas */
+            overflow-y: auto; /* Adiciona uma barra de rolagem vertical */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 1px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h1 style="color: orange">Recuperação Simultânea</h1>
+    <hr>
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+         aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+        <div class="offcanvas-header bg-light">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+                 width="290" height="100">
+            <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+            <hr>
+            <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+            <hr>
+            <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+            <hr>
+            <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+            <hr>
+            <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+                AFLs</h5></a>
+            <hr>
+            <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+                Classe</h5></a>
+            <hr>
+            <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+                Disciplinar</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+                Aluno</h5></a>
+            <hr>
+            <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação
+                das Turma</h5></a>
+            <hr>
+            <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+                Anual</h5></a>
+            <hr>
+            <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+                Individualizado</h5></a>
+            <hr>
+            <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+            <hr>
+            <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+                Recuperação Simultânea</h5></a>
+            <hr>
+            <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+                P3</h5></a>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col-sm-1">
+            <a href="/recuperacao/simultanea/filtro">
+                <button class="btn btn-primary"><i class="bi bi-funnel"></i>⠀Filtro</button>
+            </a>
+        </div>
+        <div class="col-sm-1">
+            <a href="{{ url_for('recuperacao_simultanea_editar') }}">
+                <button class="btn btn-secondary"><i class="bi bi-pencil-square"></i>⠀Editar</button>
+            </a>
+        </div>
+
+        <div class="col-sm-2">
+            <a href="/recuperacao/simultanea/proposicao">
+                <button class="btn btn-primary">Supervisão Discente</button>
+            </a>
+        </div>
+    </div>
+    <form method="post">
+        <div class="col-sm-2">
+            <input name="id" type="text" style="display:none" class="form-control" value="" placeholder="Id" disabled>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label"><b>Conteúdo do Bimestre</b></label>
+            <textarea name="conteudo_nao_editavel" class="form-control" rows="4" disabled></textarea>
+        </div>
+        <div class="row g-3 mb-3">
+            <div class="col-sm-1">
+                <button name="salvar" type="submit" class="btn btn-secondary"><i class="bi bi-save"></i> Salvar</button>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-sm-2">
+                <input name="turma" type="text" class="form-control" placeholder="Turma" disabled
+                       value="{{ turma_selecionada_recuperacao }}">
+            </div>
+            <div class="col-sm-5">
+                <input name="professor" type="text" class="form-control" placeholder="Professor" disabled
+                       value="{{ professor_selecionado_recuperacao }}">
+            </div>
+            <div class="col-sm-5">
+                <input name="bimestre" type="text" class="form-control" placeholder="Bimestre" disabled
+                       value="{{ bimestre_selecionado_recuperacao }}">
+            </div>
+            <div class="col-sm-7">
+                <input name="componente" type="text" class="form-control" placeholder="Componente" disabled
+                       value="{{ componente_selecionado_recuperacao }}">
+            </div>
+            <div class="col-sm-2">
+                <input name="ano_letivo" type="text" class="form-control" placeholder="Ano Letivo" disabled
+                       value="{{ ano_letivo_selecionado_recuperacao }}">
+            </div>
+            <div class="col-sm-3">
+                <input name="turno" type="text" class="form-control" placeholder="Turno" disabled
+                       value="{{ turno_selecionado_recuperacao }}">
+            </div>
+        </div>
+        <div class="mb-3 mt-3">
+            <label class="form-label"><b>Conteúdo do Bimestre (Editável)</b></label>
+            <textarea name="conteudo_edit" id="conteudo_edit" class="form-control" rows="4"></textarea>
+        </div>
+    </form>
+    <div class="mt-2 mb-5 " style="overflow-x: auto; white-space: nowrap; max-width: 100%;">
+        <div class="table-container">
+            <table>
+                <thead>
+                <tr class="bg-secondary" style="color:white">
+                    <th style="width:4%;">ID</th>
+                    <th style="width:6%;">TURMA</th>
+                    <th style="width:35%;">PROFESSOR</th>
+                    <th style="width:20%;">COMPONENTE</th>
+                    <th style="width:13%;">BIMESTRE</th>
+                    <th style="width:6%;">ANO</th>
+                    <th style="width:10%;">TURNO</th>
+                    <th style="width:250%;">CONTEÚDO</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for recuperacao in recuperacaosimultanea %}
+                <tr onclick="selectRow(this)">
+                    <td>{{ recuperacao.id }}</td>
+                    <td>{{ recuperacao.turma }}</td>
+                    <td>{{ recuperacao.professor }}</td>
+                    <td>{{ recuperacao.componente }}</td>
+                    <td>{{ recuperacao.bimestre }}</td>
+                    <td>{{ recuperacao.ano_letivo }}</td>
+                    <td>{{ recuperacao.turno }}</td>
+                    <td>{{ recuperacao.conteudo }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            function selectRow(row) {
+                var rows = document.querySelectorAll('tr');
+                for (var i = 0; i < rows.length; i++) {
+                    rows[i].classList.remove('selected');
+                }
+                row.classList.add('selected');
+
+                // Preencha os campos de entrada com os valores correspondentes
+                var cells = row.getElementsByTagName('td');
+                document.querySelector("input[name='id']").value = cells[0].textContent;
+                document.querySelector("input[name='turma']").value = cells[1].textContent;
+                document.querySelector("input[name='professor']").value = cells[2].textContent;
+                document.querySelector("input[name='componente']").value = cells[3].textContent;
+                document.querySelector("input[name='bimestre']").value = cells[4].textContent;
+                document.querySelector("input[name='ano_letivo']").value = cells[5].textContent;
+                document.querySelector("input[name='turno']").value = cells[6].textContent;
+                document.querySelector("textarea[name='conteudo_nao_editavel']").value = cells[7].textContent;
+                document.querySelector("textarea[name='conteudo_edit']").value = cells[7].textContent;
+
+                // Preencha o campo de conteúdo com o valor correspondente
+                document.querySelector("textarea[name='conteudo']").value = cells[7].textContent;
+            }
+
+
+        </script>
+        <script>
+          function mostrarFormularioEdicao(id, conteudo) {
+            // Preenche o campo "recuperacao_id" e "novo_conteudo" com os valores corretos
+            document.getElementById('recuperacao_id').value = id;
+            document.getElementById('novo_conteudo').value = conteudo;
+
+            // Exibe o formulário de edição
+            document.getElementById('formularioEdicao').style.display = 'block';
+          }
+
+        </script>
+    </div>
+</div>
+{% endblock %}

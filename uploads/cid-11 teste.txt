@@ -1,0 +1,5 @@
+A1; TDAH
+A2; AIDS
+B3; COVID19
+C4; Gaming disorder
+C5; Autismo

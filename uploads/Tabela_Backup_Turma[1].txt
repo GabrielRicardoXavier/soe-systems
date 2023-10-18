@@ -1,0 +1,70 @@
+EI3M1;Maternal - Ensino Infantil;Matutino
+EI3M2;Maternal - Ensino Infantil;Matutino
+EI3M3;Maternal - Ensino Infantil;Matutino
+EI3T1;Maternal - Ensino Infantil;Vespertino
+EI3T2;Maternal - Ensino Infantil;Vespertino
+EI3T3;Maternal - Ensino Infantil;Vespertino
+EI4M1;Jardim I - Ensino Infantil;Matutino
+EI4M2;Jardim I - Ensino Infantil;Matutino
+EI4M3;Jardim I - Ensino Infantil;Matutino
+EI4T1;Jardim I - Ensino Infantil;Vespertino
+EI4T2;Jardim I - Ensino Infantil;Vespertino
+EI4T3;Jardim I - Ensino Infantil;Vespertino
+EI5M1;Jardim II - Ensino Infantil;Matutino
+EI5M2;Jardim II - Ensino Infantil;Matutino
+EI5M3;Jardim II - Ensino Infantil;Matutino
+EI5T1;Jardim II - Ensino Infantil;Vespertino
+EI5T2;Jardim II - Ensino Infantil;Vespertino
+EI5T3;Jardim II - Ensino Infantil;Vespertino
+EF1M1;1º ano - Ensino Fundamental;Matutino
+EF1M2;1º ano - Ensino Fundamental;Matutino
+EF1M3;1º ano - Ensino Fundamental;Matutino
+EF1T1;1º ano - Ensino Fundamental;Vespertino
+EF1T2;1º ano - Ensino Fundamental;Vespertino
+EF1T3;1º ano - Ensino Fundamental;Vespertino
+EF2M1;2º ano - Ensino Fundamental;Matutino
+EF2M2;2º ano - Ensino Fundamental;Matutino
+EF2M3;2º ano - Ensino Fundamental;Matutino
+EF2T1;2º ano - Ensino Fundamental;Vespertino
+EF2T2;2º ano - Ensino Fundamental;Vespertino
+EF2T3;2º ano - Ensino Fundamental;Vespertino
+EF3M1;3º ano - Ensino Fundamental;Matutino
+EF3M2;3º ano - Ensino Fundamental;Matutino
+EF3M3;3º ano - Ensino Fundamental;Matutino
+EF3T1;3º ano - Ensino Fundamental;Vespertino
+EF3T2;3º ano - Ensino Fundamental;Vespertino
+EF3T3;3º ano - Ensino Fundamental;Vespertino
+EF4M1;4º ano - Ensino Fundamental;Matutino
+EF4M2;4º ano - Ensino Fundamental;Matutino
+EF4M3;4º ano - Ensino Fundamental;Matutino
+EF4T1;4º ano - Ensino Fundamental;Vespertino
+EF4T2;4º ano - Ensino Fundamental;Vespertino
+EF4T3;4º ano - Ensino Fundamental;Vespertino
+EF5M1;5º ano - Ensino Fundamental;Matutino
+EF5M2;5º ano - Ensino Fundamental;Matutino
+EF5M3;5º ano - Ensino Fundamental;Matutino
+EF5T1;5º ano - Ensino Fundamental;Vespertino
+EF5T2;5º ano - Ensino Fundamental;Vespertino
+EF5T3;5º ano - Ensino Fundamental;Vespertino
+EF6M2;6º ano - Ensino Fundamental;Matutino
+EF6M3;6º ano - Ensino Fundamental;Matutino
+EF6T1;6º ano - Ensino Fundamental;Vespertino
+EF6T2;6º ano - Ensino Fundamental;Vespertino
+EF7M2;7º ano - Ensino Fundamental;Matutino
+EF7M3;7º ano - Ensino Fundamental;Matutino
+EF7T1;7º ano - Ensino Fundamental;Vespertino
+EF7T2;7º ano - Ensino Fundamental;Vespertino
+EF8M2;8º ano - Ensino Fundamental;Matutino
+EF8M3;8º ano - Ensino Fundamental;Matutino
+EF8T1;8º ano - Ensino Fundamental;Vespertino
+EF8T2;8º ano - Ensino Fundamental;Vespertino
+EF9M2;9º ano - Ensino Fundamental;Matutino
+EF9M3;9º ano - Ensino Fundamental;Matutino
+EF9T1;9º ano - Ensino Fundamental;Vespertino
+EF9T2;9º ano - Ensino Fundamental;Vespertino
+EM1M1;1ª Série - Ensino Médio;Matutino
+EM1M2;1ª Série - Ensino Médio;Matutino
+EM2M1;2ª Série - Ensino Médio;Matutino
+EM2M2;2ª Série - Ensino Médio;Matutino
+EM3M1;3ª Série - Ensino Médio;Matutino
+EM3M2;3ª Série - Ensino Médio;Matutino

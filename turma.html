@@ -1,0 +1,396 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+     aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+    <div class="offcanvas-header bg-light">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+             width="290" height="100">
+        <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <hr>
+        <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+        <hr>
+        <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+        <hr>
+        <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+        <hr>
+        <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+        <hr>
+        <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+            AFLs</h5></a>
+        <hr>
+        <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+            Classe</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+            Disciplinar</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+            Aluno</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação das
+            Turma</h5></a>
+        <hr>
+        <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento
+            Anual</h5></a>
+        <hr>
+        <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+            Individualizado</h5></a>
+        <hr>
+        <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+        <hr>
+        <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+            Recuperação Simultânea</h5></a>
+        <hr>
+        <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+            P3</h5></a>
+    </div>
+</div>
+<div class="container">
+    <h1 style="color: orange">Turma</h1>
+    <hr>
+    <div class="row g-3 position:absolute end-50 ">
+        <div class="d-flex align-items-center">
+            <div class="image pe-3">
+
+            </div>
+            <h1 class="mx-auto" style="width: 380px; color:red">Avaliação de Turma</h1>
+        </div>
+    </div>
+    <form method="post" action="/turma">
+        <p style="color: blue" class="mt-3">Brasília, {{ formatted_date }}</p>
+        <div class="row g-3">
+            <div class="col-md-2">
+                <select name="turma" id="option" class="form-select" aria-label="Default select example">
+                    <option value="opcao1">Selecione a Turma</option>
+                    {% for Turma in turmaquery %}
+                    <option value="{{ Turma.turma }}">
+                        {{ Turma.turma }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-sm-3 serie">
+                <input name="serie" type="text" class="form-control" placeholder="Série" disabled>
+            </div>
+
+            <div class="col-sm-2 turno">
+                <input name="turno" type="text" class="form-control" placeholder="Turno" disabled>
+            </div>
+            <!-- ############################################################################# -->
+            {% for Turma in turmaquery %}
+            <div class="col-sm-3 serie" data-matricula="{{ Turma.turma }}" style="display: none;">
+                <input name="serie" value="{{ Turma.serie }}" type="text" class="form-control" disabled>
+            </div>
+            <div class="col-sm-2 turno" data-matricula="{{ Turma.turma }}" style="display: none;">
+                <input name="turno" value="{{ Turma.turno }}" type="text" class="form-control" disabled>
+            </div>
+            {% endfor %}
+
+            <div class="col-sm professor">
+                <input name="professor" type="text" class="form-control" placeholder="Professor(a)">
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="form-check opcao101">
+            <input name="opcao101" class="form-check-input" type="checkbox" value="A turma é muito entrosada"
+                   id="Avaliacao_turma01">
+            <label class="form-check-label" for="Avaliacao_turma01">
+                1.01 - A turma é muito entrosada.
+            </label>
+        </div>
+        <div class="form-check opcao102">
+            <input name="opcao102" class="form-check-input" type="checkbox"
+                   value="Têm um bom relacionamento uns com os outros" id="Avaliacao_turma02">
+            <label class="form-check-label" for="Avaliacao_turma02">
+                1.02 - Têm um bom relacionamento uns com os outros.
+            </label>
+        </div>
+        <div class="form-check opcao103">
+            <input name="opcao103" class="form-check-input" type="checkbox"
+                   value="Os alunos dessa turma são um pouco agitados" id="Avaliacao_turma03">
+            <label class="form-check-label" for="Avaliacao_turma03">
+                1.03 - Os alunos dessa turma são um pouco agitados.
+            </label>
+        </div>
+        <div class="form-check opcao104">
+            <input name="opcao104" class="form-check-input" type="checkbox"
+                   value="Tem facilidade de organizar a sala de aula" id="Avaliacao_turma04">
+            <label class="form-check-label" for="Avaliacao_turma04">
+                1.04 - Tem facilidade de organizar a sala de aula.
+            </label>
+        </div>
+        <div class="form-check opcao105">
+            <input name="opcao105" class="form-check-input" type="checkbox" value="As vezes alguns brigam"
+                   id="Avaliacao_turma05">
+            <label class="form-check-label" for="Avaliacao_turma05">
+                1.05 - As vezes alguns brigam.
+            </label>
+        </div>
+
+        <div class="form-check opcao106">
+            <input name="opcao106" class="form-check-input" type="checkbox" value="São fáceis de perdoar"
+                   id="Avaliacao_turma06">
+            <label class="form-check-label" for="Avaliacao_turma06">
+                1.06 - São fáceis de perdoar.
+            </label>
+        </div>
+        <div class="form-check opcao107">
+            <input name="opcao107" class="form-check-input" type="checkbox"
+                   value="Ocorrem alguns casos de agressividade verbal na turma" id="Avaliacao_turma07">
+            <label class="form-check-label" for="Avaliacao_turma07">
+                1.07 - Ocorrem alguns casos de agressividade verbal na turma.
+            </label>
+        </div>
+        <div class="form-check opcao108">
+            <input name="opcao108" class="form-check-input" type="checkbox" value="A adaptação da turma foi boa"
+                   id="Avaliacao_turma08">
+            <label class="form-check-label" for="Avaliacao_turma08">
+                1.08 - A adaptação da turma foi boa.
+            </label>
+        </div>
+        <div class="form-check opcao109">
+            <input name="opcao109" class="form-check-input" type="checkbox"
+                   value="Os alunos não gostam e não aceitam ser repreendidos" id="Avaliacao_turma09">
+            <label class="form-check-label" for="Avaliacao_turma09">
+                1.09 - Os alunos não gostam e não aceitam ser repreendidos.
+            </label>
+        </div>
+        <div class="form-check opcao110">
+            <input name="opcao110" class="form-check-input" type="checkbox"
+                   value="Desobedecem as normas para uma boa convivência em grupo principalmente nos momentos de desenvolver trabalhos em grupos"
+                   id="Avaliacao_turma10">
+            <label class="form-check-label" for="Avaliacao_turma10">
+                1.10 - Desobedecem as normas para uma boa convivência em grupo principalmente nos momentos de
+                desenvolver
+                trabalhos em grupos.
+            </label>
+        </div>
+        <div class="form-check opcao111">
+            <input name="opcao111" class="form-check-input" type="checkbox"
+                   value="A turma em sua maioria, tem muita dificuldades de entrosamento" id="Avaliacao_turma11">
+            <label class="form-check-label" for="Avaliacao_turma11">
+                1.11 - A turma em sua maioria, tem muita dificuldades de entrosamento.
+            </label>
+        </div>
+
+        <div class="form-check opcao112">
+            <input name="opcao112" class="form-check-input" type="checkbox" value="Falam alto demais"
+                   id="Avaliacao_turma12">
+            <label class="form-check-label" for="Avaliacao_turma12">
+                1.12 - Falam alto demais.
+            </label>
+        </div>
+        <div class="form-check opcao113">
+            <input name="opcao113" class="form-check-input" type="checkbox" value="Não esperam a sua vez de falar"
+                   id="Avaliacao_turma13">
+            <label class="form-check-label" for="Avaliacao_turma13">
+                1.13 - Não esperam a sua vez de falar.
+            </label>
+        </div>
+        <div class="form-check opcao114">
+            <input name="opcao114" class="form-check-input" type="checkbox"
+                   value="A maioria dos alunos prefere brincar em grupo" id="Avaliacao_turma14">
+            <label class="form-check-label" for="Avaliacao_turma14">
+                1.14 - A maioria dos alunos prefere brincar em grupo.
+            </label>
+        </div>
+        <div class="form-check opcao115">
+            <input name="opcao115" class="form-check-input" type="checkbox"
+                   value="Alguns alunos apresentam dificuldade em desenvolver atividades sozinhos"
+                   id="Avaliacao_turma15">
+            <label class="form-check-label" for="Avaliacao_turma15">
+                1.15 - Alguns alunos apresentam dificuldade em desenvolver atividades sozinhos.
+            </label>
+        </div>
+        <div class="form-check opcao116">
+            <input name="opcao116" class="form-check-input" type="checkbox"
+                   value="Atividades propostas em sala de aulas são bastante participativos" id="Avaliacao_turma16">
+            <label class="form-check-label" for="Avaliacao_turma16">
+                1.16 - Atividades propostas em sala de aulas são bastante participativos.
+            </label>
+        </div>
+        <div class="form-check opcao117">
+            <input name="opcao117" class="form-check-input" type="checkbox"
+                   value="Realizam o que é proposto com atenção e capricho" id="Avaliacao_turma17">
+            <label class="form-check-label" for="Avaliacao_turma17">
+                1.17 - Realizam o que é proposto com atenção e capricho.
+            </label>
+        </div>
+        <div class="form-check opcao118">
+            <input name="opcao118" class="form-check-input" type="checkbox"
+                   value="Exceto aluno(s) aqui citado(s), que demonstra(m) desinteresse, desânimo em desenvolver as atividades rotineiras e aparenta não ter acompanhamento familiar, apresentando assim um grau na dificuldade de execução"
+                   id="Avaliacao_turma18">
+            <label class="form-check-label" for="Avaliacao_turma18">
+                1.18 - Exceto aluno(s) aqui citado(s), que demonstra(m) desinteresse, desânimo em desenvolver as
+                atividades rotineiras e aparenta não ter acompanhamento familiar, apresentando assim um grau na
+                dificuldade de execução.
+            </label>
+        </div>
+        <div class="form-check opcao119">
+            <input name="opcao119" class="form-check-input" type="checkbox"
+                   value="A turma gosta de participar das atividades pedagógicas e recreativas como, recontar histórias, roda de conversas ou até mesmo discutir um assunto, dramatização, dançar, cantar"
+                   id="Avaliacao_turma19">
+            <label class="form-check-label" for="Avaliacao_turma19">
+                1.19 - A turma gosta de participar das atividades pedagógicas e recreativas como, recontar histórias,
+                roda de conversas ou até mesmo discutir um assunto, dramatização, dançar, cantar.
+            </label>
+        </div>
+        <div class="form-check opcao120">
+            <input name="opcao120" class="form-check-input" type="checkbox"
+                   value="Turma bastante ativa e enérgica. Com exceção do(a) aluno(a) aqui citado(a), que tem sido incentivada a interagir com o grupo"
+                   id="Avaliacao_turma20">
+            <label class="form-check-label" for="Avaliacao_turma20">
+                1.20 - Turma bastante ativa e enérgica. Com exceção do(a) aluno(a) aqui citado(a), que tem sido
+                incentivada a interagir com o grupo.
+            </label>
+        </div>
+
+        <div class="form-check opcao121">
+            <input name="opcao121" class="form-check-input" type="checkbox"
+                   value="A classe tem interesse por jogos como jogo de damas, dominós, bingos de sons e letras, caça rimas e caça palavras, dado sonoro enfim jogos variados"
+                   id="Avaliacao_turma21">
+            <label class="form-check-label" for="Avaliacao_turma21">
+                1.21 - A classe tem interesse por jogos como jogo de damas, dominós, bingos de sons e letras, caça rimas
+                e caça palavras, dado sonoro enfim jogos variados.
+            </label>
+        </div>
+
+        <div class="form-check opcao122">
+            <input name="opcao122" class="form-check-input" type="checkbox"
+                   value="A maioria compreende e obedece as normas estabelecidas, exigindo dos seus colegas o cumprimento das mesmas"
+                   id="Avaliacao_turma22">
+            <label class="form-check-label" for="Avaliacao_turma22">
+                1.22 - A maioria compreende e obedece as normas estabelecidas, exigindo dos seus colegas o cumprimento
+                das mesmas.
+            </label>
+        </div>
+
+        <div class="form-check opcao123">
+            <input name="opcao123" class="form-check-input" type="checkbox"
+                   value="Há aqueles que por momentos desrespeitam normas" id="Avaliacao_turma23">
+            <label class="form-check-label" for="Avaliacao_turma23">
+                1.23 - Há aqueles que por momentos desrespeitam normas.
+            </label>
+        </div>
+
+        <div class="form-check opcao124">
+            <input name="opcao124" class="form-check-input" type="checkbox"
+                   value="A turma conversa muito, umas com tons altos e outros baixos, expressando seus sentimentos, desejos e insatisfações. Mas quando me ponho em silêncio e de pé olhando bem para eles, logos eles observam e moderam sua voz"
+                   id="Avaliacao_turma24">
+            <label class="form-check-label" for="Avaliacao_turma24">
+                1.24 - A turma conversa muito, umas com tons altos e outros baixos, expressando seus sentimentos,
+                desejos e insatisfações. Mas quando me ponho em silêncio e de pé olhando bem para eles, logos eles
+                observam e moderam sua voz.
+            </label>
+        </div>
+
+        <div class="form-check opcao125">
+            <input name="opcao125" class="form-check-input" type="checkbox"
+                   value="A maioria das famílias dos alunos participam ativamente" id="Avaliacao_turma25">
+            <label class="form-check-label" for="Avaliacao_turma25">
+                1.25 - A maioria das famílias dos alunos participam ativamente.
+            </label>
+        </div>
+
+        <div class="form-check opcao126">
+            <input name="opcao126" class="form-check-input" type="checkbox"
+                   value="As famílias deixam a desejar nas reuniões realizadas pela escola no decorrer do ano"
+                   id="Avaliacao_turma26">
+            <label class="form-check-label" for="Avaliacao_turma26">
+                1.26 - As famílias deixam a desejar nas reuniões realizadas pela escola no decorrer do ano.
+            </label>
+        </div>
+
+        <div class="form-check opcao127">
+            <input name="opcao127" class="form-check-input" type="checkbox"
+                   value="Alguns familiares não costumam buscar informações e esclarecer dúvidas com a professora sempre que necessário"
+                   id="Avaliacao_turma27">
+            <label class="form-check-label" for="Avaliacao_turma27">
+                1.27 - Alguns familiares não costumam buscar informações e esclarecer dúvidas com a professora sempre
+                que necessário.
+            </label>
+        </div>
+
+        <div class="form-check opcao128">
+            <input name="opcao128" class="form-check-input" type="checkbox"
+                   value="No decorrer do ano os laços afetivos foram fortalecidos entre alguns alunos"
+                   id="Avaliacao_turma28">
+            <label class="form-check-label" for="Avaliacao_turma28">
+                1.28 - No decorrer do ano os laços afetivos foram fortalecidos entre alguns alunos.
+            </label>
+        </div>
+
+        <div class="form-check opcao129">
+            <input name="opcao129" class="form-check-input" type="checkbox"
+                   value="A relação entre professor e aluno é muito boa" id="Avaliacao_turma29">
+            <label class="form-check-label" for="Avaliacao_turma29">
+                1.29 - A relação entre professor e aluno é muito boa.
+            </label>
+        </div>
+
+        <div class="form-check opcao130">
+            <input name="opcao130" class="form-check-input" type="checkbox"
+                   value="Em questão da aprendizagem, os alunos apresentam um bom rendimento no decorrer do ano, com exceções de (aluno(s) aqui citado(s)), que mostram alguma dificuldade cognitiva, seja na leitura e ou escrita, cálculos ou interpretação textual, que sugere-se uma avaliação"
+                   id="Avaliacao_turma30">
+            <label class="form-check-label" for="Avaliacao_turma30">
+                1.30 - Em questão da aprendizagem, os alunos apresentam um bom rendimento no decorrer do ano, com
+                exceções de (aluno(s) aqui citado(s)), que mostram alguma dificuldade cognitiva, seja na leitura e ou
+                escrita, cálculos ou interpretação textual, que sugere-se uma avaliação.
+            </label>
+        </div>
+
+        <div class="form-check opcao131">
+            <input name="opcao131" class="form-check-input" type="checkbox"
+                   value="É visível o interesse da turma, que demonstra CRIATIVIDADE EMPENHO" id="Avaliacao_turma31">
+            <label class="form-check-label" for="Avaliacao_turma31">
+                1.31 - É visível o interesse da turma, que demonstra CRIATIVIDADE EMPENHO.
+            </label>
+        </div>
+
+        <button type="submit" class="btn btn-secondary mt-5">Confirma</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#option").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "opcao1") {
+                    $(".serie, .turno").val("").hide();
+                } else {
+                    $(".serie, .turno").hide();
+                    $(".serie[data-matricula='" + selectedOption + "']").val("Série da turma").show();
+                    $(".turno[data-matricula='" + selectedOption + "']").val("Turno da turma").show();
+
+                    // Set the value of the hidden input field to the selected serie value
+                    $("#serieValue").val($(".serie[data-matricula='" + selectedOption + "']").val());
+                }
+            });
+
+            // Display initially four empty fields
+            $(".serie, .turno").slice(0, 1).show();
+        });
+    </script>
+    <hr>
+
+    <div class="row g-3 mt-1 mb-3">
+        <div class="col-md-2">
+            <a href="{{url_for('turma_pesquisa')}}">
+                <button class="btn btn-secondary">Pesquisar</button>
+            </a>
+            <button style="color: grey; border-color: grey;">Back</button>
+            <a href="{{url_for('turma_alunoscitadosdezoito')}}">
+                <button>Next</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

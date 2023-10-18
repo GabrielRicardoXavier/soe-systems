@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+     aria-labelledby="offcanvasWithBothOptionsLabel" style="background-color: #4F4F4F">
+    <div class="offcanvas-header bg-light">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgLRxeFJSeVeX-ksEqj7Vz5zIenwU7xvepSexmFTEks5ATEaEdiCyk0-KnPNqbIZXKCVvNve9-1MnidjF69A_GR2wn8wkxCI_PW3OhPgkEceYoTxnmVUQHekl2juBCI5UXw6epGVRUOkt0ZQsuaNke1rzGd4D1hAejIbcX90ivj6lM2gcGVyyAN8_SEa6QR/s320/logo_sem_fundo.png"
+             width="290" height="100">
+        <button type="button" class="btn-close text-reset me-3" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <hr>
+        <a href="{{url_for('aditamento')}}" style="color: orange; text-decoration: none;"><h5>Aditamento</h5></a>
+        <hr>
+        <a href="{{url_for('turma')}}" style="color: orange; text-decoration: none;"><h5>Turma</h5></a>
+        <hr>
+        <a href="{{url_for('individual')}}" style="color: orange; text-decoration: none;"><h5>Individual</h5></a>
+        <hr>
+        <a href="{{url_for('anamnese')}}" style="color: orange; text-decoration: none;"><h5>Anamnese</h5></a>
+        <hr>
+        <a href="{{url_for('protocolo')}}" style="color: orange; text-decoration: none;"><h5>Protocolo de Avaliação
+            AFLs</h5></a>
+        <hr>
+        <a href="{{url_for('pei')}}" style="color: orange; text-decoration: none;"><h5>PEI</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_classe')}}" style="color: orange; text-decoration: none;"><h5>Conselho de
+            Classe</h5></a>
+        <hr>
+        <a href="{{url_for('conselho_disciplinar')}}" style="color: orange; text-decoration: none;"><h5>Conselho
+            Disciplinar</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_aluno')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação de
+            Aluno</h5></a>
+        <hr>
+        <a href="{{url_for('avaliacao_turma')}}" style="color: orange; text-decoration: none;"><h5>CP - Avaliação das
+            Turma</h5></a>
+        <hr>
+        <a href="{{url_for('planejamento')}}" style="color: orange; text-decoration: none;"><h5>Planejamento Anual</h5>
+        </a>
+        <hr>
+        <a href="{{url_for('plano_pcd')}}" style="color: orange; text-decoration: none;"><h5>Plano PCD
+            Individualizado</h5></a>
+        <hr>
+        <a href="{{url_for('sondagem')}}" style="color: orange; text-decoration: none;"><h5>Sondagem</h5></a>
+        <hr>
+        <a href="{{url_for('recuperacao_simultanea')}}" style="color: orange; text-decoration: none;"><h5>
+            Recuperação Simultânea</h5></a>
+        <hr>
+        <a href="{{url_for('controle_da_p3')}}" style="color: orange; text-decoration: none;"><h5>Controle da
+            P3</h5></a>
+    </div>
+</div>
+<div class="container">
+    <h1 style="color: orange">Planejamento <small style="font-size: 30px">(Compilação)</small></h1>
+    <hr class="mb-0">
+    <form method="post">
+        <div class="row g-3 mt-0">
+            <div class="col-md-3">
+                <select name="serie" id="option" class="form-select" aria-label="Default select example">
+                    <option value="opcao1">Selecione a Série</option>
+                    {% for Turma in planejamentoquery %}
+                    <option value="{{ Turma.serie }}">
+                        {{ Turma.serie }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-md-4 bimestre">
+                <input placeholder="Bimestre" type="text" class="form-control">
+            </div>
+
+            <div class="col-md-2 componente">
+                <input placeholder="Componente" type="text" class="form-control">
+            </div>
+            <div class="col-md-1 aula">
+                <input placeholder="N° Aula" type="text" class="form-control">
+            </div>
+            <div class="col-md-2 data">
+                <input placeholder="Data" type="text" class="form-control">
+            </div>
+            {% for Turma in planejamentoquery %}
+            <div class="col-sm-4 bimestre" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <input name="bimestre" id="bimestre" value="{{ Turma.bimestre }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            <div class="col-sm-2 componente" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <input name="componente" value="{{ Turma.componentes }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            <div class="col-sm-1 aula" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <input name="aula" value="{{ Turma.aula }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            <div class="col-sm-2 data" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <input name="data" value="{{ Turma.data }}"
+                       type="text" class="form-control" disabled>
+            </div>
+            {% endfor %}
+            <hr class="mb-0">
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-sm habilidade">
+                <div class="input-group">
+                <textarea name="habilidade" class="form-control" style="height: 150px;" placeholder="Habilidade / BNCC"
+                          aria-label="With textarea"></textarea>
+                </div>
+            </div>
+            <div class="col-sm conteudo">
+                <div class="input-group">
+                <textarea name="conteudo" class="form-control" style="height: 150px;" placeholder="Conteúdo"
+                          aria-label="With textarea"></textarea>
+                </div>
+            </div>
+            {% for Turma in planejamentoquery %}
+            <div class="col-sm habilidade" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <textarea name="habilidade" class="form-control" style="height: 150px;" disabled>{{ Turma.habilidade }}</textarea>
+            </div>
+            <div class="col-sm conteudo" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <textarea name="conteudo" class="form-control" style="height: 150px;" disabled>{{ Turma.conteudo }}</textarea>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-sm objetivo">
+                <div class="input-group">
+                <textarea name="objetivo" class="form-control" style="height: 150px;" placeholder="Objetivo"
+                          aria-label="With textarea"></textarea>
+                </div>
+            </div>
+            <div class="col-sm estrategias">
+                <div class="input-group">
+                <textarea name="estrategias" class="form-control" style="height: 150px;" placeholder="Estratégias"
+                          aria-label="With textarea"></textarea>
+                </div>
+            </div>
+            {% for Turma in planejamentoquery %}
+            <div class="col-sm objetivo" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <textarea name="objetivo" class="form-control" style="height: 150px;" disabled>{{ Turma.objetivo }}</textarea>
+            </div>
+            <div class="col-sm estrategias" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <textarea name="estrategias" class="form-control" style="height: 150px;" disabled>{{ Turma.estrategias }}</textarea>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row g-3 mt-1">
+            <div class="col-sm recursos">
+                <div class="input-group">
+                <textarea name="recursos" class="form-control" style="height: 150px;" placeholder="Recursos"
+                          aria-label="With textarea"></textarea>
+                </div>
+            </div>
+            <div class="col-sm metas_gerais_para_turma">
+                <div class="input-group">
+                <textarea name="metas_gerais_para_turma" class="form-control" style="height: 150px;"
+                          placeholder="Metas Gerais para a Turma"
+                          aria-label="With textarea"></textarea>
+                </div>
+            </div>
+            {% for Turma in planejamentoquery %}
+            <div class="col-sm recursos" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <textarea name="recursos" class="form-control" style="height: 150px;" disabled>{{ Turma.recursos }}</textarea>
+            </div>
+            <div class="col-sm metas_gerais_para_turma" data-matricula="{{ Turma.serie }}" style="display: none;">
+                <textarea name="metas_gerais_para_turma" class="form-control" style="height: 150px;" disabled>{{ Turma.metas_gerais_para_turma }}</textarea>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-secondary mt-2">Gravar Alteração</button>
+    </form>
+    <a href="/planejamento">
+        <button class="btn btn-secondary mt-2">Voltar</button>
+    </a>
+    <script>
+        $(document).ready(function() {
+            $("#option").change(function() {
+                var selectedOption = $(this).val();
+                if (selectedOption === "opcao1") {
+                    $(".bimestre, .componente, .aula, .data, .habilidade, .conteudo, .objetivo, .estrategias, .recursos, .metas_gerais_para_turma").val("").hide();
+                } else {
+                    $(".bimestre, .componente, .aula, .data, .habilidade, .conteudo, .objetivo, .estrategias, .recursos, .metas_gerais_para_turma").hide();
+                    $(".bimestre[data-matricula='" + selectedOption + "']").val("Código do aluno").show();
+                    $(".componente[data-matricula='" + selectedOption + "']").val("Série do aluno").show();
+                    $(".aula[data-matricula='" + selectedOption + "']").val("Turma do aluno").show();
+                    $(".data[data-matricula='" + selectedOption + "']").val("Nome da mãe").show();
+                    $(".habilidade[data-matricula='" + selectedOption + "']").val("Endereço do aluno").show();
+                    $(".conteudo[data-matricula='" + selectedOption + "']").val("Escola do aluno").show();
+                    $(".objetivo[data-matricula='" + selectedOption + "']").val("Diagnostico do aluno").show();
+                    $(".estrategias[data-matricula='" + selectedOption + "']").val("Nascimento do aluno").show();
+                    $(".recursos[data-matricula='" + selectedOption + "']").val("Responsável Legal do aluno").show();
+                    $(".metas_gerais_para_turma[data-matricula='" + selectedOption + "']").val("Cpf do responsável Legal do aluno").show();
+                }
+            });
+
+            // Display initially four empty fields
+            $(".bimestre, .componente, .aula, .data, .habilidade, .conteudo, .objetivo, .estrategias, .recursos, .metas_gerais_para_turma").slice(0, 1).show();
+        });
+    </script>
+</div>
+
+{% endblock %}
