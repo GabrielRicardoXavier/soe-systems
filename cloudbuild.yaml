@@ -1,0 +1,12 @@
+steps:
+  - name: 'python:3.9'
+    entrypoint: 'pip'
+    args: ['install', '-r', 'requirements.txt', '-t', '/workspace']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['functions', 'deploy', 'YOUR_FUNCTION_NAME',
+           '--runtime', 'python39',
+           '--trigger-http',
+           '--allow-unauthenticated',
+           '--entry-point', 'flask_app',
+           '--source', '.']
