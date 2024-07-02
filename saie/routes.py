@@ -14,6 +14,9 @@ import csv
 from PIL import Image
 import requests
 
+from flask import Blueprint
+
+bp = Blueprint('main', __name__)
 
 ### Decorators / ou Links do site ###
 def import_alunos_from_file(file_path):
